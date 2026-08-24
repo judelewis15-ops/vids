@@ -1,0 +1,70 @@
+<link rel="stylesheet" href="g.css">
+<link rel="stylesheet" href="common.css">
+<style>
+.screen{background:#FAF8F4}
+.sb{height:96px;flex:0 0 96px;display:flex;align-items:center;justify-content:space-between;padding:0 46px;font:600 21px Montserrat;color:#111}
+.bars{display:flex;align-items:flex-end;gap:3px;height:17px}
+.bars i{width:4px;background:#111;border-radius:1px}
+.batt{width:29px;height:15px;border:2px solid #111;border-radius:4px;position:relative}
+.batt:after{content:"";position:absolute;inset:2px;background:#111;border-radius:1px}
+.r{display:flex;align-items:center;gap:9px}
+.hd{display:flex;align-items:center;justify-content:space-between;padding:6px 34px 22px}
+.hd svg{width:34px;height:34px;stroke:#111;fill:none;stroke-width:2}
+.hd b{font:700 27px Montserrat;color:#111}
+.mail{position:relative}
+.mail .dot{position:absolute;top:-6px;right:-8px;width:26px;height:26px;border-radius:50%;background:#7B3FF2;color:#fff;font:700 14px Montserrat;display:flex;align-items:center;justify-content:center}
+.chips{display:flex;gap:14px;padding:0 34px 26px;overflow:hidden}
+.chips div{padding:16px 30px;border-radius:999px;border:1.6px solid #e0dbd2;font:600 20px Montserrat;color:#111;white-space:nowrap}
+.chips div.on{background:#7B3FF2;border-color:#7B3FF2;color:#fff}
+.body{flex:1;padding:0 34px;overflow:hidden}
+.post{border-top:1.6px solid #ece7de;padding:28px 0}
+.ph{display:flex;align-items:center;gap:14px}
+.pav{width:52px;height:52px;border-radius:50%;background:#cfc7bb}
+.pav.p{background:linear-gradient(160deg,#9163f5,#7B3FF2)}
+.ph b{font:700 20px Montserrat;color:#7B3FF2}
+.ph i{font:500 19px Montserrat;color:#8b8b93;font-style:normal}
+.ttl{font:700 25px Montserrat;color:#111;margin:16px 0 18px}
+.pimg{height:300px;border-radius:20px;position:relative;overflow:hidden;
+ background:linear-gradient(165deg,#6b5a48,#3b2f24 55%,#241c15)}
+.pimg .cap{position:absolute;left:16px;bottom:14px;right:16px;color:#fff;font:500 17px Montserrat;opacity:.9}
+.acts{display:flex;align-items:center;gap:40px;margin-top:20px;color:#5a5a63;font:500 20px Montserrat}
+.acts svg{width:27px;height:27px;stroke:currentColor;fill:none;stroke-width:1.9;vertical-align:-6px;margin-right:8px}
+.acts .lk{color:#7B3FF2}
+.acts .lk svg{fill:#7B3FF2;stroke:#7B3FF2}
+</style>
+<div class="device"><div class="screen">
+ <div class="notch"></div>
+ <div class="sb"><span>9:41</span><div class="r">
+   <div class="bars"><i style="height:6px"></i><i style="height:10px"></i><i style="height:13px"></i><i style="height:17px"></i></div>
+   <div class="batt"></div></div></div>
+ <div class="hd">
+  <svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+  <b>All Spaces</b>
+  <div class="mail"><svg viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="2.4"/><path d="m3 7 9 6 9-6"/></svg><div class="dot">2</div></div>
+ </div>
+ <div class="chips"><div class="on">All Spaces</div><div>Trending</div><div>General</div><div>Tips</div></div>
+ <div class="body">
+  <div class="post">
+   <div class="ph"><div class="pav"></div><b>u/senoritajen</b><i>1 mo. ago</i></div>
+   <div class="ttl">Fruiting, advice appreciated</div>
+   <div class="pimg"><div class="cap">first monotub started fruiting, 6 days ago</div></div>
+   <div class="acts">
+    <span class="lk"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.6-7-9.4A4 4 0 0 1 12 7a4 4 0 0 1 7 3.6C19 15.4 12 20 12 20z"/></svg>18</span>
+    <span><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>16</span>
+    <span><svg viewBox="0 0 24 24"><path d="M17 2l4 4-4 4M21 6H8a4 4 0 0 0-4 4v1M7 22l-4-4 4-4M3 18h13a4 4 0 0 0 4-4v-1"/></svg></span>
+   </div>
+  </div>
+  <div class="post">
+   <div class="ph"><div class="pav p"></div><b>u/feedyourhead813</b><i>15 days ago</i></div>
+   <div class="ttl">Pioppinis, round 3 and finally there</div>
+   <div class="pimg" style="height:210px"></div>
+  </div>
+ </div>
+ <div class="nav">
+  <div class="t"><svg viewBox="0 0 24 24"><path d="M3 10.2 12 3l9 7.2V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg><span>Home</span></div>
+  <div class="t"><svg viewBox="0 0 24 24"><path d="M12 4 2 9l10 5 10-5z"/><path d="M6 12v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/></svg><span>Courses</span></div>
+  <div class="t on"><div class="badge"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9h6M7 13h10M7 17h8"/></svg></div><span>Feed</span></div>
+  <div class="t"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M12 8v8M8 12h8"/></svg><span>Add</span></div>
+  <div class="t"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="10" r="3.2"/><path d="M6.5 19a6 6 0 0 1 11 0"/></svg><span>Profile</span></div>
+ </div>
+</div></div>

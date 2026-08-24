@@ -5,10 +5,14 @@
 Rebuilt app screens rendered from HTML via Playwright. No AI generation — exact type
 and layout, and editable by changing the HTML and re-rendering.
 
-    node shot.cjs        # writes courses.png, profile.png at 1560x3320
+    node shot.cjs        # writes <screen>.png and <screen>-bare.png
 
-- `courses.html` — 8 Week DIY Grow course card
-- `profile.html` — grower profile
+Each screen renders twice: the framed mockup on the dotted backdrop, and a `-bare`
+variant cropped to the screen itself, for compositing into a device in the film.
+
+- `courses.html` - 8 Week DIY Grow course card
+- `profile.html` - grower profile
+- `feed.html` - All Spaces community feed
 - `common.css` — shared device frame + bottom nav
 - `g.css` + `f*.woff2` — self-hosted Anton / Montserrat
 
@@ -19,6 +23,7 @@ and layout, and editable by changing the HTML and re-rendering.
 - Course details come from the real DIY Course in Notion: 9 sections plus a
   contamination bonus (10 modules), ~30 min runtime, designed to run over 8 weeks.
 - Placeholder content removed: "OATS / How to make Oats / joe" and "Sarah Chen".
+- Instructor and profile identity: Jude, @judemyco.
 
 ## Brand
 
