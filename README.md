@@ -37,6 +37,30 @@ npx remotion render
 npx remotion upgrade
 ```
 
+## Media tooling
+
+This project uses a few tools outside of npm for grabbing and inspecting video:
+
+| Tool | Used for |
+| --- | --- |
+| [Playwright](https://playwright.dev/python/) | browser automation / page capture |
+| [yt-dlp](https://github.com/yt-dlp/yt-dlp) | downloading source video |
+| [ffmpeg](https://ffmpeg.org/) | frame extraction and transcoding |
+
+Install them with:
+
+```console
+./scripts/setup-tools.sh
+```
+
+The script is idempotent and covers both Homebrew (macOS) and apt + pip (Linux).
+It also runs automatically at the start of every Claude Code session via the
+`SessionStart` hook in `.claude/settings.json`.
+
+Where a sandbox image already ships Chromium under `PLAYWRIGHT_BROWSERS_PATH`,
+the script pins the Playwright release whose bundled Chromium revision matches
+what is on disk rather than downloading a second copy.
+
 ## Docs
 
 Get started with Remotion by reading the [fundamentals page](https://www.remotion.dev/docs/the-fundamentals).
