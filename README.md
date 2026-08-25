@@ -61,6 +61,43 @@ Where a sandbox image already ships Chromium under `PLAYWRIGHT_BROWSERS_PATH`,
 the script pins the Playwright release whose bundled Chromium revision matches
 what is on disk rather than downloading a second copy.
 
+## Watching video
+
+Claude has no video input on its own. The [`/watch` skill](https://github.com/bradautomates/claude-video)
+gives it one: `yt-dlp` fetches the video, `ffmpeg` samples scene-aware frames, and Claude reads each
+frame as an image alongside a timestamped transcript.
+
+Install it once:
+
+```console
+/plugin marketplace add bradautomates/claude-video
+/plugin install watch@claude-video
+```
+
+Then point it at a video and ask a question:
+
+```console
+/watch path/to/reel.mp4 what hook does this open with?
+```
+
+`scripts/setup-tools.sh` already installs the `yt-dlp` and `ffmpeg` binaries the skill depends on, so
+its setup preflight comes back with nothing missing.
+
+### Network requirements
+
+In a Claude Code web session, egress is limited to the hosts allowed by the environment's
+[network policy](https://code.claude.com/docs/en/claude-code-on-the-web). Watching a **local video
+file** works with no policy changes. Watching from a **URL** needs the source host allowed:
+
+| To watch | Allow |
+| --- | --- |
+| Instagram | `instagram.com`, `*.cdninstagram.com`, `*.fbcdn.net` |
+| YouTube | `youtube.com`, `*.googlevideo.com` |
+| Whisper transcription | `api.groq.com` or `api.openai.com` |
+
+Without the Whisper hosts, transcripts come only from the source's own captions; frame extraction is
+unaffected and works offline.
+
 ## Docs
 
 Get started with Remotion by reading the [fundamentals page](https://www.remotion.dev/docs/the-fundamentals).
