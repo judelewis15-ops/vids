@@ -144,8 +144,13 @@ reset_css = f"""{PREFIX} h1, {PREFIX} h2, {PREFIX} h3, {PREFIX} p, {PREFIX} figu
 scoped_css = reset_css + scope_css(css) + f"""
 {PREFIX} {{
   position: relative;
-  height: clamp(520px, 80vh, 960px);
-  border-radius: 24px;
+  /* Break out of the theme's content column and fill the viewport. */
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  height: 100vh;
+  height: 100dvh;
+  min-height: 520px;
+  border-radius: 0;
   container-type: size;
   isolation: isolate;
 }}

@@ -105,7 +105,8 @@ All in `app.js`, near the top:
 
 | Constant | Default | What it does |
 | --- | --- | --- |
-| `INITIAL_CENTER`, `INITIAL_ZOOM` | `[10, 20]`, `1.6` | Starting view. |
+| `INITIAL_CENTER`, `INITIAL_ZOOM` | `[10, 20]`, `1.6` | Starting view. The map renders as a globe. |
+| `GLOBE_FILL` | `0.92` | On load the zoom is adjusted so the globe spans this share of the shorter viewport side. Set to `0` to keep `INITIAL_ZOOM` as is. |
 | `MIN_ZOOM`, `MAX_ZOOM` | `1`, `12` | Zoom limits. |
 | `OPEN_ZOOM` | `5` | Zoom the map eases to when a pin is opened from a link or the list. |
 | `TAG_MATCH` | `'any'` | With several chips selected, `'any'` shows pins that have at least one of them, `'all'` shows only pins that have every one. Search text always combines with the chips using AND. |

@@ -17,6 +17,7 @@
     '&copy; <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a>';
   const INITIAL_CENTER = [10, 20];
   const INITIAL_ZOOM = 1.6;
+  const GLOBE_FILL = 0.92; // globe diameter as a share of the shorter viewport side (0 = keep INITIAL_ZOOM)
   const MIN_ZOOM = 1;
   const MAX_ZOOM = 12;
   const OPEN_ZOOM = 5; // zoom used when a pin is opened from a hash or the list
@@ -25,6 +26,7 @@
   const TAG_MATCH = "any"; // 'any': pin has at least one selected tag. 'all': pin has every selected tag.
   const COLORS = { dark: "#1A0B2E", primary: "#7C3AED", light: "#FAF7F2" };
 
+  const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
   const MOBILE = window.matchMedia("(max-width: 767.98px)");
   const COARSE = window.matchMedia("(pointer: coarse)");
   const REDUCED_MOTION = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -78,6 +80,7 @@
     container: "map",
     style: {
       version: 8,
+      projection: { type: "globe" },
       sources: {
         carto: {
           type: "raster",
@@ -113,6 +116,41 @@
   );
 
   const canvas = map.getCanvas();
+
+  // Size the globe to the viewport: measure its on-screen radius (a point 90°
+  // from the centre sits on the limb) and shift the zoom so it fills the page.
+  let userMoved = false;
+  map.on("movestart", (e) => {
+    if (e.originalEvent) userMoved = true;
+  });
+  function fitGlobe() {
+    if (!GLOBE_FILL) return;
+    const w = map.getContainer().clientWidth;
+    const h = map.getContainer().clientHeight;
+    if (!w || !h) return;
+    const wanted = (Math.min(w, h) * GLOBE_FILL) / 2;
+    // The globe's screen radius is not linear in zoom, so refine a few times.
+    for (let i = 0; i < 5; i++) {
+      const c = map.getCenter();
+      const centre = map.project([c.lng, c.lat]);
+      const limb = map.project([c.lng + 89, 0]);
+      const radius =
+        Math.hypot(limb.x - centre.x, limb.y - centre.y) /
+        Math.sin((89 * Math.PI) / 180);
+      if (!radius || !isFinite(radius)) return;
+      if (Math.abs(radius - wanted) < 1) return;
+      const zoom = clamp(
+        map.getZoom() + Math.log2(wanted / radius),
+        MIN_ZOOM,
+        MAX_ZOOM,
+      );
+      if (zoom === map.getZoom()) return;
+      map.jumpTo({ center: c, zoom });
+    }
+  }
+  window.addEventListener("resize", () => {
+    if (!userMoved && state.openId === null) fitGlobe();
+  });
 
   function addPinLayers(data) {
     map.addSource("pins", {
@@ -174,7 +212,7 @@
         const el = document.createElement("div");
         el.className = "cluster-count";
         el.setAttribute("aria-hidden", "true");
-        m = new maplibregl.Marker({ element: el })
+        m = new maplibregl.Marker({ element: el, opacityWhenCovered: "0" })
           .setLngLat(f.geometry.coordinates)
           .addTo(map);
         countMarkers.set(id, m);
@@ -500,7 +538,6 @@
   });
 
   // ---------- Mobile bottom sheet: drag handle + whole-sheet swipe ----------
-  const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
   const sheetBase = () =>
     els.panel.classList.contains("is-full") ? 0 : els.panel.offsetHeight * 0.4;
 
@@ -690,6 +727,7 @@
       state.features = feats;
       for (const f of feats) state.byId.set(String(f.properties.id), f);
 
+      fitGlobe();
       addPinLayers({ type: "FeatureCollection", features: feats });
       map.on("render", syncClusterLabels);
       buildChips();
