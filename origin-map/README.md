@@ -11,7 +11,7 @@ styles.css       visual system
 data/pins.json   the catalogue (GeoJSON)
 ```
 
-Map rendering is [MapLibre GL JS](https://maplibre.org/) from a CDN. Basemap tiles are CARTO Dark Matter (no labels). Fonts come from Google Fonts. Photos live in a Cloudflare R2 bucket. The site is deployed on Cloudflare Pages.
+Map rendering is [MapLibre GL JS](https://maplibre.org/) from a CDN, drawn as a globe. Basemap tiles come from [OpenFreeMap](https://openfreemap.org) (OpenStreetMap data, no API key, no usage limits) and are styled dark and label-free in the brand palette inside `app.js`. Fonts come from Google Fonts. Photos live in a Cloudflare R2 bucket. The site is deployed on Cloudflare Pages.
 
 ## Run it locally
 
@@ -111,14 +111,13 @@ All in `app.js`, near the top:
 | `OPEN_ZOOM` | `5` | Zoom the map eases to when a pin is opened from a link or the list. |
 | `TAG_MATCH` | `'any'` | With several chips selected, `'any'` shows pins that have at least one of them, `'all'` shows only pins that have every one. Search text always combines with the chips using AND. |
 
-Tile URLs use MapLibre's `{ratio}` token, which becomes `@2x` on high-density screens so CARTO serves sharper tiles there. To switch to another tile provider later (for example Protomaps), change `TILE_URLS` and `TILE_ATTRIBUTION`.
+The basemap is a vector style built in `app.js` (land, water, ice, country borders; no labels, so no glyph server is needed). To switch tile provider later (for example self-hosted Protomaps), change `BASEMAP_URL` and `BASEMAP_ATTRIBUTION` and keep the same OpenMapTiles layer names. CARTO's free raster tiles now require an API key, which is why they are not used.
 
 ## Mobile notes
 
 - Under 768px the panel is a bottom sheet. Drag the handle, or swipe anywhere on the sheet: pull down from the top of the content to shrink or close it, push up to expand it. Once the content is scrolled, swiping scrolls the content as normal.
 - Layout respects the phone's safe areas (notch, home indicator) via `env(safe-area-inset-*)`.
 - The search field is 16px so iOS Safari does not zoom the page when it is focused.
-- When the browser has data saver on, the map requests standard-resolution tiles instead of `@2x`.
 
 ## Accessibility notes
 

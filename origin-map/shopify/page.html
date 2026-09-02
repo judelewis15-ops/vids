@@ -757,15 +757,20 @@
 
   // ---------- Config ----------
   const DATA_URL = "data/pins.json";
-  // {ratio} becomes @2x on high-density screens. Skipped when the browser asks to save data.
-  const SAVE_DATA = !!(navigator.connection && navigator.connection.saveData);
-  const TILE_URLS = ["a", "b", "c", "d"].map(
-    (s) =>
-      `https://${s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}${SAVE_DATA ? "" : "{ratio}"}.png`,
-  );
-  const TILE_ATTRIBUTION =
-    '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors ' +
-    '&copy; <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a>';
+  // Basemap: OpenFreeMap vector tiles (OpenStreetMap data, no API key, no
+  // usage limits), drawn as a dark, label-free style in the brand palette.
+  const BASEMAP_URL = "https://tiles.openfreemap.org/planet";
+  const BASEMAP_ATTRIBUTION =
+    '<a href="https://openfreemap.org" target="_blank" rel="noopener">OpenFreeMap</a> ' +
+    '<a href="https://www.openmaptiles.org/" target="_blank" rel="noopener">&copy; OpenMapTiles</a> ' +
+    '<a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">&copy; OpenStreetMap contributors</a>';
+  // Palette colours blended over the dark: land = light 8%, water = primary 15%, borders = light 12%.
+  const BASEMAP = {
+    land: "#2C1E3E",
+    water: "#29124B",
+    ice: "#3B2D4C",
+    border: "#453854",
+  };
   const INITIAL_CENTER = [10, 20];
   const INITIAL_ZOOM = 1.6;
   const GLOBE_FILL = 0.92; // globe diameter as a share of the shorter viewport side (0 = keep INITIAL_ZOOM)
@@ -833,21 +838,45 @@
       version: 8,
       projection: { type: "globe" },
       sources: {
-        carto: {
-          type: "raster",
-          tiles: TILE_URLS,
-          tileSize: 256,
-          maxzoom: 18,
-          attribution: TILE_ATTRIBUTION,
+        basemap: {
+          type: "vector",
+          url: BASEMAP_URL,
+          attribution: BASEMAP_ATTRIBUTION,
         },
       },
       layers: [
         {
-          id: "background",
+          id: "land",
           type: "background",
-          paint: { "background-color": COLORS.dark },
+          paint: { "background-color": BASEMAP.land },
         },
-        { id: "carto", type: "raster", source: "carto" },
+        {
+          id: "water",
+          type: "fill",
+          source: "basemap",
+          "source-layer": "water",
+          paint: { "fill-color": BASEMAP.water },
+        },
+        {
+          id: "ice",
+          type: "fill",
+          source: "basemap",
+          "source-layer": "landcover",
+          filter: ["==", ["get", "class"], "ice"],
+          paint: { "fill-color": BASEMAP.ice },
+        },
+        {
+          id: "borders",
+          type: "line",
+          source: "basemap",
+          "source-layer": "boundary",
+          filter: [
+            "all",
+            ["==", ["get", "admin_level"], 2],
+            ["!=", ["get", "maritime"], 1],
+          ],
+          paint: { "line-color": BASEMAP.border, "line-width": 0.8 },
+        },
       ],
     },
     center: INITIAL_CENTER,
