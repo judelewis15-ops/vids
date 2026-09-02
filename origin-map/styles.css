@@ -48,6 +48,7 @@ body {
   line-height: 1.5;
   overflow: hidden;
   -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
 }
 
 [hidden] {
@@ -166,6 +167,8 @@ h3,
   position: fixed;
   inset: 0;
   background: var(--dark);
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 #map canvas:focus-visible {
@@ -182,8 +185,12 @@ h3,
 
 /* MapLibre controls, restyled to the palette */
 .maplibregl-ctrl-top-right {
-  top: var(--gutter);
-  right: var(--gutter);
+  top: calc(var(--gutter) + env(safe-area-inset-top, 0px));
+  right: calc(var(--gutter) + env(safe-area-inset-right, 0px));
+}
+.maplibregl-ctrl-bottom-right,
+.maplibregl-ctrl-bottom-left {
+  bottom: env(safe-area-inset-bottom, 0px);
 }
 .maplibregl-ctrl-top-right .maplibregl-ctrl {
   margin: 0;
@@ -257,9 +264,9 @@ h3,
 
 .topbar {
   position: fixed;
-  top: var(--gutter);
-  left: var(--gutter);
-  right: calc(var(--gutter) * 2 + 46px);
+  top: calc(var(--gutter) + env(safe-area-inset-top, 0px));
+  left: calc(var(--gutter) + env(safe-area-inset-left, 0px));
+  right: calc(var(--gutter) * 2 + 46px + env(safe-area-inset-right, 0px));
   z-index: 5;
   display: flex;
   flex-direction: column;
@@ -291,7 +298,7 @@ h3,
   background: transparent;
   color: var(--light);
   font: inherit;
-  font-size: 15px;
+  font-size: 16px; /* 16px or more stops iOS Safari zooming the page when the field is focused */
 }
 .search input::placeholder {
   color: var(--light-45);
@@ -320,6 +327,7 @@ h3,
   gap: 6px;
 }
 .chip {
+  min-height: 32px;
   padding: 6px 12px;
   border: 1px solid var(--light-25);
   border-radius: var(--radius);
@@ -576,11 +584,15 @@ h3,
   }
   .panel-body {
     padding-top: 4px;
+    padding-bottom: calc(32px + env(safe-area-inset-bottom, 0px));
   }
   /* When only 60% of the sheet is on screen, let the content scroll all the way up. */
   .panel:not(.is-full) .panel-body {
-    padding-bottom: 40vh;
-    padding-bottom: 40dvh;
+    padding-bottom: calc(40vh + env(safe-area-inset-bottom, 0px));
+    padding-bottom: calc(40dvh + env(safe-area-inset-bottom, 0px));
+  }
+  .pin-list {
+    bottom: calc(var(--gutter) + env(safe-area-inset-bottom, 0px));
   }
   .panel-name {
     font-size: 34px;

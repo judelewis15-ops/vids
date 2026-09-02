@@ -6,9 +6,11 @@
 
   // ---------- Config ----------
   const DATA_URL = "data/pins.json";
+  // {ratio} becomes @2x on high-density screens. Skipped when the browser asks to save data.
+  const SAVE_DATA = !!(navigator.connection && navigator.connection.saveData);
   const TILE_URLS = ["a", "b", "c", "d"].map(
     (s) =>
-      `https://${s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{ratio}.png`,
+      `https://${s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}${SAVE_DATA ? "" : "{ratio}"}.png`,
   );
   const TILE_ATTRIBUTION =
     '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors ' +
@@ -24,6 +26,7 @@
   const COLORS = { dark: "#1A0B2E", primary: "#7C3AED", light: "#FAF7F2" };
 
   const MOBILE = window.matchMedia("(max-width: 767.98px)");
+  const COARSE = window.matchMedia("(pointer: coarse)");
   const REDUCED_MOTION = window.matchMedia("(prefers-reduced-motion: reduce)");
 
   // ---------- DOM ----------
@@ -229,7 +232,7 @@
   // Click handling uses a small hit box so pins are easy to tap on touch screens.
   map.on("click", (e) => {
     if (!map.getLayer("pins")) return;
-    const pad = 10;
+    const pad = COARSE.matches ? 16 : 10; // bigger hit box for fingers
     const { x, y } = e.point;
     const feats = map.queryRenderedFeatures(
       [
@@ -496,8 +499,27 @@
     }
   });
 
-  // ---------- Mobile bottom sheet drag ----------
-  const sheet = {
+  // ---------- Mobile bottom sheet: drag handle + whole-sheet swipe ----------
+  const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
+  const sheetBase = () =>
+    els.panel.classList.contains("is-full") ? 0 : els.panel.offsetHeight * 0.4;
+
+  // Decide where the sheet lands after a drag: close, full, or back to half.
+  function settleSheet(y, vel, H, lastMoveT) {
+    // A pointer that paused before release is not a fling.
+    if (performance.now() - lastMoveT > 100) vel = 0;
+    els.panel.classList.remove("dragging");
+    els.panel.style.transform = "";
+    if (vel > 0.5 || y > H * 0.75) {
+      closePanel();
+      return;
+    }
+    const full = vel < -0.5 || y < H * 0.2;
+    els.panel.classList.toggle("is-full", full);
+  }
+
+  // Drag handle (pointer events, works with mouse and touch).
+  const drag = {
     active: false,
     pointerId: null,
     startY: 0,
@@ -507,19 +529,16 @@
     lastT: 0,
     vel: 0,
   };
-  const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
 
   els.handle.addEventListener("pointerdown", (e) => {
     if (!MOBILE.matches || state.openId === null) return;
-    sheet.active = true;
-    sheet.pointerId = e.pointerId;
-    sheet.height = els.panel.offsetHeight;
-    sheet.base = els.panel.classList.contains("is-full")
-      ? 0
-      : sheet.height * 0.4;
-    sheet.startY = sheet.lastY = e.clientY;
-    sheet.lastT = performance.now();
-    sheet.vel = 0;
+    drag.active = true;
+    drag.pointerId = e.pointerId;
+    drag.height = els.panel.offsetHeight;
+    drag.base = sheetBase();
+    drag.startY = drag.lastY = e.clientY;
+    drag.lastT = performance.now();
+    drag.vel = 0;
     els.panel.classList.add("dragging");
     try {
       els.handle.setPointerCapture(e.pointerId);
@@ -529,37 +548,106 @@
   });
 
   els.handle.addEventListener("pointermove", (e) => {
-    if (!sheet.active || e.pointerId !== sheet.pointerId) return;
+    if (!drag.active || e.pointerId !== drag.pointerId) return;
     const now = performance.now();
-    const dt = Math.max(1, now - sheet.lastT);
-    sheet.vel = (e.clientY - sheet.lastY) / dt; // px per ms, positive = downwards
-    sheet.lastY = e.clientY;
-    sheet.lastT = now;
-    const y = clamp(sheet.base + (e.clientY - sheet.startY), 0, sheet.height);
+    const dt = Math.max(1, now - drag.lastT);
+    drag.vel = (e.clientY - drag.lastY) / dt; // px per ms, positive = downwards
+    drag.lastY = e.clientY;
+    drag.lastT = now;
+    const y = clamp(drag.base + (e.clientY - drag.startY), 0, drag.height);
     els.panel.style.transform = `translateY(${y}px)`;
   });
 
   function endDrag(e) {
-    if (!sheet.active || e.pointerId !== sheet.pointerId) return;
-    sheet.active = false;
-    const y = clamp(sheet.base + (e.clientY - sheet.startY), 0, sheet.height);
-    const H = sheet.height;
-    // A pointer that paused before release is not a fling.
-    if (performance.now() - sheet.lastT > 100) sheet.vel = 0;
-    els.panel.classList.remove("dragging");
-    els.panel.style.transform = "";
-    if (sheet.vel > 0.5 || y > H * 0.75) {
-      closePanel();
-      return;
-    }
-    const full = sheet.vel < -0.5 || y < H * 0.2;
-    els.panel.classList.toggle("is-full", full);
+    if (!drag.active || e.pointerId !== drag.pointerId) return;
+    drag.active = false;
+    const y = clamp(drag.base + (e.clientY - drag.startY), 0, drag.height);
+    settleSheet(y, drag.vel, drag.height, drag.lastT);
   }
   els.handle.addEventListener("pointerup", endDrag);
   els.handle.addEventListener("pointercancel", endDrag);
 
+  // Whole-sheet swipe on touch screens: pull down from the top of the content to
+  // collapse or close, push up to expand. Native scrolling keeps working otherwise.
+  const swipe = {
+    tracking: false,
+    active: false,
+    startX: 0,
+    startY: 0,
+    base: 0,
+    height: 0,
+    lastY: 0,
+    lastT: 0,
+    vel: 0,
+  };
+
+  els.panel.addEventListener(
+    "touchstart",
+    (e) => {
+      if (!MOBILE.matches || state.openId === null || e.touches.length !== 1)
+        return;
+      if (e.target.closest("#panel-handle")) return; // the handle uses pointer events
+      const t = e.touches[0];
+      swipe.tracking = true;
+      swipe.active = false;
+      swipe.startX = t.clientX;
+      swipe.startY = swipe.lastY = t.clientY;
+      swipe.lastT = performance.now();
+      swipe.vel = 0;
+      swipe.height = els.panel.offsetHeight;
+      swipe.base = sheetBase();
+    },
+    { passive: true },
+  );
+
+  els.panel.addEventListener(
+    "touchmove",
+    (e) => {
+      if (!swipe.tracking || e.touches.length !== 1) return;
+      const t = e.touches[0];
+      const dy = t.clientY - swipe.startY;
+      const dx = t.clientX - swipe.startX;
+      if (!swipe.active) {
+        if (Math.abs(dx) > 10 && Math.abs(dx) > Math.abs(dy)) {
+          swipe.tracking = false; // sideways: not ours
+          return;
+        }
+        if (Math.abs(dy) < 8) return;
+        const pullDown = dy > 0 && els.body.scrollTop <= 0;
+        const pushUp = dy < 0 && !els.panel.classList.contains("is-full");
+        if (!pullDown && !pushUp) {
+          swipe.tracking = false; // let the content scroll
+          return;
+        }
+        swipe.active = true;
+        els.panel.classList.add("dragging");
+      }
+      e.preventDefault();
+      const now = performance.now();
+      const dt = Math.max(1, now - swipe.lastT);
+      swipe.vel = (t.clientY - swipe.lastY) / dt;
+      swipe.lastY = t.clientY;
+      swipe.lastT = now;
+      const y = clamp(swipe.base + dy, 0, swipe.height);
+      els.panel.style.transform = `translateY(${y}px)`;
+    },
+    { passive: false },
+  );
+
+  function endSwipe() {
+    if (!swipe.tracking) return;
+    swipe.tracking = false;
+    if (!swipe.active) return;
+    swipe.active = false;
+    const y = clamp(swipe.base + (swipe.lastY - swipe.startY), 0, swipe.height);
+    settleSheet(y, swipe.vel, swipe.height, swipe.lastT);
+  }
+  els.panel.addEventListener("touchend", endSwipe);
+  els.panel.addEventListener("touchcancel", endSwipe);
+
   MOBILE.addEventListener("change", () => {
-    sheet.active = false;
+    drag.active = false;
+    swipe.tracking = swipe.active = false;
     els.panel.classList.remove("is-full", "dragging");
     els.panel.style.transform = "";
   });

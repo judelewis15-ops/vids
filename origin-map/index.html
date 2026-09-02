@@ -44,6 +44,7 @@
       href="https://unpkg.com/maplibre-gl@5.24.0/dist/maplibre-gl.css"
     />
     <link rel="stylesheet" href="styles.css" />
+    <link rel="preload" href="data/pins.json" as="fetch" crossorigin />
 
     <script
       src="https://unpkg.com/maplibre-gl@5.24.0/dist/maplibre-gl.js"
@@ -62,7 +63,7 @@
         <input
           id="search"
           type="search"
-          placeholder="Search name, place or tag"
+          placeholder="Search pins"
           spellcheck="false"
           enterkeyhint="search"
         />

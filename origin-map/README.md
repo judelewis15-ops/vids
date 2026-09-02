@@ -102,6 +102,13 @@ All in `app.js`, near the top:
 
 Tile URLs use MapLibre's `{ratio}` token, which becomes `@2x` on high-density screens so CARTO serves sharper tiles there. To switch to another tile provider later (for example Protomaps), change `TILE_URLS` and `TILE_ATTRIBUTION`.
 
+## Mobile notes
+
+- Under 768px the panel is a bottom sheet. Drag the handle, or swipe anywhere on the sheet: pull down from the top of the content to shrink or close it, push up to expand it. Once the content is scrolled, swiping scrolls the content as normal.
+- Layout respects the phone's safe areas (notch, home indicator) via `env(safe-area-inset-*)`.
+- The search field is 16px so iOS Safari does not zoom the page when it is focused.
+- When the browser has data saver on, the map requests standard-resolution tiles instead of `@2x`.
+
 ## Accessibility notes
 
 - The panel is a `role="dialog"` with `aria-modal="true"`. Focus moves into it when it opens and back to where it came from when it closes. Escape closes it.
