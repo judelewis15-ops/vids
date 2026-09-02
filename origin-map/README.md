@@ -1,0 +1,109 @@
+# Origin Map
+
+A standalone single-page site: an interactive world map of pins. Each pin is one catalogue entry with a name, location, short story, photo, optional article link and optional Instagram reel. Tapping a pin opens a detail panel. Pins cluster when zoomed out and split apart when zoomed in.
+
+No framework, no build step. Four files plus this README:
+
+```
+index.html       page shell
+app.js           map, panel, search, chips, hash links
+styles.css       visual system
+data/pins.json   the catalogue (GeoJSON)
+```
+
+Map rendering is [MapLibre GL JS](https://maplibre.org/) from a CDN. Basemap tiles are CARTO Dark Matter (no labels). Fonts come from Google Fonts. Photos live in a Cloudflare R2 bucket. The site is deployed on Cloudflare Pages.
+
+## Run it locally
+
+Any static file server works. The page fetches `data/pins.json`, so opening `index.html` straight from disk will not load pins in most browsers.
+
+```
+cd origin-map
+python3 -m http.server 8080
+# then open http://localhost:8080
+```
+
+## How to add a pin
+
+Add one Feature to the `features` array in `data/pins.json`:
+
+```json
+{
+  "type": "Feature",
+  "geometry": { "type": "Point", "coordinates": [LNG, LAT] },
+  "properties": {
+    "id": "slug-for-this-pin",
+    "name": "Display Name",
+    "region": "Region or city",
+    "country": "Country",
+    "summary": "Two sentences. That is enough for the panel.",
+    "image": "https://YOUR_R2_PUBLIC_DOMAIN/slug-for-this-pin.jpg",
+    "article_url": "https://example.com/the-longer-article",
+    "reel_id": "C1a2B3c4D5e",
+    "tags": ["cacao", "single-origin"]
+  }
+}
+```
+
+Rules:
+
+- **Coordinates are `[longitude, latitude]`**, GeoJSON order. Longitude first. A quick sanity check: longitude is between -180 and 180, latitude between -90 and 90, and for most of Europe, Africa and Asia longitude is the smaller number.
+- `id` must be unique. It becomes the shareable link (`https://your-domain/#slug-for-this-pin`), so use lowercase letters, digits and hyphens only.
+- `article_url` and `reel_id` may be empty strings (`""`). The panel hides the button and the reel when they are empty.
+- `image` should be the full public URL of the photo. If it is empty or fails to load the panel shows a plain gradient block instead, so nothing breaks.
+- `tags` is an array of strings. Every unique tag across all pins becomes a filter chip, so keep tags short and consistent (`"cacao"`, not `"Cacao "` in one place and `"cocoa"` in another).
+- Keep the file valid JSON: commas between features, no trailing comma after the last one. Paste it into any JSON validator if the map comes up empty.
+
+The three pins shipped in the file (Atlantic, Antarctica, Pacific) are placeholders for testing. Delete them when you add real entries.
+
+## How to upload an image to R2
+
+1. Export the photo as a JPEG, landscape, at least 1600 px wide. The panel crops it to 16:9 with the middle of the picture kept, so leave the subject near the centre.
+2. Name the file after the pin's `id`, e.g. `slug-for-this-pin.jpg`.
+3. In the Cloudflare dashboard go to **R2 → your bucket → Upload** and upload the file. Or from the command line with Wrangler:
+
+   ```
+   npx wrangler r2 object put YOUR_BUCKET_NAME/slug-for-this-pin.jpg --file ./slug-for-this-pin.jpg
+   ```
+
+4. The bucket needs a public domain (R2 → bucket → Settings → Public access → Custom Domains). Once that is set, the photo is at `https://YOUR_R2_PUBLIC_DOMAIN/slug-for-this-pin.jpg`. Put that full URL in the pin's `image` field.
+
+## How to find an Instagram reel ID
+
+1. Open the reel on instagram.com (or tap **Share → Copy link** in the app).
+2. The URL looks like `https://www.instagram.com/reel/C1a2B3c4D5e/`. The reel ID is the part between `/reel/` and the next slash: `C1a2B3c4D5e`.
+3. Put that string in the pin's `reel_id` field. The site builds the embed URL itself (`https://www.instagram.com/reel/ID/embed/`).
+
+The reel is only loaded into the page when its panel is open and is removed when the panel closes, so nothing keeps playing in the background. The account must be public for the embed to work.
+
+## How to deploy
+
+The site is static, so Cloudflare Pages serves the repo as-is.
+
+1. Push this folder to a Git repo on the `main` branch. If this folder is the root of the repo, the layout above is the repo root.
+2. In the Cloudflare dashboard: **Workers & Pages → Create → Pages → Connect to Git**, pick the repo and the `main` branch.
+3. Build settings: framework preset **None**, build command **empty**, build output directory **`/`** (if the site lives in a subfolder of the repo, put that folder name instead, e.g. `origin-map`).
+4. Save and deploy. Every push to `main` redeploys.
+5. Custom domain: in the Pages project go to **Custom domains → Set up a custom domain**, enter your map domain. If the domain's DNS is already on Cloudflare, the CNAME record is created for you. Otherwise add a CNAME from the domain to `your-project.pages.dev`.
+6. HTTPS is automatic once the domain is active.
+
+To preview a change before it lands on `main`, push a branch: Pages builds a preview URL for it.
+
+## Settings you might want to change
+
+All in `app.js`, near the top:
+
+| Constant | Default | What it does |
+| --- | --- | --- |
+| `INITIAL_CENTER`, `INITIAL_ZOOM` | `[10, 20]`, `1.6` | Starting view. |
+| `MIN_ZOOM`, `MAX_ZOOM` | `1`, `12` | Zoom limits. |
+| `OPEN_ZOOM` | `5` | Zoom the map eases to when a pin is opened from a link or the list. |
+| `TAG_MATCH` | `'any'` | With several chips selected, `'any'` shows pins that have at least one of them, `'all'` shows only pins that have every one. Search text always combines with the chips using AND. |
+
+Tile URLs use MapLibre's `{ratio}` token, which becomes `@2x` on high-density screens so CARTO serves sharper tiles there. To switch to another tile provider later (for example Protomaps), change `TILE_URLS` and `TILE_ATTRIBUTION`.
+
+## Accessibility notes
+
+- The panel is a `role="dialog"` with `aria-modal="true"`. Focus moves into it when it opens and back to where it came from when it closes. Escape closes it.
+- Map pins are not keyboard reachable in MapLibre, so a list of every pin is rendered below the map for screen readers and keyboard users. It is visually hidden until it receives focus (Tab past the map, or use the "Skip to list of pins" link that appears on the first Tab press).
+- All colours are the three brand colours at various opacities, and the text contrast passes WCAG AA.

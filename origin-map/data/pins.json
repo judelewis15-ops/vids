@@ -1,0 +1,50 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-30.0, 25.0] },
+      "properties": {
+        "id": "test-atlantic",
+        "name": "Atlantic Test Pin",
+        "region": "Mid-Atlantic",
+        "country": "International Waters",
+        "summary": "Placeholder entry in the middle of the Atlantic Ocean. It has an article link and a reel so both sections of the panel can be checked.",
+        "image": "https://REPLACE_WITH_R2_PUBLIC_DOMAIN/test-atlantic.jpg",
+        "article_url": "https://example.com/stories/test-atlantic",
+        "reel_id": "REPLACE_WITH_REEL_ID",
+        "tags": ["test", "ocean"]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [0.0, -80.0] },
+      "properties": {
+        "id": "test-antarctica",
+        "name": "Antarctica Test Pin",
+        "region": "Queen Maud Land",
+        "country": "Antarctica",
+        "summary": "Placeholder entry on the Antarctic ice sheet. It has an article link but no reel, so the reel section should be hidden.",
+        "image": "https://REPLACE_WITH_R2_PUBLIC_DOMAIN/test-antarctica.jpg",
+        "article_url": "https://example.com/stories/test-antarctica",
+        "reel_id": "",
+        "tags": ["test", "ice"]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-160.0, 0.0] },
+      "properties": {
+        "id": "test-pacific",
+        "name": "Pacific Test Pin",
+        "region": "Central Pacific",
+        "country": "International Waters",
+        "summary": "Placeholder entry in the middle of the Pacific Ocean. It has neither an article link nor a reel, so only the image, label, name and summary should show.",
+        "image": "https://REPLACE_WITH_R2_PUBLIC_DOMAIN/test-pacific.jpg",
+        "article_url": "",
+        "reel_id": "",
+        "tags": ["test", "ocean"]
+      }
+    }
+  ]
+}
