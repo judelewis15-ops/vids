@@ -57,15 +57,18 @@
   --dark: #1a0b2e;
   --primary: #7c3aed;
   --light: #faf7f2;
-  --dark-96: rgba(26, 11, 46, 0.96);
-  --dark-60: rgba(26, 11, 46, 0.6);
-  --light-12: rgba(250, 247, 242, 0.12);
-  --light-25: rgba(250, 247, 242, 0.25);
-  --light-45: rgba(250, 247, 242, 0.45);
-  --light-80: rgba(250, 247, 242, 0.8);
-  --primary-20: rgba(124, 58, 237, 0.2);
-  --primary-35: rgba(124, 58, 237, 0.35);
+  --surface: rgba(250, 247, 242, 0.96);
+  --fg: var(--dark);
+  --fg-80: rgba(26, 11, 46, 0.8);
+  --fg-60: rgba(26, 11, 46, 0.6);
+  --fg-45: rgba(26, 11, 46, 0.45);
+  --line-12: rgba(26, 11, 46, 0.12);
+  --line-25: rgba(26, 11, 46, 0.25);
+  --primary-10: rgba(124, 58, 237, 0.1);
+  --primary-18: rgba(124, 58, 237, 0.18);
+  --primary-30: rgba(124, 58, 237, 0.3);
   --primary-55: rgba(124, 58, 237, 0.55);
+  --primary-0: rgba(124, 58, 237, 0);
   --font-heading: "Bebas Neue", Impact, "Arial Narrow Bold", sans-serif;
   --font-body: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
@@ -81,8 +84,8 @@
 }
 #origin-map {
   margin: 0;
-  background: var(--dark);
-  color: var(--light);
+  background: var(--light);
+  color: var(--fg);
   font-family: var(--font-body);
   font-size: 16px;
   line-height: 1.5;
@@ -94,7 +97,7 @@
   display: none !important;
 }
 #origin-map :focus-visible {
-  outline: 2px solid var(--light);
+  outline: 2px solid var(--primary);
   outline-offset: 2px;
 }
 #origin-map .sr-only {
@@ -173,11 +176,12 @@
   min-height: 36px;
   padding: 6px 14px;
   background: transparent;
-  border: 1px solid var(--light-25);
+  border: 1px solid var(--line-25);
+  color: var(--fg);
   font-size: 14px;
 }
 #origin-map .btn-ghost:hover {
-  background: var(--primary-20);
+  background: var(--primary-10);
 }
 #origin-map .btn-ghost:disabled:hover {
   background: transparent;
@@ -185,12 +189,16 @@
 #origin-map #map {
   position: absolute;
   inset: 0;
-  background: radial-gradient(
-    circle at 50% 50%,
-    var(--primary-35) 0%,
-    var(--primary-20) 28%,
-    var(--dark) 62%
-  );
+  background:
+    radial-gradient(
+      circle closest-side at 50% 50%,
+      var(--primary-18) 0%,
+      var(--primary-18) 86%,
+      var(--primary-30) 94%,
+      var(--primary-10) 112%,
+      var(--primary-0) 140%
+    ),
+    var(--light);
   -webkit-user-select: none;
   user-select: none;
 }
@@ -215,10 +223,10 @@
   margin: 0;
 }
 #origin-map .maplibregl-ctrl-group {
-  background: var(--dark-96);
+  background: var(--surface);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
-  border: 1px solid var(--light-12);
+  border: 1px solid var(--line-12);
   border-radius: var(--radius);
   box-shadow: none;
   overflow: hidden;
@@ -232,46 +240,46 @@
   background: transparent;
 }
 #origin-map .maplibregl-ctrl-group button + button {
-  border-top: 1px solid var(--light-12);
+  border-top: 1px solid var(--line-12);
 }
 #origin-map .maplibregl-ctrl-group button:hover {
-  background: var(--primary-20);
+  background: var(--primary-10);
 }
 #origin-map .maplibregl-ctrl-group button:focus-visible {
   box-shadow: none;
-  outline: 2px solid var(--light);
+  outline: 2px solid var(--primary);
   outline-offset: -4px;
 }
 #origin-map .maplibregl-ctrl-group button:focus:first-child, #origin-map .maplibregl-ctrl-group button:focus:last-child {
   border-radius: 0;
 }
 #origin-map .maplibregl-ctrl button.maplibregl-ctrl-zoom-in .maplibregl-ctrl-icon {
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 29 29' width='29' height='29'><path d='M14.5 8v13M8 14.5h13' fill='none' stroke='%23FAF7F2' stroke-width='2' stroke-linecap='round'/></svg>");
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 29 29' width='29' height='29'><path d='M14.5 8v13M8 14.5h13' fill='none' stroke='%231A0B2E' stroke-width='2' stroke-linecap='round'/></svg>");
 }
 #origin-map .maplibregl-ctrl button.maplibregl-ctrl-zoom-out .maplibregl-ctrl-icon {
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 29 29' width='29' height='29'><path d='M8 14.5h13' fill='none' stroke='%23FAF7F2' stroke-width='2' stroke-linecap='round'/></svg>");
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 29 29' width='29' height='29'><path d='M8 14.5h13' fill='none' stroke='%231A0B2E' stroke-width='2' stroke-linecap='round'/></svg>");
 }
 #origin-map .maplibregl-ctrl-attrib {
-  background: var(--dark-96);
-  color: var(--light-80);
+  background: var(--surface);
+  color: var(--fg-80);
   font-family: var(--font-mono);
   font-size: 12px;
   letter-spacing: 0.04em;
   border-radius: 12px 0 0 0;
 }
 #origin-map .maplibregl-ctrl-attrib a {
-  color: var(--light);
+  color: var(--fg);
 }
 #origin-map .maplibregl-ctrl-attrib.maplibregl-compact {
-  background: var(--dark-96);
+  background: var(--surface);
   border-radius: 12px;
 }
 #origin-map .maplibregl-ctrl-attrib-button {
   background-color: transparent;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'><circle cx='12' cy='12' r='8.5' fill='none' stroke='%23FAF7F2' stroke-width='1.5'/><path d='M12 10.5v6M12 7.5v1' fill='none' stroke='%23FAF7F2' stroke-width='1.8' stroke-linecap='round'/></svg>");
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'><circle cx='12' cy='12' r='8.5' fill='none' stroke='%231A0B2E' stroke-width='1.5'/><path d='M12 10.5v6M12 7.5v1' fill='none' stroke='%231A0B2E' stroke-width='1.8' stroke-linecap='round'/></svg>");
 }
 #origin-map .maplibregl-ctrl-attrib.maplibregl-compact-show .maplibregl-ctrl-attrib-button, #origin-map .maplibregl-ctrl-attrib-button:hover {
-  background-color: var(--primary-20);
+  background-color: var(--primary-10);
 }
 #origin-map .topbar {
   position: absolute;
@@ -294,10 +302,10 @@
   align-items: center;
   gap: 8px;
   padding: 6px 6px 6px 18px;
-  background: var(--dark-96);
+  background: var(--surface);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
-  border: 1px solid var(--light-12);
+  border: 1px solid var(--line-12);
   border-radius: var(--pill);
 }
 #origin-map .search input {
@@ -306,12 +314,12 @@
   padding: 6px 0;
   border: 0;
   background: transparent;
-  color: var(--light);
+  color: var(--fg);
   font: inherit;
   font-size: 16px; 
 }
 #origin-map .search input::placeholder {
-  color: var(--light-45);
+  color: var(--fg-45);
 }
 #origin-map .search input:focus {
   outline: none;
@@ -321,12 +329,12 @@
   appearance: none;
 }
 #origin-map .search:focus-within {
-  border-color: var(--light-45);
+  border-color: var(--primary);
 }
 #origin-map .count {
   flex: none;
   font-size: 12px;
-  color: var(--light-80);
+  color: var(--fg-80);
   white-space: nowrap;
 }
 #origin-map .chips {
@@ -337,24 +345,26 @@
 #origin-map .chip {
   min-height: 32px;
   padding: 6px 12px;
-  border: 1px solid var(--light-25);
+  border: 1px solid var(--line-25);
   border-radius: var(--radius);
-  background: var(--dark-96);
+  background: var(--surface);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
-  color: var(--light);
+  color: var(--fg);
   font-size: 12px;
   cursor: pointer;
   transition:
     background 150ms ease,
-    border-color 150ms ease;
+    border-color 150ms ease,
+    color 150ms ease;
 }
 #origin-map .chip:hover {
-  border-color: var(--light-45);
+  border-color: var(--primary);
 }
 #origin-map .chip[aria-pressed="true"] {
   background: var(--primary);
   border-color: var(--primary);
+  color: var(--light);
 }
 #origin-map .status {
   position: absolute;
@@ -365,8 +375,8 @@
   margin: 0;
   padding: 10px 18px;
   border-radius: var(--pill);
-  background: var(--dark-96);
-  border: 1px solid var(--light-12);
+  background: var(--surface);
+  border: 1px solid var(--line-12);
   font-size: 14px;
 }
 #origin-map .pin-list {
@@ -390,10 +400,10 @@
   overflow: auto;
   clip-path: none;
   white-space: normal;
-  background: var(--dark-96);
+  background: var(--surface);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
-  border: 1px solid var(--light-12);
+  border: 1px solid var(--line-12);
   border-radius: var(--radius);
 }
 #origin-map .pin-list-title {
@@ -414,14 +424,14 @@
   border: 0;
   border-radius: 12px;
   background: transparent;
-  color: var(--light);
+  color: var(--fg);
   font: inherit;
   font-size: 14px;
   text-align: left;
   cursor: pointer;
 }
 #origin-map .pin-list-items button:hover {
-  background: var(--primary-20);
+  background: var(--primary-10);
 }
 #origin-map .pin-list-items small {
   display: block;
@@ -429,17 +439,17 @@
   font-size: 12px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--light-80);
+  color: var(--fg-80);
 }
 #origin-map .panel {
   position: absolute;
   z-index: 10;
   display: flex;
   flex-direction: column;
-  background: var(--dark-96);
+  background: var(--surface);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
-  color: var(--light);
+  color: var(--fg);
   visibility: hidden;
   outline: none;
   transition:
@@ -472,7 +482,7 @@
   width: 44px;
   height: 5px;
   border-radius: var(--pill);
-  background: var(--light-45);
+  background: var(--line-25);
 }
 #origin-map .panel-close {
   position: absolute;
@@ -485,14 +495,14 @@
   width: 44px;
   height: 44px;
   padding: 0;
-  border: 1px solid var(--light-12);
+  border: 1px solid var(--line-12);
   border-radius: var(--pill);
-  background: var(--dark-96);
-  color: var(--light);
+  background: var(--surface);
+  color: var(--fg);
   cursor: pointer;
 }
 #origin-map .panel-close:hover {
-  background: var(--primary-20);
+  background: var(--primary-10);
 }
 #origin-map .panel-body {
   flex: 1 1 auto;
@@ -508,7 +518,7 @@
   aspect-ratio: 16 / 9;
   border-radius: 16px;
   overflow: hidden;
-  background: linear-gradient(135deg, var(--primary-55), var(--primary-20));
+  background: linear-gradient(135deg, var(--primary-55), var(--primary-18));
 }
 #origin-map .panel-media img {
   display: block;
@@ -522,7 +532,7 @@
 #origin-map .eyebrow {
   margin: 0 0 6px;
   font-size: 12px;
-  color: var(--light-80);
+  color: var(--fg-80);
 }
 #origin-map .panel-name {
   font-size: 40px;
@@ -532,7 +542,7 @@
 #origin-map .panel-summary {
   margin: 0 0 20px;
   font-size: 16px;
-  color: var(--light);
+  color: var(--fg);
 }
 #origin-map .panel-actions {
   margin: 0 0 20px;
@@ -541,7 +551,7 @@
   aspect-ratio: 16 / 9;
   border-radius: 16px;
   overflow: hidden;
-  background: var(--primary-20);
+  background: var(--primary-10);
 }
 #origin-map .reel iframe {
   display: block;
@@ -557,7 +567,7 @@
     height: 100cqh;
     height: 100cqh;
     border-radius: var(--radius) var(--radius) 0 0;
-    border-top: 1px solid var(--light-12);
+    border-top: 1px solid var(--line-12);
     transform: translateY(100%);
   }
 #origin-map .panel.is-open {
@@ -601,7 +611,7 @@
     width: var(--panel-width);
     max-width: 100cqw;
     border-radius: var(--radius) 0 0 var(--radius);
-    border-left: 1px solid var(--light-12);
+    border-left: 1px solid var(--line-12);
     transform: translateX(100%);
   }
 #origin-map .panel.is-open {
@@ -764,12 +774,14 @@
     '<a href="https://openfreemap.org" target="_blank" rel="noopener">OpenFreeMap</a> ' +
     '<a href="https://www.openmaptiles.org/" target="_blank" rel="noopener">&copy; OpenMapTiles</a> ' +
     '<a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">&copy; OpenStreetMap contributors</a>';
-  // Palette colours blended over the dark: land = light 8%, water = primary 15%, borders = light 12%.
+  // Light theme, all from the palette. Land is the sphere base (cream blended
+  // with primary 45%), water is drawn on top (cream with primary 10%), ice and
+  // country borders are cream at partial opacity over the land.
   const BASEMAP = {
-    land: "#2C1E3E",
-    water: "#29124B",
-    ice: "#3B2D4C",
-    border: "#453854",
+    land: "#C1A2F0",
+    water: "#EDE4F2",
+    ice: "rgba(250, 247, 242, 0.55)",
+    border: "rgba(250, 247, 242, 0.7)",
   };
   const INITIAL_CENTER = [10, 20];
   const INITIAL_ZOOM = 1.6;

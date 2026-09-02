@@ -13,12 +13,14 @@
     '<a href="https://openfreemap.org" target="_blank" rel="noopener">OpenFreeMap</a> ' +
     '<a href="https://www.openmaptiles.org/" target="_blank" rel="noopener">&copy; OpenMapTiles</a> ' +
     '<a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">&copy; OpenStreetMap contributors</a>';
-  // Palette colours blended over the dark: land = light 8%, water = primary 15%, borders = light 12%.
+  // Light theme, all from the palette. Land is the sphere base (cream blended
+  // with primary 45%), water is drawn on top (cream with primary 10%), ice and
+  // country borders are cream at partial opacity over the land.
   const BASEMAP = {
-    land: "#2C1E3E",
-    water: "#29124B",
-    ice: "#3B2D4C",
-    border: "#453854",
+    land: "#C1A2F0",
+    water: "#EDE4F2",
+    ice: "rgba(250, 247, 242, 0.55)",
+    border: "rgba(250, 247, 242, 0.7)",
   };
   const INITIAL_CENTER = [10, 20];
   const INITIAL_ZOOM = 1.6;
