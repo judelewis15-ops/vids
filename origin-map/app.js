@@ -12,7 +12,8 @@
   const BASEMAP_ATTRIBUTION =
     '<a href="https://openfreemap.org" target="_blank" rel="noopener">OpenFreeMap</a> ' +
     '<a href="https://www.openmaptiles.org/" target="_blank" rel="noopener">&copy; OpenMapTiles</a> ' +
-    '<a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">&copy; OpenStreetMap contributors</a>';
+    '<a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">&copy; OpenStreetMap contributors</a>' +
+    " · build 7";
   // Dark stage: violet is reserved for pins. Land is the sphere base, water
   // is drawn on top, borders are barely there.
   const BASEMAP = {
