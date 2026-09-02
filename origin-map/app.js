@@ -6,21 +6,42 @@
 
   // ---------- Config ----------
   const DATA_URL = "data/pins.json";
-  // Basemap: OpenFreeMap vector tiles (OpenStreetMap data, no API key, no
-  // usage limits), drawn as a dark, label-free style in the brand palette.
-  const BASEMAP_URL = "https://tiles.openfreemap.org/planet";
-  const BASEMAP_ATTRIBUTION =
-    '<a href="https://openfreemap.org" target="_blank" rel="noopener">OpenFreeMap</a> ' +
-    '<a href="https://www.openmaptiles.org/" target="_blank" rel="noopener">&copy; OpenMapTiles</a> ' +
-    '<a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">&copy; OpenStreetMap contributors</a>' +
-    " · build 7";
-  // Dark stage: violet is reserved for pins. Land is the sphere base, water
-  // is drawn on top, borders are barely there.
-  const BASEMAP = {
-    land: "#2A1548",
-    water: "#1A0B2E",
-    ice: "#321A58",
-    border: "#3D2160",
+  // Land is a dot matrix generated from Natural Earth 110m polygons by
+  // scripts/build-dots.js. No tile server, no API key.
+  const DOTS_URL = "data/land-dots.json";
+  const BUILD = "build 8";
+  const ATTRIBUTION =
+    'Land: <a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener">Natural Earth</a>' +
+    ` · ${BUILD}`;
+  // Light globe: cream space, pale violet sky, lavender ocean sphere.
+  const GLOBE = {
+    space: "#FAF7F2",
+    ocean: "#EFE8FA",
+    sky: "#DDD1F5",
+    high: "#C4B5FD",
+    atmosphere: 0.4,
+    horizonBlend: 0.05,
+  };
+  // Dots: pale at the top of the globe, saturated at the bottom.
+  const DOT_COLOR = [
+    "interpolate",
+    ["linear"],
+    ["get", "lat"],
+    -60,
+    "#6D28D9",
+    20,
+    "#9B7BF0",
+    84,
+    "#C4B5FD",
+  ];
+  const DOT_RADIUS = ["interpolate", ["linear"], ["zoom"], 1.6, 1.6, 6, 4];
+  const PIN = {
+    fill: "#1A0B2E",
+    stroke: "#FAF7F2",
+    strokeWidth: 2.5,
+    glow: "#1A0B2E",
+    glowOpacity: 0.12,
+    glowRadius: 20,
   };
   const INITIAL_CENTER = [10, 20];
   const INITIAL_ZOOM = 1.6;
@@ -89,45 +110,21 @@
     style: {
       version: 8,
       projection: { type: "globe" },
-      sources: {
-        basemap: {
-          type: "vector",
-          url: BASEMAP_URL,
-          attribution: BASEMAP_ATTRIBUTION,
-        },
+      sky: {
+        "sky-color": GLOBE.sky,
+        "horizon-color": GLOBE.high,
+        "fog-color": GLOBE.space,
+        "sky-horizon-blend": GLOBE.horizonBlend,
+        "horizon-fog-blend": GLOBE.horizonBlend,
+        "fog-ground-blend": GLOBE.atmosphere,
+        "atmosphere-blend": GLOBE.atmosphere,
       },
+      sources: {},
       layers: [
         {
-          id: "land",
+          id: "ocean",
           type: "background",
-          paint: { "background-color": BASEMAP.land },
-        },
-        {
-          id: "water",
-          type: "fill",
-          source: "basemap",
-          "source-layer": "water",
-          paint: { "fill-color": BASEMAP.water },
-        },
-        {
-          id: "ice",
-          type: "fill",
-          source: "basemap",
-          "source-layer": "landcover",
-          filter: ["==", ["get", "class"], "ice"],
-          paint: { "fill-color": BASEMAP.ice },
-        },
-        {
-          id: "borders",
-          type: "line",
-          source: "basemap",
-          "source-layer": "boundary",
-          filter: [
-            "all",
-            ["==", ["get", "admin_level"], 2],
-            ["!=", ["get", "maritime"], 1],
-          ],
-          paint: { "line-color": BASEMAP.border, "line-width": 1 },
+          paint: { "background-color": GLOBE.ocean },
         },
       ],
     },
@@ -148,6 +145,12 @@
   );
 
   const canvas = map.getCanvas();
+
+  // Fake specular gloss: a CSS overlay clipped to the sphere (see .gloss).
+  const gloss = document.createElement("div");
+  gloss.className = "gloss";
+  gloss.setAttribute("aria-hidden", "true");
+  els.mapEl.appendChild(gloss);
 
   // Screen radius of the sphere's silhouette, in px. Points past the horizon
   // project back inside the disc, so the largest distance over a sweep of
@@ -210,6 +213,25 @@
   map.on("move", syncHalo);
   map.once("idle", refit);
 
+  function addLandLayers(dots) {
+    map.addSource("land", {
+      type: "geojson",
+      data: dots,
+      attribution: ATTRIBUTION,
+    });
+    map.addLayer({
+      id: "land-dots",
+      type: "circle",
+      source: "land",
+      paint: {
+        "circle-radius": DOT_RADIUS,
+        "circle-color": DOT_COLOR,
+        "circle-opacity": 0.9,
+        "circle-stroke-width": 0,
+      },
+    });
+  }
+
   function addPinLayers(data) {
     map.addSource("pins", {
       type: "geojson",
@@ -218,16 +240,32 @@
       clusterRadius: 48,
       clusterMaxZoom: 9,
     });
+    // Soft glow under every pin and cluster so they lift off the dots.
+    map.addLayer({
+      id: "pin-glow",
+      type: "circle",
+      source: "pins",
+      paint: {
+        "circle-color": PIN.glow,
+        "circle-opacity": PIN.glowOpacity,
+        "circle-radius": [
+          "case",
+          ["has", "point_count"],
+          ["step", ["get", "point_count"], 27, 5, 33, 21, 39],
+          PIN.glowRadius,
+        ],
+      },
+    });
     map.addLayer({
       id: "clusters",
       type: "circle",
       source: "pins",
       filter: ["has", "point_count"],
       paint: {
-        "circle-color": COLORS.primary,
+        "circle-color": PIN.fill,
         "circle-opacity": 0.85,
-        "circle-stroke-width": 2,
-        "circle-stroke-color": COLORS.light,
+        "circle-stroke-width": PIN.strokeWidth,
+        "circle-stroke-color": PIN.stroke,
         "circle-radius": ["step", ["get", "point_count"], 16, 5, 22, 21, 28],
       },
     });
@@ -237,9 +275,9 @@
       source: "pins",
       filter: ["!", ["has", "point_count"]],
       paint: {
-        "circle-color": COLORS.primary,
-        "circle-stroke-width": 2,
-        "circle-stroke-color": COLORS.light,
+        "circle-color": PIN.fill,
+        "circle-stroke-width": PIN.strokeWidth,
+        "circle-stroke-color": PIN.stroke,
         "circle-radius": 9,
       },
     });
@@ -769,9 +807,16 @@
     if (!r.ok) throw new Error(`Failed to load ${DATA_URL}: ${r.status}`);
     return r.json();
   });
+  // [dots-loader]
+  const loadDots = () =>
+    fetch(DOTS_URL).then((r) => {
+      if (!r.ok) throw new Error(`Failed to load ${DOTS_URL}: ${r.status}`);
+      return r.json();
+    });
+  // [/dots-loader]
 
-  Promise.all([mapReady, dataReady])
-    .then(([, data]) => {
+  Promise.all([mapReady, dataReady, loadDots()])
+    .then(([, data, dots]) => {
       const feats = (Array.isArray(data.features) ? data.features : []).filter(
         (f) =>
           f &&
@@ -786,6 +831,7 @@
       for (const f of feats) state.byId.set(String(f.properties.id), f);
 
       fitGlobe();
+      addLandLayers(dots);
       addPinLayers({ type: "FeatureCollection", features: feats });
       map.on("render", syncClusterLabels);
       buildChips();

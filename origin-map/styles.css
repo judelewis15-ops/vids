@@ -1,23 +1,24 @@
 /* Origin Map — styles.css
    Palette is fixed: dark #1A0B2E, primary #7C3AED, light #FAF7F2.
-   Dark stage: space #0F0619 behind the globe, dark surfaces, light text.
-   Violet is reserved for pins, buttons and the thin halo. */
+   Light globe: cream space, cream surfaces at 92%, dark ink, violet accents. */
 
 :root {
   --dark: #1a0b2e;
   --primary: #7c3aed;
   --light: #faf7f2;
 
-  --space: #0f0619;
+  --space: #faf7f2;
 
-  /* Surfaces and lines on the dark stage */
-  --surface: rgba(26, 11, 46, 0.96);
-  --fg: var(--light);
-  --fg-80: rgba(250, 247, 242, 0.8);
-  --fg-60: rgba(250, 247, 242, 0.6);
-  --fg-45: rgba(250, 247, 242, 0.45);
-  --line-12: rgba(250, 247, 242, 0.12);
-  --line-25: rgba(250, 247, 242, 0.25);
+  /* Surfaces and lines on the cream page */
+  --surface: rgba(250, 247, 242, 0.92);
+  --surface-strong: rgba(250, 247, 242, 0.96);
+  --fg: var(--dark);
+  --fg-80: rgba(26, 11, 46, 0.8);
+  --fg-60: rgba(26, 11, 46, 0.6);
+  --fg-45: rgba(26, 11, 46, 0.45);
+  --line-12: rgba(26, 11, 46, 0.12);
+  --line-25: rgba(26, 11, 46, 0.25);
+  --accent-25: rgba(124, 58, 237, 0.25);
   --primary-10: rgba(124, 58, 237, 0.1);
   --primary-15: rgba(124, 58, 237, 0.15);
   --primary-18: rgba(124, 58, 237, 0.18);
@@ -176,26 +177,42 @@ h3,
 #map {
   position: fixed;
   inset: 0;
-  /* Space behind the globe, with a thin atmosphere halo hugging the limb.
-     --globe-r is the sphere's measured on-screen radius, set by app.js, so
-     the halo follows the globe through zoom, resize and drag. */
+  /* --globe-r is the sphere's measured on-screen radius, set by app.js. The
+     atmosphere itself is drawn by MapLibre; this is just the cream space. */
   --globe-r: 0px;
-  background:
-    radial-gradient(
-      circle at 50% 50%,
-      var(--primary-0) 0,
-      var(--primary-0) calc(var(--globe-r) - 1px),
-      var(--primary-15) var(--globe-r),
-      var(--primary-15) calc(var(--globe-r) + 6px),
-      var(--primary-0) calc(var(--globe-r) * 1.06 + 14px)
-    ),
-    var(--space);
+  background: var(--space);
   -webkit-user-select: none;
   user-select: none;
 }
 
 #map canvas:focus-visible {
   outline-offset: -3px;
+}
+
+/* Fake specular gloss over the sphere: MapLibre has no lighting. A circle the
+   size of the globe, a cream highlight upper-left and a faint violet bounce
+   lower-right. */
+.gloss {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: calc(var(--globe-r) * 2);
+  height: calc(var(--globe-r) * 2);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      circle at 35% 25%,
+      rgba(250, 247, 242, 0.3) 0%,
+      rgba(250, 247, 242, 0) 55%
+    ),
+    radial-gradient(
+      circle at 65% 75%,
+      rgba(124, 58, 237, 0.08) 0%,
+      rgba(124, 58, 237, 0) 55%
+    );
 }
 
 .cluster-count {
@@ -253,10 +270,10 @@ h3,
 }
 
 .maplibregl-ctrl button.maplibregl-ctrl-zoom-in .maplibregl-ctrl-icon {
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 29 29' width='29' height='29'><path d='M14.5 8v13M8 14.5h13' fill='none' stroke='%23FAF7F2' stroke-width='2' stroke-linecap='round'/></svg>");
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 29 29' width='29' height='29'><path d='M14.5 8v13M8 14.5h13' fill='none' stroke='%231A0B2E' stroke-width='2' stroke-linecap='round'/></svg>");
 }
 .maplibregl-ctrl button.maplibregl-ctrl-zoom-out .maplibregl-ctrl-icon {
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 29 29' width='29' height='29'><path d='M8 14.5h13' fill='none' stroke='%23FAF7F2' stroke-width='2' stroke-linecap='round'/></svg>");
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 29 29' width='29' height='29'><path d='M8 14.5h13' fill='none' stroke='%231A0B2E' stroke-width='2' stroke-linecap='round'/></svg>");
 }
 
 .maplibregl-ctrl-attrib {
@@ -276,7 +293,7 @@ h3,
 }
 .maplibregl-ctrl-attrib-button {
   background-color: transparent;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'><circle cx='12' cy='12' r='8.5' fill='none' stroke='%23FAF7F2' stroke-width='1.5'/><path d='M12 10.5v6M12 7.5v1' fill='none' stroke='%23FAF7F2' stroke-width='1.8' stroke-linecap='round'/></svg>");
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'><circle cx='12' cy='12' r='8.5' fill='none' stroke='%231A0B2E' stroke-width='1.5'/><path d='M12 10.5v6M12 7.5v1' fill='none' stroke='%231A0B2E' stroke-width='1.8' stroke-linecap='round'/></svg>");
 }
 .maplibregl-ctrl-attrib.maplibregl-compact-show .maplibregl-ctrl-attrib-button,
 .maplibregl-ctrl-attrib-button:hover {
@@ -310,7 +327,7 @@ h3,
   background: var(--surface);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
-  border: 1px solid var(--line-12);
+  border: 1px solid var(--accent-25);
   border-radius: var(--pill);
 }
 .search input {
@@ -352,7 +369,7 @@ h3,
 .chip {
   min-height: 32px;
   padding: 6px 12px;
-  border: 1px solid var(--line-25);
+  border: 1px solid var(--accent-25);
   border-radius: var(--radius);
   background: var(--surface);
   -webkit-backdrop-filter: blur(12px);
@@ -411,7 +428,7 @@ h3,
   overflow: auto;
   clip-path: none;
   white-space: normal;
-  background: var(--surface);
+  background: var(--surface-strong);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
   border: 1px solid var(--line-12);
@@ -460,7 +477,7 @@ h3,
   z-index: 10;
   display: flex;
   flex-direction: column;
-  background: var(--surface);
+  background: var(--surface-strong);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
   color: var(--fg);

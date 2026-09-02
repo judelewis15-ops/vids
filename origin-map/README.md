@@ -11,7 +11,7 @@ styles.css       visual system
 data/pins.json   the catalogue (GeoJSON)
 ```
 
-Map rendering is [MapLibre GL JS](https://maplibre.org/) from a CDN, drawn as a globe. Basemap tiles come from [OpenFreeMap](https://openfreemap.org) (OpenStreetMap data, no API key, no usage limits) and are styled dark and label-free in the brand palette inside `app.js`. Fonts come from Google Fonts. Photos live in a Cloudflare R2 bucket. The site is deployed on Cloudflare Pages.
+Map rendering is [MapLibre GL JS](https://maplibre.org/) from a CDN, drawn as a globe. There is no tile server: land is a dot matrix generated once from Natural Earth 1:110m polygons into `data/land-dots.json`, so the map needs no API key and makes no map-data requests at view time. Fonts come from Google Fonts. Photos live in a Cloudflare R2 bucket. The site is deployed on Cloudflare Pages.
 
 ## Run it locally
 
@@ -99,6 +99,20 @@ python3 shopify/build.py
 
 Then paste `shopify/page.html` into the page body (Online Store > Pages > the page > `<>` HTML view) or send it as the `body` in a `pageCreate` / `pageUpdate` Admin API call. Pins are embedded in the fragment, so `data/pins.json` edits need a rebuild and re-paste too.
 
+## Regenerating the land dots
+
+`data/land-dots.json` is committed, so you only need this if you change the spacing or want fresh Natural Earth data.
+
+```
+cd origin-map
+npm install
+npm run build:dots            # 0.9° lattice, longitude spacing scaled by 1/cos(lat)
+node scripts/build-dots.js --no-cos   # plain lattice, denser towards the poles
+node scripts/build-dots.js --spacing 0.7
+```
+
+The script downloads Natural Earth 110m land as GeoJSON (falling back to the same data from the `world-atlas` npm package if the download fails), keeps lattice points that fall on land, rounds to two decimals and writes a GeoJSON FeatureCollection with a `lat` property on each point. The Shopify build packs the lattice as row runs so the page body stays small.
+
 ## Settings you might want to change
 
 All in `app.js`, near the top:
@@ -111,7 +125,7 @@ All in `app.js`, near the top:
 | `OPEN_ZOOM` | `5` | Zoom the map eases to when a pin is opened from a link or the list. |
 | `TAG_MATCH` | `'any'` | With several chips selected, `'any'` shows pins that have at least one of them, `'all'` shows only pins that have every one. Search text always combines with the chips using AND. |
 
-The basemap is a vector style built in `app.js` (land, water, ice, country borders; no labels, so no glyph server is needed). To switch tile provider later (for example self-hosted Protomaps), change `BASEMAP_URL` and `BASEMAP_ATTRIBUTION` and keep the same OpenMapTiles layer names. CARTO's free raster tiles now require an API key, which is why they are not used.
+Globe colours live at the top of `app.js`: `GLOBE` (space, ocean, sky), `DOT_COLOR` and `DOT_RADIUS` (the land dots) and `PIN`. The gloss highlight is the `.gloss` rule in `styles.css`.
 
 ## Mobile notes
 
