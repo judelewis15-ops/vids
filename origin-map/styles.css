@@ -1,22 +1,25 @@
 /* Origin Map — styles.css
    Palette is fixed: dark #1A0B2E, primary #7C3AED, light #FAF7F2.
-   Light theme: cream page, dark text, primary accents. Every other colour
-   below is one of the three at an opacity. */
+   Dark stage: space #0F0619 behind the globe, dark surfaces, light text.
+   Violet is reserved for pins, buttons and the thin halo. */
 
 :root {
   --dark: #1a0b2e;
   --primary: #7c3aed;
   --light: #faf7f2;
 
-  /* Surfaces and lines on the cream page */
-  --surface: rgba(250, 247, 242, 0.96);
-  --fg: var(--dark);
-  --fg-80: rgba(26, 11, 46, 0.8);
-  --fg-60: rgba(26, 11, 46, 0.6);
-  --fg-45: rgba(26, 11, 46, 0.45);
-  --line-12: rgba(26, 11, 46, 0.12);
-  --line-25: rgba(26, 11, 46, 0.25);
+  --space: #0f0619;
+
+  /* Surfaces and lines on the dark stage */
+  --surface: rgba(26, 11, 46, 0.96);
+  --fg: var(--light);
+  --fg-80: rgba(250, 247, 242, 0.8);
+  --fg-60: rgba(250, 247, 242, 0.6);
+  --fg-45: rgba(250, 247, 242, 0.45);
+  --line-12: rgba(250, 247, 242, 0.12);
+  --line-25: rgba(250, 247, 242, 0.25);
   --primary-10: rgba(124, 58, 237, 0.1);
+  --primary-15: rgba(124, 58, 237, 0.15);
   --primary-18: rgba(124, 58, 237, 0.18);
   --primary-30: rgba(124, 58, 237, 0.3);
   --primary-55: rgba(124, 58, 237, 0.55);
@@ -47,7 +50,7 @@ body {
 
 body {
   margin: 0;
-  background: var(--light);
+  background: var(--space);
   color: var(--fg);
   font-family: var(--font-body);
   font-size: 16px;
@@ -173,18 +176,19 @@ h3,
 #map {
   position: fixed;
   inset: 0;
-  /* Cream page with a soft primary glow ringing the globe. The globe fills
-     92% of the shorter side, so the glow peaks just outside that radius. */
+  /* Space behind the globe, with a thin atmosphere halo hugging the limb.
+     The globe fills 92% of the shorter side; closest-side makes 100% equal
+     half that side, so the halo runs from the edge to a few percent past it. */
   background:
     radial-gradient(
       circle closest-side at 50% 50%,
-      var(--primary-18) 0%,
-      var(--primary-18) 86%,
-      var(--primary-30) 94%,
-      var(--primary-10) 112%,
-      var(--primary-0) 140%
+      var(--primary-0) 0%,
+      var(--primary-0) 90%,
+      var(--primary-15) 92%,
+      var(--primary-15) 95%,
+      var(--primary-0) 102%
     ),
-    var(--light);
+    var(--space);
   -webkit-user-select: none;
   user-select: none;
 }
@@ -248,10 +252,10 @@ h3,
 }
 
 .maplibregl-ctrl button.maplibregl-ctrl-zoom-in .maplibregl-ctrl-icon {
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 29 29' width='29' height='29'><path d='M14.5 8v13M8 14.5h13' fill='none' stroke='%231A0B2E' stroke-width='2' stroke-linecap='round'/></svg>");
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 29 29' width='29' height='29'><path d='M14.5 8v13M8 14.5h13' fill='none' stroke='%23FAF7F2' stroke-width='2' stroke-linecap='round'/></svg>");
 }
 .maplibregl-ctrl button.maplibregl-ctrl-zoom-out .maplibregl-ctrl-icon {
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 29 29' width='29' height='29'><path d='M8 14.5h13' fill='none' stroke='%231A0B2E' stroke-width='2' stroke-linecap='round'/></svg>");
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 29 29' width='29' height='29'><path d='M8 14.5h13' fill='none' stroke='%23FAF7F2' stroke-width='2' stroke-linecap='round'/></svg>");
 }
 
 .maplibregl-ctrl-attrib {
@@ -271,7 +275,7 @@ h3,
 }
 .maplibregl-ctrl-attrib-button {
   background-color: transparent;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'><circle cx='12' cy='12' r='8.5' fill='none' stroke='%231A0B2E' stroke-width='1.5'/><path d='M12 10.5v6M12 7.5v1' fill='none' stroke='%231A0B2E' stroke-width='1.8' stroke-linecap='round'/></svg>");
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'><circle cx='12' cy='12' r='8.5' fill='none' stroke='%23FAF7F2' stroke-width='1.5'/><path d='M12 10.5v6M12 7.5v1' fill='none' stroke='%23FAF7F2' stroke-width='1.8' stroke-linecap='round'/></svg>");
 }
 .maplibregl-ctrl-attrib.maplibregl-compact-show .maplibregl-ctrl-attrib-button,
 .maplibregl-ctrl-attrib-button:hover {

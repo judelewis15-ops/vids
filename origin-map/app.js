@@ -7,20 +7,19 @@
   // ---------- Config ----------
   const DATA_URL = "data/pins.json";
   // Basemap: OpenFreeMap vector tiles (OpenStreetMap data, no API key, no
-  // usage limits), drawn as a light, label-free style in the brand palette.
+  // usage limits), drawn as a dark, label-free style in the brand palette.
   const BASEMAP_URL = "https://tiles.openfreemap.org/planet";
   const BASEMAP_ATTRIBUTION =
     '<a href="https://openfreemap.org" target="_blank" rel="noopener">OpenFreeMap</a> ' +
     '<a href="https://www.openmaptiles.org/" target="_blank" rel="noopener">&copy; OpenMapTiles</a> ' +
     '<a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">&copy; OpenStreetMap contributors</a>';
-  // Light theme, all from the palette. Land is the sphere base (cream blended
-  // with primary 45%), water is drawn on top (cream with primary 10%), ice and
-  // country borders are cream at partial opacity over the land.
+  // Dark stage: violet is reserved for pins. Land is the sphere base, water
+  // is drawn on top, borders are barely there.
   const BASEMAP = {
-    land: "#C1A2F0",
-    water: "#EDE4F2",
-    ice: "rgba(250, 247, 242, 0.55)",
-    border: "rgba(250, 247, 242, 0.7)",
+    land: "#2A1548",
+    water: "#1A0B2E",
+    ice: "#321A58",
+    border: "#3D2160",
   };
   const INITIAL_CENTER = [10, 20];
   const INITIAL_ZOOM = 1.6;
@@ -126,7 +125,7 @@
             ["==", ["get", "admin_level"], 2],
             ["!=", ["get", "maritime"], 1],
           ],
-          paint: { "line-color": BASEMAP.border, "line-width": 0.8 },
+          paint: { "line-color": BASEMAP.border, "line-width": 1 },
         },
       ],
     },

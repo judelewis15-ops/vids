@@ -57,14 +57,16 @@
   --dark: #1a0b2e;
   --primary: #7c3aed;
   --light: #faf7f2;
-  --surface: rgba(250, 247, 242, 0.96);
-  --fg: var(--dark);
-  --fg-80: rgba(26, 11, 46, 0.8);
-  --fg-60: rgba(26, 11, 46, 0.6);
-  --fg-45: rgba(26, 11, 46, 0.45);
-  --line-12: rgba(26, 11, 46, 0.12);
-  --line-25: rgba(26, 11, 46, 0.25);
+  --space: #0f0619;
+  --surface: rgba(26, 11, 46, 0.96);
+  --fg: var(--light);
+  --fg-80: rgba(250, 247, 242, 0.8);
+  --fg-60: rgba(250, 247, 242, 0.6);
+  --fg-45: rgba(250, 247, 242, 0.45);
+  --line-12: rgba(250, 247, 242, 0.12);
+  --line-25: rgba(250, 247, 242, 0.25);
   --primary-10: rgba(124, 58, 237, 0.1);
+  --primary-15: rgba(124, 58, 237, 0.15);
   --primary-18: rgba(124, 58, 237, 0.18);
   --primary-30: rgba(124, 58, 237, 0.3);
   --primary-55: rgba(124, 58, 237, 0.55);
@@ -84,7 +86,7 @@
 }
 #origin-map {
   margin: 0;
-  background: var(--light);
+  background: var(--space);
   color: var(--fg);
   font-family: var(--font-body);
   font-size: 16px;
@@ -192,13 +194,13 @@
   background:
     radial-gradient(
       circle closest-side at 50% 50%,
-      var(--primary-18) 0%,
-      var(--primary-18) 86%,
-      var(--primary-30) 94%,
-      var(--primary-10) 112%,
-      var(--primary-0) 140%
+      var(--primary-0) 0%,
+      var(--primary-0) 90%,
+      var(--primary-15) 92%,
+      var(--primary-15) 95%,
+      var(--primary-0) 102%
     ),
-    var(--light);
+    var(--space);
   -webkit-user-select: none;
   user-select: none;
 }
@@ -254,10 +256,10 @@
   border-radius: 0;
 }
 #origin-map .maplibregl-ctrl button.maplibregl-ctrl-zoom-in .maplibregl-ctrl-icon {
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 29 29' width='29' height='29'><path d='M14.5 8v13M8 14.5h13' fill='none' stroke='%231A0B2E' stroke-width='2' stroke-linecap='round'/></svg>");
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 29 29' width='29' height='29'><path d='M14.5 8v13M8 14.5h13' fill='none' stroke='%23FAF7F2' stroke-width='2' stroke-linecap='round'/></svg>");
 }
 #origin-map .maplibregl-ctrl button.maplibregl-ctrl-zoom-out .maplibregl-ctrl-icon {
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 29 29' width='29' height='29'><path d='M8 14.5h13' fill='none' stroke='%231A0B2E' stroke-width='2' stroke-linecap='round'/></svg>");
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 29 29' width='29' height='29'><path d='M8 14.5h13' fill='none' stroke='%23FAF7F2' stroke-width='2' stroke-linecap='round'/></svg>");
 }
 #origin-map .maplibregl-ctrl-attrib {
   background: var(--surface);
@@ -276,7 +278,7 @@
 }
 #origin-map .maplibregl-ctrl-attrib-button {
   background-color: transparent;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'><circle cx='12' cy='12' r='8.5' fill='none' stroke='%231A0B2E' stroke-width='1.5'/><path d='M12 10.5v6M12 7.5v1' fill='none' stroke='%231A0B2E' stroke-width='1.8' stroke-linecap='round'/></svg>");
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'><circle cx='12' cy='12' r='8.5' fill='none' stroke='%23FAF7F2' stroke-width='1.5'/><path d='M12 10.5v6M12 7.5v1' fill='none' stroke='%23FAF7F2' stroke-width='1.8' stroke-linecap='round'/></svg>");
 }
 #origin-map .maplibregl-ctrl-attrib.maplibregl-compact-show .maplibregl-ctrl-attrib-button, #origin-map .maplibregl-ctrl-attrib-button:hover {
   background-color: var(--primary-10);
@@ -768,20 +770,19 @@
   // ---------- Config ----------
   const DATA_URL = "data/pins.json";
   // Basemap: OpenFreeMap vector tiles (OpenStreetMap data, no API key, no
-  // usage limits), drawn as a light, label-free style in the brand palette.
+  // usage limits), drawn as a dark, label-free style in the brand palette.
   const BASEMAP_URL = "https://tiles.openfreemap.org/planet";
   const BASEMAP_ATTRIBUTION =
     '<a href="https://openfreemap.org" target="_blank" rel="noopener">OpenFreeMap</a> ' +
     '<a href="https://www.openmaptiles.org/" target="_blank" rel="noopener">&copy; OpenMapTiles</a> ' +
     '<a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">&copy; OpenStreetMap contributors</a>';
-  // Light theme, all from the palette. Land is the sphere base (cream blended
-  // with primary 45%), water is drawn on top (cream with primary 10%), ice and
-  // country borders are cream at partial opacity over the land.
+  // Dark stage: violet is reserved for pins. Land is the sphere base, water
+  // is drawn on top, borders are barely there.
   const BASEMAP = {
-    land: "#C1A2F0",
-    water: "#EDE4F2",
-    ice: "rgba(250, 247, 242, 0.55)",
-    border: "rgba(250, 247, 242, 0.7)",
+    land: "#2A1548",
+    water: "#1A0B2E",
+    ice: "#321A58",
+    border: "#3D2160",
   };
   const INITIAL_CENTER = [10, 20];
   const INITIAL_ZOOM = 1.6;
@@ -887,7 +888,7 @@
             ["==", ["get", "admin_level"], 2],
             ["!=", ["get", "maritime"], 1],
           ],
-          paint: { "line-color": BASEMAP.border, "line-width": 0.8 },
+          paint: { "line-color": BASEMAP.border, "line-width": 1 },
         },
       ],
     },
