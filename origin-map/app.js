@@ -58,6 +58,7 @@
     summary: $("panel-summary"),
     article: $("panel-article"),
     reel: $("panel-reel"),
+    mapEl: $("map"),
   };
 
   const state = {
@@ -147,8 +148,33 @@
 
   const canvas = map.getCanvas();
 
-  // Size the globe to the viewport: measure its on-screen radius (a point 90°
-  // from the centre sits on the limb) and shift the zoom so it fills the page.
+  // Screen radius of the sphere's silhouette, in px. Points past the horizon
+  // project back inside the disc, so the largest distance over a sweep of
+  // angles from the centre is the visible edge.
+  function globeRadius() {
+    const c = map.getCenter();
+    const centre = map.project([c.lng, c.lat]);
+    let r = 0;
+    for (let a = 60; a <= 90; a += 2) {
+      const p = map.project([c.lng + a, 0]);
+      const d = Math.hypot(p.x - centre.x, p.y - centre.y);
+      if (isFinite(d)) r = Math.max(r, d);
+    }
+    return r;
+  }
+
+  // Keep the CSS halo locked to the sphere: expose its radius to styles.css.
+  function syncHalo() {
+    const r = globeRadius();
+    const w = map.getContainer().clientWidth;
+    const h = map.getContainer().clientHeight;
+    const ok = r > 0 && r < 3 * Math.max(w, h);
+    els.mapEl.style.setProperty("--globe-r", ok ? `${Math.round(r)}px` : "0px");
+  }
+
+  // Size the globe to the viewport: shift the zoom so the sphere fills
+  // GLOBE_FILL of the shorter side. Re-run whenever the container resizes
+  // until the user takes over.
   let userMoved = false;
   map.on("movestart", (e) => {
     if (e.originalEvent) userMoved = true;
@@ -161,26 +187,27 @@
     const wanted = (Math.min(w, h) * GLOBE_FILL) / 2;
     // The globe's screen radius is not linear in zoom, so refine a few times.
     for (let i = 0; i < 5; i++) {
-      const c = map.getCenter();
-      const centre = map.project([c.lng, c.lat]);
-      const limb = map.project([c.lng + 89, 0]);
-      const radius =
-        Math.hypot(limb.x - centre.x, limb.y - centre.y) /
-        Math.sin((89 * Math.PI) / 180);
-      if (!radius || !isFinite(radius)) return;
-      if (Math.abs(radius - wanted) < 1) return;
+      const radius = globeRadius();
+      if (!radius) return;
+      if (Math.abs(radius - wanted) < 1) break;
       const zoom = clamp(
         map.getZoom() + Math.log2(wanted / radius),
         MIN_ZOOM,
         MAX_ZOOM,
       );
-      if (zoom === map.getZoom()) return;
-      map.jumpTo({ center: c, zoom });
+      if (zoom === map.getZoom()) break;
+      map.jumpTo({ center: map.getCenter(), zoom });
     }
+    syncHalo();
   }
-  window.addEventListener("resize", () => {
+  const refit = () => {
     if (!userMoved && state.openId === null) fitGlobe();
-  });
+    else syncHalo();
+  };
+  map.on("resize", refit);
+  window.addEventListener("resize", refit);
+  map.on("move", syncHalo);
+  map.once("idle", refit);
 
   function addPinLayers(data) {
     map.addSource("pins", {

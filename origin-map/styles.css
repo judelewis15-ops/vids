@@ -177,16 +177,17 @@ h3,
   position: fixed;
   inset: 0;
   /* Space behind the globe, with a thin atmosphere halo hugging the limb.
-     The globe fills 92% of the shorter side; closest-side makes 100% equal
-     half that side, so the halo runs from the edge to a few percent past it. */
+     --globe-r is the sphere's measured on-screen radius, set by app.js, so
+     the halo follows the globe through zoom, resize and drag. */
+  --globe-r: 0px;
   background:
     radial-gradient(
-      circle closest-side at 50% 50%,
-      var(--primary-0) 0%,
-      var(--primary-0) 90%,
-      var(--primary-15) 92%,
-      var(--primary-15) 95%,
-      var(--primary-0) 102%
+      circle at 50% 50%,
+      var(--primary-0) 0,
+      var(--primary-0) calc(var(--globe-r) - 1px),
+      var(--primary-15) var(--globe-r),
+      var(--primary-15) calc(var(--globe-r) + 6px),
+      var(--primary-0) calc(var(--globe-r) * 1.06 + 14px)
     ),
     var(--space);
   -webkit-user-select: none;
