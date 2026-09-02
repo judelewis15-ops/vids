@@ -89,6 +89,16 @@ The site is static, so Cloudflare Pages serves the repo as-is.
 
 To preview a change before it lands on `main`, push a branch: Pages builds a preview URL for it.
 
+## Embedding in a Shopify page
+
+`shopify/build.py` turns the four source files into one HTML fragment, `shopify/page.html`, that runs inside a Shopify page body (the map sits in a fixed-height container so the theme header and footer stay put, and all styles are scoped to `#origin-map`). Rebuild after any change to the source files:
+
+```
+python3 shopify/build.py
+```
+
+Then paste `shopify/page.html` into the page body (Online Store > Pages > the page > `<>` HTML view) or send it as the `body` in a `pageCreate` / `pageUpdate` Admin API call. Pins are embedded in the fragment, so `data/pins.json` edits need a rebuild and re-paste too.
+
 ## Settings you might want to change
 
 All in `app.js`, near the top:

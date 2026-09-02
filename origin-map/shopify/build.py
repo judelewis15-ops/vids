@@ -1,0 +1,197 @@
+#!/usr/bin/env python3
+"""Build a single HTML fragment that embeds the Origin Map inside a Shopify page.
+
+Reads ../index.html, ../app.js, ../styles.css and ../data/pins.json and writes
+page.html next to this script. Paste page.html into the page body in the
+Shopify admin (Online Store > Pages > Add page > "<>" HTML view), or pass it
+to the Admin API as the page body.
+
+The map runs inside a #origin-map container instead of filling the viewport,
+so the theme header and footer stay where they are.
+"""
+import json
+import pathlib
+import re
+
+HERE = pathlib.Path(__file__).resolve().parent
+ROOT = HERE.parent
+MAPLIBRE_VERSION = "5.24.0"
+CDN = f"https://unpkg.com/maplibre-gl@{MAPLIBRE_VERSION}/dist/"
+PREFIX = "#origin-map"
+
+html = (ROOT / "index.html").read_text()
+js = (ROOT / "app.js").read_text()
+css = (ROOT / "styles.css").read_text()
+data = json.loads((ROOT / "data/pins.json").read_text())
+
+
+# ---------- CSS: scope every selector under #origin-map ----------
+def transform_selector(sel):
+    sel = sel.strip()
+    if not sel:
+        return None
+    if sel == "html":
+        return None
+    if sel == ":root" or sel == "body":
+        return PREFIX
+    if sel.startswith("body."):
+        return PREFIX + sel[4:]
+    if sel.startswith("body "):
+        return PREFIX + sel[4:]
+    if sel.startswith(PREFIX):
+        return sel
+    return f"{PREFIX} {sel}"
+
+
+def scope_css(src):
+    src = re.sub(r"/\*[\s\S]*?\*/", "", src)
+    src = re.sub(r"html,\s*body\s*\{[^}]*\}", "", src)
+    out, buf, in_str, i = [], "", None, 0
+    while i < len(src):
+        c = src[i]
+        if in_str:
+            buf += c
+            if c == in_str and src[i - 1] != "\\":
+                in_str = None
+        elif c in "\"'":
+            in_str = c
+            buf += c
+        elif c == "{":
+            prelude = buf.strip()
+            buf = ""
+            if prelude.startswith("@"):
+                out.append(prelude + " {\n")
+            else:
+                sels = [transform_selector(s) for s in prelude.split(",")]
+                sels = [s for s in sels if s]
+                out.append((", ".join(sels) if sels else PREFIX + " .never-matches") + " {\n")
+        elif c == "}":
+            out.append(buf)
+            buf = ""
+            out.append("}\n")
+        elif c == ";":
+            buf += c
+            out.append(buf)
+            buf = ""
+        else:
+            buf += c
+        i += 1
+    out.append(buf)
+    result = "".join(out)
+    # The container is the "viewport" now.
+    result = result.replace("position: fixed", "position: absolute")
+    result = re.sub(r"(\d+(?:\.\d+)?)d?vh\b", r"\1cqh", result)
+    result = re.sub(r"(\d+(?:\.\d+)?)d?vw\b", r"\1cqw", result)
+    result = re.sub(r"\n\s*\n+", "\n", result)
+    return result
+
+
+# Themes style headings, paragraphs, buttons and inputs inside page content
+# (usually via .rte). Neutralise that before the map's own rules apply.
+reset_css = f"""{PREFIX} h1, {PREFIX} h2, {PREFIX} h3, {PREFIX} p, {PREFIX} figure, {PREFIX} ul, {PREFIX} li, {PREFIX} small {{
+  margin: 0;
+  padding: 0;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  letter-spacing: normal;
+  text-transform: none;
+  text-align: left;
+  list-style: none;
+  border: 0;
+  background: none;
+}}
+{PREFIX} button, {PREFIX} input, {PREFIX} a, {PREFIX} output {{
+  margin: 0;
+  color: inherit;
+  font: inherit;
+  letter-spacing: normal;
+  text-transform: none;
+  text-decoration: none;
+  text-align: left;
+  min-height: 0;
+  min-width: 0;
+  box-shadow: none;
+  appearance: none;
+  -webkit-appearance: none;
+}}
+{PREFIX} header, {PREFIX} section, {PREFIX} aside, {PREFIX} form, {PREFIX} nav {{
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
+  width: auto;
+  max-width: none;
+  height: auto;
+  min-height: 0;
+  display: block;
+  align-items: normal;
+  justify-content: normal;
+  gap: 0;
+}}
+{PREFIX} img, {PREFIX} iframe, {PREFIX} svg {{
+  max-width: none;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}}
+"""
+
+scoped_css = reset_css + scope_css(css) + f"""
+{PREFIX} {{
+  position: relative;
+  height: clamp(520px, 80vh, 960px);
+  border-radius: 24px;
+  container-type: size;
+  isolation: isolate;
+}}
+"""
+
+# ---------- JS: no fetch, no document.body, wait for MapLibre ----------
+app_js = js
+app_js = app_js.replace('"use strict";', '"use strict";\n  const ROOT = document.getElementById("origin-map");', 1)
+app_js = app_js.replace("document.body.classList", "ROOT.classList")
+app_js, n = re.subn(
+    r"const dataReady = fetch\(DATA_URL\)[\s\S]*?\n  \}\);\n",
+    'const dataReady = Promise.resolve().then(() =>\n    JSON.parse(document.getElementById("origin-map-data").textContent),\n  );\n',
+    app_js,
+)
+assert n == 1, "data loader not found"
+assert "document.body" not in app_js
+
+loader = f"""(function () {{
+  function start() {{
+{app_js}
+  }}
+  if (window.maplibregl) return start();
+  var s = document.createElement("script");
+  s.src = "{CDN}maplibre-gl.js";
+  s.onload = start;
+  s.onerror = start; // start() shows a message when the library is missing
+  document.head.appendChild(s);
+}})();"""
+
+# ---------- HTML ----------
+body = re.search(r"<body>([\s\S]*)</body>", html).group(1).strip()
+body = re.sub(r"\s*<noscript>[\s\S]*?</noscript>", "", body)
+data_json = json.dumps(data, separators=(",", ":")).replace("</", "<\\/")
+
+page = f"""<!-- Origin Map: generated by shopify/build.py. Edit the source files, not this. -->
+<link rel="stylesheet" href="{CDN}maplibre-gl.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+{scoped_css}</style>
+<div id="origin-map" class="origin-map">
+{body}
+</div>
+<script type="application/json" id="origin-map-data">{data_json}</script>
+<script>
+{loader}
+</script>
+"""
+(HERE / "page.html").write_text(page)
+print(f"wrote {HERE / 'page.html'} ({len(page.encode())} bytes)")
