@@ -140,7 +140,7 @@
     zoom: INITIAL_ZOOM,
     minZoom: MIN_ZOOM,
     maxZoom: MAX_ZOOM,
-    maxPitch: 0,
+    maxPitch: CINEMATIC ? 85 : 0,
     dragRotate: false,
     pitchWithRotate: false,
     touchPitch: false,
@@ -832,6 +832,10 @@
       map,
       pinId: FLY_ID,
       coordsOf,
+      props(id) {
+        const f = state.byId.get(String(id));
+        return f ? { ...f.properties } : null;
+      },
       view(id, zoom) {
         const center = coordsOf(id);
         if (!center) return false;
