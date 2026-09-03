@@ -31,7 +31,9 @@ borders = json.loads((ROOT / "data/borders.json").read_text())
 
 # ---------- Borders: each line as an encoded polyline string ----------
 # Google's polyline algorithm at 1e2 precision: deltas as base-32 varints
-# offset by 63 so every char is printable. Decoded in the page; verified below.
+# offset by 63 so every char is printable. The one awkward char in that
+# alphabet, backslash, is swapped for "!" so the blob needs no JSON escaping.
+# Decoded in the page; verified below.
 def encode_polyline(line, factor=100):
     out = []
     px = py = 0
@@ -44,7 +46,7 @@ def encode_polyline(line, factor=100):
                 d >>= 5
             out.append(chr(d + 63))
         px, py = round(x * factor), round(y * factor)
-    return "".join(out)
+    return "".join(out).replace("\\", "!")
 
 
 def decode_polyline(text, factor=100):
@@ -53,7 +55,8 @@ def decode_polyline(text, factor=100):
         for axis in ("y", "x"):
             shift = result = 0
             while True:
-                b = ord(text[i]) - 63
+                c = ord(text[i])
+                b = (92 if c == 33 else c) - 63
                 i += 1
                 result |= (b & 0x1F) << shift
                 shift += 5
@@ -90,7 +93,8 @@ BORDERS_DECODER = """const rows = JSON.parse(
           let result = 0;
           let b;
           do {
-            b = text.charCodeAt(i++) - 63;
+            const c = text.charCodeAt(i++);
+            b = (c === 33 ? 92 : c) - 63;
             result |= (b & 0x1f) << shift;
             shift += 5;
           } while (b >= 0x20);
