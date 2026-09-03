@@ -9,7 +9,10 @@
   // Land is a dot matrix generated from Natural Earth 110m polygons by
   // scripts/build-dots.js. No tile server, no API key.
   const DOTS_URL = "data/land-dots.json";
-  const BUILD = "build 10";
+  // Country borders: shared land boundaries from Natural Earth 1:50m, simplified
+  // by scripts/build-borders.js. Palestine is its own feature in that set.
+  const BORDERS_URL = "data/borders.json";
+  const BUILD = "build 11";
   const ATTRIBUTION =
     'Land: <a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener">Natural Earth</a>' +
     ` · ${BUILD}`;
@@ -34,6 +37,7 @@
     "#C4B5FD",
   ];
   const DOT_RADIUS = ["interpolate", ["linear"], ["zoom"], 1.6, 1.6, 6, 4];
+  const BORDER = { color: "#7C3AED", opacity: 0.35, width: 1 };
   const PIN = {
     fill: "#1A0B2E",
     stroke: "#FAF7F2",
@@ -232,6 +236,21 @@
         "circle-color": DOT_COLOR,
         "circle-opacity": 0.9,
         "circle-stroke-width": 0,
+      },
+    });
+  }
+
+  function addBorderLayer(borders) {
+    map.addSource("borders", { type: "geojson", data: borders });
+    map.addLayer({
+      id: "borders",
+      type: "line",
+      source: "borders",
+      layout: { "line-cap": "round", "line-join": "round" },
+      paint: {
+        "line-color": BORDER.color,
+        "line-opacity": BORDER.opacity,
+        "line-width": BORDER.width,
       },
     });
   }
@@ -821,9 +840,16 @@
       return r.json();
     });
   // [/dots-loader]
+  // [borders-loader]
+  const loadBorders = () =>
+    fetch(BORDERS_URL).then((r) => {
+      if (!r.ok) throw new Error(`borders ${r.status}`);
+      return r.json();
+    });
+  // [/borders-loader]
 
-  Promise.all([mapReady, dataReady, loadDots()])
-    .then(([, data, dots]) => {
+  Promise.all([mapReady, dataReady, loadDots(), loadBorders()])
+    .then(([, data, dots, borders]) => {
       const feats = (Array.isArray(data.features) ? data.features : []).filter(
         (f) =>
           f &&
@@ -839,6 +865,7 @@
 
       fitGlobe();
       addLandLayers(dots);
+      addBorderLayer(borders);
       addPinLayers({ type: "FeatureCollection", features: feats });
       map.on("render", syncClusterLabels);
       buildChips();

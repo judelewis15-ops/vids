@@ -11,7 +11,7 @@ styles.css       visual system
 data/pins.json   the catalogue (GeoJSON)
 ```
 
-Map rendering is [MapLibre GL JS](https://maplibre.org/) from a CDN, drawn as a globe. There is no tile server: land is a dot matrix generated once from Natural Earth 1:110m polygons into `data/land-dots.json`, so the map needs no API key and makes no map-data requests at view time. Fonts come from Google Fonts. Photos live in a Cloudflare R2 bucket. The site is deployed on Cloudflare Pages.
+Map rendering is [MapLibre GL JS](https://maplibre.org/) from a CDN, drawn as a globe. There is no tile server: land is a dot matrix generated once from Natural Earth 1:110m polygons into `data/land-dots.json`, and country borders are shared land boundaries generated once from Natural Earth 1:50m into `data/borders.json` (the 50m set is used because 110m drops Gaza; Palestine is drawn as its own country, West Bank and Gaza). The map needs no API key and makes no map-data requests at view time. Fonts come from Google Fonts. Photos live in a Cloudflare R2 bucket. The site is deployed on Cloudflare Pages.
 
 ## Run it locally
 
@@ -109,6 +109,7 @@ Then paste `shopify/page.html` into the page body (Online Store > Pages > the pa
 cd origin-map
 npm install
 npm run build:dots            # 0.9° lattice, longitude spacing scaled by 1/cos(lat)
+npm run build:borders         # country borders, Natural Earth 50m simplified (--weight 0.01)
 node scripts/build-dots.js --no-cos   # plain lattice, denser towards the poles
 node scripts/build-dots.js --spacing 0.7
 ```
