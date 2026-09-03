@@ -80,6 +80,8 @@
   --pill: 999px;
   --panel-width: 420px;
   --gutter: 12px;
+  --stage-inset: 12px;
+  --search-width: 280px;
   --ease: cubic-bezier(0.32, 0.72, 0, 1);
   --panel-ms: 380ms;
 }
@@ -194,7 +196,13 @@
   position: absolute;
   inset: 0;
   --globe-r: 0px;
-  background: var(--space);
+  background:
+    radial-gradient(
+      circle at 50% 50%,
+      rgba(124, 58, 237, 0.06) 0%,
+      rgba(124, 58, 237, 0) 70%
+    ),
+    var(--space);
   -webkit-user-select: none;
   user-select: none;
 }
@@ -231,8 +239,8 @@
   line-height: 1;
 }
 #origin-map .maplibregl-ctrl-top-right {
-  top: calc(var(--gutter) + env(safe-area-inset-top, 0px));
-  right: calc(var(--gutter) + env(safe-area-inset-right, 0px));
+  top: calc(var(--stage-inset) + env(safe-area-inset-top, 0px));
+  right: calc(var(--stage-inset) + env(safe-area-inset-right, 0px));
 }
 #origin-map .maplibregl-ctrl-bottom-right, #origin-map .maplibregl-ctrl-bottom-left {
   bottom: env(safe-area-inset-bottom, 0px);
@@ -299,27 +307,59 @@
 #origin-map .maplibregl-ctrl-attrib.maplibregl-compact-show .maplibregl-ctrl-attrib-button, #origin-map .maplibregl-ctrl-attrib-button:hover {
   background-color: var(--primary-10);
 }
-#origin-map .topbar {
+#origin-map .controls {
   position: absolute;
-  top: calc(var(--gutter) + env(safe-area-inset-top, 0px));
-  left: calc(var(--gutter) + env(safe-area-inset-left, 0px));
-  right: calc(var(--gutter) * 2 + 46px + env(safe-area-inset-right, 0px));
+  top: calc(var(--stage-inset) + env(safe-area-inset-top, 0px));
+  left: calc(var(--stage-inset) + env(safe-area-inset-left, 0px));
+  right: calc(var(--stage-inset) * 2 + 46px + env(safe-area-inset-right, 0px));
   z-index: 5;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 8px;
+  pointer-events: none;
+}
+#origin-map .controls > * {
+  pointer-events: auto;
 }
 @media (min-width: 768px) {
-#origin-map .topbar {
+#origin-map {
+    --stage-inset: 24px;
+  }
+#origin-map .controls {
     right: auto;
-    width: 380px;
+    max-width: calc(100% - var(--stage-inset) * 3 - 46px);
+  }
+}
+#origin-map .control-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 100%;
+}
+#origin-map .eyebrow-label {
+  display: none;
+  flex: none;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primary);
+  white-space: nowrap;
+}
+@media (min-width: 480px) {
+#origin-map .eyebrow-label {
+    display: block;
   }
 }
 #origin-map .search {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 6px 6px 6px 18px;
+  width: var(--search-width);
+  max-width: 100%;
+  padding: 6px 6px 6px 16px;
   background: var(--surface);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
@@ -359,6 +399,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
+  max-width: 100%;
 }
 #origin-map .chip {
   min-height: 32px;
@@ -617,7 +658,7 @@
 #origin-map .panel-name {
     font-size: 34px;
   }
-#origin-map.panel-open .topbar {
+#origin-map.panel-open .controls > * {
     pointer-events: none;
   }
 }
@@ -651,13 +692,31 @@
   }
 }
 
+.page-content:has(#origin-map), .page-content.origin-map-host {
+  max-width: none;
+  padding: 0;
+  margin: 0;
+}
+.page-content:has(#origin-map) > .container, .page-content.origin-map-host > .container {
+  max-width: none;
+  padding: 0;
+  margin: 0;
+}
+.page-content:has(#origin-map) .page-title, .page-content.origin-map-host .page-title {
+  display: none;
+}
+.page-content:has(#origin-map) .page-body, .page-content.origin-map-host .page-body {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
 #origin-map {
   position: relative;
-  /* Break out of the theme's content column and fill the viewport. */
+  /* Fill the width even if the theme still pads its column. */
   width: 100vw;
   margin-left: calc(50% - 50vw);
-  height: 100vh;
-  height: 100dvh;
+  /* Fixed-height stage: what is left below the site header. */
+  height: calc(100vh - 140px);
   min-height: 520px;
   border-radius: 0;
   container-type: size;
@@ -667,35 +726,39 @@
 <div id="origin-map" class="origin-map">
 <a class="skip-link" href="#pin-list">Skip to list of pins</a>
 
-    <header class="topbar">
-      <form id="search-form" class="search" role="search" autocomplete="off">
-        <label for="search" class="sr-only"
-          >Search pins by name, place or tag</label
-        >
-        <input
-          id="search"
-          type="search"
-          placeholder="Search pins"
-          spellcheck="false"
-          enterkeyhint="search"
-        />
-        <output id="count" class="count" for="search" aria-live="polite"
-          >0 of 0</output
-        >
-        <button type="button" id="clear" class="btn btn-ghost" disabled>
-          Clear
-        </button>
-      </form>
-      <div
-        id="chips"
-        class="chips"
-        role="group"
-        aria-label="Filter by tag"
-        hidden
-      ></div>
-    </header>
-
-    <div id="map" role="region" aria-label="World map of pins"></div>
+    <div id="map" role="region" aria-label="World map of pins">
+      <!-- Controls float over the stage so the globe owns the viewport. -->
+      <div class="controls">
+        <div class="control-row">
+          <span class="eyebrow-label" aria-hidden="true">Origin Map</span>
+          <form id="search-form" class="search" role="search" autocomplete="off">
+            <label for="search" class="sr-only"
+              >Search pins by name, place or tag</label
+            >
+            <input
+              id="search"
+              type="search"
+              placeholder="Search pins"
+              spellcheck="false"
+              enterkeyhint="search"
+            />
+            <output id="count" class="count" for="search" aria-live="polite"
+              >0 of 0</output
+            >
+            <button type="button" id="clear" class="btn btn-ghost" disabled>
+              Clear
+            </button>
+          </form>
+        </div>
+        <div
+          id="chips"
+          class="chips"
+          role="group"
+          aria-label="Filter by tag"
+          hidden
+        ></div>
+      </div>
+    </div>
 
     <p id="status" class="status" role="status" hidden></p>
 
@@ -776,6 +839,9 @@
 <script type="application/json" id="origin-map-dots">{"lat0":-60,"dlat":0.9,"cos":true,"rows":[[5,70,1],[6,70,4],[7,70,1,72,2],[8,72,3],[9,72,5,82,2],[10,74,4],[11,75,5],[12,76,6,181,1],[13,78,7],[14,80,6],[15,80,7,267,1],[16,82,6,270,3],[17,84,7,275,3],[18,86,7,281,3],[19,88,7,266,1,286,2],[20,88,7,269,3,291,2],[21,89,8,272,3,295,1,298,1],[22,91,9,302,1],[23,92,10,305,3],[24,93,13,281,4,309,4],[25,94,15,283,8,313,1],[26,96,14,286,9,317,1],[27,97,14,288,11,319,1],[28,99,13,113,2,271,2,290,12,322,1],[29,100,17,183,4,273,5,279,1,291,15],[30,102,17,185,9,276,8,293,17],[31,103,18,187,10,279,11,295,19],[32,104,19,189,11,281,36],[33,105,20,190,13,284,36],[34,106,21,191,14,286,37],[35,107,22,192,16,288,38],[36,108,22,193,17,290,39],[37,109,22,194,18,292,39],[38,110,22,195,18,295,39],[39,111,23,197,19,226,3,296,40],[40,112,24,198,21,228,3,298,39],[41,113,27,199,22,229,4,301,38],[42,113,30,200,22,230,5,303,37,357,1],[43,114,31,201,22,232,5,307,34,358,1],[44,115,31,202,22,234,5,311,32,359,1],[45,115,32,202,24,236,4,316,28],[46,116,32,203,25,237,5,318,26],[47,115,34,203,28,238,5,320,26,379,1],[48,115,35,204,30,239,6,322,17,342,5,382,1],[49,114,37,205,31,242,5,326,13,344,4],[50,113,39,207,30,244,4,328,11,346,4],[51,112,41,208,30,246,2,330,2,334,7,347,2],[52,112,41,209,30,248,1,336,7,348,3],[53,112,43,211,29,249,1,338,7,350,1],[54,112,44,212,29,340,1,351,1],[55,112,45,212,29,361,1],[56,112,47,212,29,328,2,333,2,359,3,373,2],[57,112,48,213,28,327,2,330,3,336,2,353,3,359,2],[58,111,49,213,29,319,6,350,7,359,2,373,1],[59,111,50,213,30,316,7,352,9],[60,110,51,213,29,317,1,352,10,364,2,370,1],[61,110,49,213,30,315,2,332,1,335,1,352,9,367,1],[62,110,48,212,32,314,3,335,1,349,12,368,2],[63,111,46,212,33,313,5,324,1,326,3,332,4,340,1,342,3,347,12,368,1],[64,112,39,211,35,313,4,323,7,332,4,352,4],[65,111,39,210,37,312,4,323,7,333,3,346,3],[66,111,35,210,38,312,3,322,9,333,1,347,2],[67,112,32,211,37,311,5,322,9,342,1],[68,113,32,211,39,310,4,322,10,342,1],[69,113,31,211,40,309,3,314,2,324,7],[70,114,30,211,41,308,3,313,2,325,6],[71,114,29,210,43,307,3,312,3,326,5],[72,114,28,190,3,197,1,206,47,306,2,311,3,327,4],[73,114,26,188,12,205,48,310,3,327,3],[74,114,21,187,67,287,2,309,2,328,1,336,3],[75,110,1,113,21,185,69,287,2,308,1,333,5],[76,107,3,112,21,184,70,283,1,286,2,306,3,335,2],[77,106,2,110,2,114,5,120,11,183,70,282,3,306,1,313,1,327,1,332,1,335,1],[78,104,2,115,11,127,2,130,1,181,72,281,3,305,1,312,2,327,1,332,1],[79,103,2,116,6,180,64,248,4,279,5,304,1,309,6,330,1,332,1],[80,102,3,118,1,178,65,251,1,278,5,303,2,308,7,332,1],[81,101,4,177,67,277,5,302,2,305,9,326,1,329,1],[82,97,8,177,63,241,5,275,6,301,12,325,3],[83,95,9,175,63,240,7,274,6,299,12,323,2],[84,93,10,175,61,239,10,272,7,298,11,321,2],[85,87,11,175,59,238,10,270,10,293,2,296,11,320,3],[86,84,14,174,58,236,14,269,10,292,13,319,2],[87,81,16,108,1,112,4,119,2,173,57,234,16,267,12,290,12,318,1],[88,79,9,94,4,113,4,172,57,232,18,266,12,288,12,303,2],[89,78,9,94,3,107,4,171,56,230,19,264,14,285,14],[90,78,8,94,3,106,3,170,56,228,20,260,2,263,14,283,15,301,1],[91,77,8,98,1,103,3,169,55,226,21,258,21,281,21],[92,76,9,99,4,168,54,225,21,256,48,308,1],[93,71,1,75,9,167,53,223,20,253,50,306,1],[94,69,2,73,11,103,1,167,51,220,14,237,3,250,52,304,1],[95,69,1,72,11,100,1,166,50,218,15,240,61],[96,67,2,71,12,98,2,166,47,216,14,237,62],[97,65,2,69,13,97,2,165,46,213,14,230,67],[98,65,1,68,14,96,2,165,45,211,13,227,69],[99,64,1,66,17,95,2,165,57,224,70],[100,62,1,65,23,91,4,164,57,222,69],[101,61,2,64,30,163,26,191,97],[102,60,34,161,24,189,5,203,83,294,1],[103,59,35,160,22,188,2,201,81,290,2],[104,58,36,160,17,200,79,288,1,290,2],[105,55,39,159,16,198,77,281,1,286,2,289,2],[106,54,41,158,1,162,11,196,76,278,3,284,7],[107,53,41,156,1,162,9,188,1,191,1,194,76,275,3,284,4],[108,52,40,152,6,168,1,172,1,179,1,184,20,208,60,272,2,282,3],[109,50,42,150,7,170,1,176,3,181,20,205,56,267,3,280,1],[110,49,42,148,8,163,1,170,1,174,2,179,19,202,56,264,2,277,1],[111,48,43,146,8,161,1,167,1,169,1,171,2,177,19,199,57,258,5,273,2],[112,47,44,145,8,159,1,164,3,168,4,174,1,176,17,196,1,198,63,270,1],[113,47,45,142,10,157,1,160,3,166,7,177,3,184,6,193,1,195,62,266,1],[114,46,44,140,10,157,2,163,7,182,5,191,64,262,3],[115,45,44,139,3,144,7,154,3,158,10,178,6,187,67,260,3],[116,45,45,91,2,142,11,156,10,174,7,183,68,256,1],[117,44,50,140,11,152,12,167,11,183,65],[118,44,45,90,1,92,1,138,24,164,2,168,9,180,65],[119,43,40,84,4,94,1,96,1,135,107,244,1],[120,42,44,90,5,131,107],[121,40,42,83,2,89,4,131,103],[122,38,44,83,1,88,2,130,100,232,1],[123,38,47,87,1,124,2,128,98,227,1],[124,36,33,70,16,121,5,127,95,223,1,233,1],[125,35,32,69,16,116,2,119,4,125,94,228,1],[126,34,31,67,16,113,3,117,3,124,89,223,3],[127,33,31,66,14,111,2,115,2,123,1,125,1,127,79,218,3],[128,11,1,31,31,65,12,111,3,120,1,128,73,213,4],[129,13,1,30,28,64,10,109,1,117,1,120,1,125,72,209,4],[130,13,2,16,1,29,26,63,9,106,2,115,1,117,2,122,71,204,4],[131,14,1,16,1,28,24,61,9,103,2,114,3,121,69,200,2],[132,12,1,14,2,24,26,59,6,66,2,107,2,110,4,118,68,196,2],[133,11,4,16,1,23,25,58,4,65,1,104,8,117,71,192,1],[134,8,10,19,28,56,5,74,1,102,6,111,72,187,5],[135,8,38,55,3,70,3,99,6,107,72,180,2,183,5],[136,8,37,50,1,53,1,58,1,67,4,96,6,104,73,178,6],[137,5,1,9,36,54,2,57,1,65,5,94,6,101,79],[138,10,35,46,2,52,4,62,6,77,3,92,6,99,75],[139,0,1,2,2,7,38,48,5,60,6,74,4,90,5,97,4,103,66],[140,0,5,6,37,48,3,52,2,58,7,71,1,73,2,87,10,100,63],[141,0,4,8,35,47,5,56,8,85,12,98,1,100,10,111,46],[142,0,2,7,21,29,1,31,2,35,4,40,2,44,5,54,8,82,11,95,1,97,10,108,44],[143,0,1,6,23,35,3,39,1,43,2,52,10,80,8,98,2,101,45],[144,7,9,19,2,25,6,32,3,37,1,40,4,49,12,77,6,94,1,96,2,99,33,133,1,136,3],[145,8,3,25,4,31,2,34,8,47,11,76,3,92,2,95,32],[146,0,1,20,7,29,2,32,7,45,11,83,1,88,22,111,7],[147,19,7,27,3,31,3,35,1,43,10,79,1,85,1,89,16,108,3],[148,18,4,24,1,26,3,30,4,40,11,75,2,84,13,98,1],[149,17,3,26,1,38,11,72,1,82,7],[150,20,2,23,2,26,3,36,10,68,2,77,8,92,2,95,1],[151,18,1,20,3,24,1,33,11,65,2,74,6,86,2],[152,15,2,23,3,28,13,63,1,72,1],[153,16,1,20,1,22,3,26,12,48,1],[154,15,1,17,6,24,12,43,1,62,1],[155,18,1,20,2,24,9,39,3,56,1],[156,16,1,19,12,37,2,51,1],[157,16,13],[158,14,4,21,2],[159,19,2]]}</script>
 <script>
 (function () {
+  var host = document.getElementById("origin-map");
+  var section = host && host.closest(".page-content");
+  if (section) section.classList.add("origin-map-host");
   function start() {
 /* Origin Map — app.js
    Plain JS, no build step. Loads data/pins.json into a clustered MapLibre
@@ -789,15 +855,14 @@
   // Land is a dot matrix generated from Natural Earth 110m polygons by
   // scripts/build-dots.js. No tile server, no API key.
   const DOTS_URL = "data/land-dots.json";
-  const BUILD = "build 8";
+  const BUILD = "build 9";
   const ATTRIBUTION =
     'Land: <a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener">Natural Earth</a>' +
     ` · ${BUILD}`;
   // Light globe: cream space, pale violet sky, lavender ocean sphere.
   const GLOBE = {
-    space: "#FAF7F2",
+    space: "rgba(250, 247, 242, 0)",
     ocean: "#EFE8FA",
-    sky: "#DDD1F5",
     high: "#C4B5FD",
     atmosphere: 0.4,
     horizonBlend: 0.05,
@@ -825,7 +890,7 @@
   };
   const INITIAL_CENTER = [10, 20];
   const INITIAL_ZOOM = 1.6;
-  const GLOBE_FILL = 0.92; // globe diameter as a share of the shorter viewport side (0 = keep INITIAL_ZOOM)
+  const LIMB_CLEARANCE = 40; // px between the sphere's edge and the nearest stage edge (0 = keep INITIAL_ZOOM)
   const MIN_ZOOM = 1;
   const MAX_ZOOM = 12;
   const OPEN_ZOOM = 5; // zoom used when a pin is opened from a hash or the list
@@ -890,8 +955,10 @@
     style: {
       version: 8,
       projection: { type: "globe" },
+      // Space is transparent so the CSS vignette on #map shows through; only
+      // the atmosphere ring near the limb is painted by MapLibre.
       sky: {
-        "sky-color": GLOBE.sky,
+        "sky-color": GLOBE.space,
         "horizon-color": GLOBE.high,
         "fog-color": GLOBE.space,
         "sky-horizon-blend": GLOBE.horizonBlend,
@@ -956,19 +1023,21 @@
     els.mapEl.style.setProperty("--globe-r", ok ? `${Math.round(r)}px` : "0px");
   }
 
-  // Size the globe to the viewport: shift the zoom so the sphere fills
-  // GLOBE_FILL of the shorter side. Re-run whenever the container resizes
-  // until the user takes over.
+  // Size the globe to the stage: shift the zoom so the sphere sits fully
+  // visible with LIMB_CLEARANCE px to the nearest edge. Re-run whenever the
+  // container resizes until the user takes over.
   let userMoved = false;
   map.on("movestart", (e) => {
     if (e.originalEvent) userMoved = true;
   });
   function fitGlobe() {
-    if (!GLOBE_FILL) return;
+    if (!LIMB_CLEARANCE) return;
     const w = map.getContainer().clientWidth;
     const h = map.getContainer().clientHeight;
     if (!w || !h) return;
-    const wanted = (Math.min(w, h) * GLOBE_FILL) / 2;
+    const side = Math.min(w, h);
+    // Very small stages keep a proportional margin instead of a fixed one.
+    const wanted = Math.max(side / 2 - LIMB_CLEARANCE, side * 0.42);
     // The globe's screen radius is not linear in zoom, so refine a few times.
     for (let i = 0; i < 5; i++) {
       const radius = globeRadius();

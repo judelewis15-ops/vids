@@ -9,15 +9,14 @@
   // Land is a dot matrix generated from Natural Earth 110m polygons by
   // scripts/build-dots.js. No tile server, no API key.
   const DOTS_URL = "data/land-dots.json";
-  const BUILD = "build 8";
+  const BUILD = "build 9";
   const ATTRIBUTION =
     'Land: <a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener">Natural Earth</a>' +
     ` · ${BUILD}`;
   // Light globe: cream space, pale violet sky, lavender ocean sphere.
   const GLOBE = {
-    space: "#FAF7F2",
+    space: "rgba(250, 247, 242, 0)",
     ocean: "#EFE8FA",
-    sky: "#DDD1F5",
     high: "#C4B5FD",
     atmosphere: 0.4,
     horizonBlend: 0.05,
@@ -45,7 +44,7 @@
   };
   const INITIAL_CENTER = [10, 20];
   const INITIAL_ZOOM = 1.6;
-  const GLOBE_FILL = 0.92; // globe diameter as a share of the shorter viewport side (0 = keep INITIAL_ZOOM)
+  const LIMB_CLEARANCE = 40; // px between the sphere's edge and the nearest stage edge (0 = keep INITIAL_ZOOM)
   const MIN_ZOOM = 1;
   const MAX_ZOOM = 12;
   const OPEN_ZOOM = 5; // zoom used when a pin is opened from a hash or the list
@@ -110,8 +109,10 @@
     style: {
       version: 8,
       projection: { type: "globe" },
+      // Space is transparent so the CSS vignette on #map shows through; only
+      // the atmosphere ring near the limb is painted by MapLibre.
       sky: {
-        "sky-color": GLOBE.sky,
+        "sky-color": GLOBE.space,
         "horizon-color": GLOBE.high,
         "fog-color": GLOBE.space,
         "sky-horizon-blend": GLOBE.horizonBlend,
@@ -176,19 +177,21 @@
     els.mapEl.style.setProperty("--globe-r", ok ? `${Math.round(r)}px` : "0px");
   }
 
-  // Size the globe to the viewport: shift the zoom so the sphere fills
-  // GLOBE_FILL of the shorter side. Re-run whenever the container resizes
-  // until the user takes over.
+  // Size the globe to the stage: shift the zoom so the sphere sits fully
+  // visible with LIMB_CLEARANCE px to the nearest edge. Re-run whenever the
+  // container resizes until the user takes over.
   let userMoved = false;
   map.on("movestart", (e) => {
     if (e.originalEvent) userMoved = true;
   });
   function fitGlobe() {
-    if (!GLOBE_FILL) return;
+    if (!LIMB_CLEARANCE) return;
     const w = map.getContainer().clientWidth;
     const h = map.getContainer().clientHeight;
     if (!w || !h) return;
-    const wanted = (Math.min(w, h) * GLOBE_FILL) / 2;
+    const side = Math.min(w, h);
+    // Very small stages keep a proportional margin instead of a fixed one.
+    const wanted = Math.max(side / 2 - LIMB_CLEARANCE, side * 0.42);
     // The globe's screen radius is not linear in zoom, so refine a few times.
     for (let i = 0; i < 5; i++) {
       const radius = globeRadius();

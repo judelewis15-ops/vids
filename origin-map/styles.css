@@ -34,6 +34,9 @@
   --pill: 999px;
   --panel-width: 420px;
   --gutter: 12px;
+  /* Inset of the floating controls from the stage edges */
+  --stage-inset: 12px;
+  --search-width: 280px;
   --ease: cubic-bezier(0.32, 0.72, 0, 1);
   --panel-ms: 380ms;
 }
@@ -174,13 +177,22 @@ h3,
 
 /* ---------- Map ---------- */
 
+/* The stage. Standalone it is the whole viewport; embedded it is a fixed-height
+   block under the site header (see shopify/build.py). MapLibre paints space
+   transparent, so the vignette behind the globe lives here: violet 6% at the
+   centre, gone by 70%. */
 #map {
   position: fixed;
   inset: 0;
-  /* --globe-r is the sphere's measured on-screen radius, set by app.js. The
-     atmosphere itself is drawn by MapLibre; this is just the cream space. */
+  /* --globe-r is the sphere's measured on-screen radius, set by app.js. */
   --globe-r: 0px;
-  background: var(--space);
+  background:
+    radial-gradient(
+      circle at 50% 50%,
+      rgba(124, 58, 237, 0.06) 0%,
+      rgba(124, 58, 237, 0) 70%
+    ),
+    var(--space);
   -webkit-user-select: none;
   user-select: none;
 }
@@ -225,8 +237,8 @@ h3,
 
 /* MapLibre controls, restyled to the palette */
 .maplibregl-ctrl-top-right {
-  top: calc(var(--gutter) + env(safe-area-inset-top, 0px));
-  right: calc(var(--gutter) + env(safe-area-inset-right, 0px));
+  top: calc(var(--stage-inset) + env(safe-area-inset-top, 0px));
+  right: calc(var(--stage-inset) + env(safe-area-inset-right, 0px));
 }
 .maplibregl-ctrl-bottom-right,
 .maplibregl-ctrl-bottom-left {
@@ -300,22 +312,55 @@ h3,
   background-color: var(--primary-10);
 }
 
-/* ---------- Search and chips ---------- */
+/* ---------- Floating controls: eyebrow + search, chips beneath ---------- */
 
-.topbar {
-  position: fixed;
-  top: calc(var(--gutter) + env(safe-area-inset-top, 0px));
-  left: calc(var(--gutter) + env(safe-area-inset-left, 0px));
-  right: calc(var(--gutter) * 2 + 46px + env(safe-area-inset-right, 0px));
+.controls {
+  position: absolute;
+  top: calc(var(--stage-inset) + env(safe-area-inset-top, 0px));
+  left: calc(var(--stage-inset) + env(safe-area-inset-left, 0px));
+  /* Stop short of the zoom buttons on narrow stages */
+  right: calc(var(--stage-inset) * 2 + 46px + env(safe-area-inset-right, 0px));
   z-index: 5;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 8px;
+  pointer-events: none;
+}
+.controls > * {
+  pointer-events: auto;
 }
 @media (min-width: 768px) {
-  .topbar {
+  :root {
+    --stage-inset: 24px;
+  }
+  .controls {
     right: auto;
-    width: 380px;
+    max-width: calc(100% - var(--stage-inset) * 3 - 46px);
+  }
+}
+
+.control-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 100%;
+}
+
+.eyebrow-label {
+  display: none;
+  flex: none;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primary);
+  white-space: nowrap;
+}
+@media (min-width: 480px) {
+  .eyebrow-label {
+    display: block;
   }
 }
 
@@ -323,7 +368,9 @@ h3,
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 6px 6px 6px 18px;
+  width: var(--search-width);
+  max-width: 100%;
+  padding: 6px 6px 6px 16px;
   background: var(--surface);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
@@ -365,6 +412,7 @@ h3,
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
+  max-width: 100%;
 }
 .chip {
   min-height: 32px;
@@ -639,7 +687,7 @@ h3,
   .panel-name {
     font-size: 34px;
   }
-  body.panel-open .topbar {
+  body.panel-open .controls > * {
     pointer-events: none;
   }
 }

@@ -91,7 +91,7 @@ To preview a change before it lands on `main`, push a branch: Pages builds a pre
 
 ## Embedding in a Shopify page
 
-`shopify/build.py` turns the four source files into one HTML fragment, `shopify/page.html`, that runs inside a Shopify page body (the map sits in a fixed-height container so the theme header and footer stay put, and all styles are scoped to `#origin-map`). Rebuild after any change to the source files:
+`shopify/build.py` turns the four source files into one HTML fragment, `shopify/page.html`, that runs inside a Shopify page body. The map is a fixed-height stage of `100vh - 140px` (the site header allowance, `HEADER_ALLOWANCE` in the script) so the globe fills what is left below the header with no page scroll; the theme's own page title is hidden because the globe is the content; all styles are scoped to `#origin-map`. Rebuild after any change to the source files:
 
 ```
 python3 shopify/build.py
@@ -120,7 +120,7 @@ All in `app.js`, near the top:
 | Constant | Default | What it does |
 | --- | --- | --- |
 | `INITIAL_CENTER`, `INITIAL_ZOOM` | `[10, 20]`, `1.6` | Starting view. The map renders as a globe. |
-| `GLOBE_FILL` | `0.92` | On load the zoom is adjusted so the globe spans this share of the shorter viewport side. Set to `0` to keep `INITIAL_ZOOM` as is. |
+| `LIMB_CLEARANCE` | `40` | On load the zoom is adjusted so the globe sits fully visible with this many pixels between its edge and the nearest stage edge. Set to `0` to keep `INITIAL_ZOOM` as is. |
 | `MIN_ZOOM`, `MAX_ZOOM` | `1`, `12` | Zoom limits. |
 | `OPEN_ZOOM` | `5` | Zoom the map eases to when a pin is opened from a link or the list. |
 | `TAG_MATCH` | `'any'` | With several chips selected, `'any'` shows pins that have at least one of them, `'all'` shows only pins that have every one. Search text always combines with the chips using AND. |

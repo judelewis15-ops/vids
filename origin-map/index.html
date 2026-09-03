@@ -55,35 +55,39 @@
   <body>
     <a class="skip-link" href="#pin-list">Skip to list of pins</a>
 
-    <header class="topbar">
-      <form id="search-form" class="search" role="search" autocomplete="off">
-        <label for="search" class="sr-only"
-          >Search pins by name, place or tag</label
-        >
-        <input
-          id="search"
-          type="search"
-          placeholder="Search pins"
-          spellcheck="false"
-          enterkeyhint="search"
-        />
-        <output id="count" class="count" for="search" aria-live="polite"
-          >0 of 0</output
-        >
-        <button type="button" id="clear" class="btn btn-ghost" disabled>
-          Clear
-        </button>
-      </form>
-      <div
-        id="chips"
-        class="chips"
-        role="group"
-        aria-label="Filter by tag"
-        hidden
-      ></div>
-    </header>
-
-    <div id="map" role="region" aria-label="World map of pins"></div>
+    <div id="map" role="region" aria-label="World map of pins">
+      <!-- Controls float over the stage so the globe owns the viewport. -->
+      <div class="controls">
+        <div class="control-row">
+          <span class="eyebrow-label" aria-hidden="true">Origin Map</span>
+          <form id="search-form" class="search" role="search" autocomplete="off">
+            <label for="search" class="sr-only"
+              >Search pins by name, place or tag</label
+            >
+            <input
+              id="search"
+              type="search"
+              placeholder="Search pins"
+              spellcheck="false"
+              enterkeyhint="search"
+            />
+            <output id="count" class="count" for="search" aria-live="polite"
+              >0 of 0</output
+            >
+            <button type="button" id="clear" class="btn btn-ghost" disabled>
+              Clear
+            </button>
+          </form>
+        </div>
+        <div
+          id="chips"
+          class="chips"
+          role="group"
+          aria-label="Filter by tag"
+          hidden
+        ></div>
+      </div>
+    </div>
 
     <p id="status" class="status" role="status" hidden></p>
 

@@ -6,8 +6,9 @@ page.html next to this script. Paste page.html into the page body in the
 Shopify admin (Online Store > Pages > Add page > "<>" HTML view), or pass it
 to the Admin API as the page body.
 
-The map runs inside a #origin-map container instead of filling the viewport,
-so the theme header and footer stay where they are.
+The map runs inside a #origin-map container, a fixed-height stage of
+100vh minus the site header, so the theme header and footer stay where they
+are. The theme's own page title is hidden: the globe is the content.
 """
 import json
 import math
@@ -214,14 +215,41 @@ reset_css = f"""{PREFIX} h1, {PREFIX} h2, {PREFIX} h3, {PREFIX} p, {PREFIX} figu
 }}
 """
 
-scoped_css = reset_css + scope_css(css) + f"""
+# The theme's page template wraps page content in
+# section.page-content > .container > h1.page-title + .page-body. The globe is
+# the content, so the title goes, the column padding goes, and the stage is a
+# fixed-height block under the site header: 100vh minus HEADER_ALLOWANCE.
+# :has() does the job in current browsers; the loader adds .origin-map-host as
+# a fallback for older ones.
+HEADER_ALLOWANCE = "140px"
+host_css = f"""
+.page-content:has({PREFIX}), .page-content.origin-map-host {{
+  max-width: none;
+  padding: 0;
+  margin: 0;
+}}
+.page-content:has({PREFIX}) > .container, .page-content.origin-map-host > .container {{
+  max-width: none;
+  padding: 0;
+  margin: 0;
+}}
+.page-content:has({PREFIX}) .page-title, .page-content.origin-map-host .page-title {{
+  display: none;
+}}
+.page-content:has({PREFIX}) .page-body, .page-content.origin-map-host .page-body {{
+  font-size: 16px;
+  line-height: 1.5;
+}}
+"""
+
+scoped_css = reset_css + scope_css(css) + host_css + f"""
 {PREFIX} {{
   position: relative;
-  /* Break out of the theme's content column and fill the viewport. */
+  /* Fill the width even if the theme still pads its column. */
   width: 100vw;
   margin-left: calc(50% - 50vw);
-  height: 100vh;
-  height: 100dvh;
+  /* Fixed-height stage: what is left below the site header. */
+  height: calc(100vh - {HEADER_ALLOWANCE});
   min-height: 520px;
   border-radius: 0;
   container-type: size;
@@ -248,6 +276,9 @@ assert n == 1, "dots loader not found"
 assert "document.body" not in app_js
 
 loader = f"""(function () {{
+  var host = document.getElementById("origin-map");
+  var section = host && host.closest(".page-content");
+  if (section) section.classList.add("origin-map-host");
   function start() {{
 {app_js}
   }}
