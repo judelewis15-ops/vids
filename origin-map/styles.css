@@ -732,3 +732,16 @@ h3,
     transition: none;
   }
 }
+
+/* ---------- Cinematic mode (?fly=<pin id>) ---------- */
+/* Nothing but the globe: no controls, no attribution, no panel, no list. */
+.cinematic .controls,
+.cinematic .maplibregl-ctrl-top-right,
+.cinematic .maplibregl-ctrl-bottom-right,
+.cinematic .maplibregl-ctrl-bottom-left,
+.cinematic #panel,
+.cinematic .pin-list,
+.cinematic .skip-link,
+.cinematic #status {
+  display: none !important;
+}

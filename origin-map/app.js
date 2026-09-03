@@ -52,6 +52,12 @@
   const SEARCH_DEBOUNCE_MS = 150;
   const TAG_MATCH = "any"; // 'any': pin has at least one selected tag. 'all': pin has every selected tag.
   const COLORS = { dark: "#1A0B2E", primary: "#7C3AED", light: "#FAF7F2" };
+  // Cinematic mode: index.html?fly=<pin id> hides every control, skips the
+  // panel and exposes window.__origin so a recorder (Playwright, OBS) can frame
+  // the globe, then fly into one pin. Used to shoot the series intro.
+  const FLY_ID = new URLSearchParams(location.search).get("fly");
+  const CINEMATIC = FLY_ID !== null;
+  if (CINEMATIC) document.body.classList.add("cinematic");
 
   const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
   const MOBILE = window.matchMedia("(max-width: 767.98px)");
@@ -141,10 +147,11 @@
   });
   map.touchZoomRotate.disableRotation();
   map.keyboard.disableRotation();
-  map.addControl(
-    new maplibregl.NavigationControl({ showCompass: false }),
-    "top-right",
-  );
+  if (!CINEMATIC)
+    map.addControl(
+      new maplibregl.NavigationControl({ showCompass: false }),
+      "top-right",
+    );
 
   const canvas = map.getCanvas();
 
@@ -510,7 +517,10 @@
   }
 
   // ---------- Detail panel ----------
-  const isSafeUrl = (u) => /^https?:\/\/\S+$/i.test(String(u || ""));
+  const isSafeUrl = (u) =>
+    /^(?:https?:\/\/\S+|(?:\.\/)?[\w./-]+\.(?:jpe?g|png|webp|avif))$/i.test(
+      String(u || ""),
+    );
   const safeReelId = (id) =>
     /^[A-Za-z0-9_-]{1,64}$/.test(String(id || "")) ? String(id) : "";
 
@@ -808,6 +818,44 @@
   }
   window.addEventListener("hashchange", openFromHash);
 
+  // ---------- Cinematic API ----------
+  // window.__origin.view(id, zoom) cuts straight to a pin (for still frames);
+  // window.__origin.fly(id, zoom, ms) eases into it (for a live recording).
+  // Both resolve the pin's coordinates from pins.json so the shot tracks the
+  // catalogue. A pin that is not in the file resolves to null.
+  function exposeCinematic() {
+    const coordsOf = (id) => {
+      const f = state.byId.get(String(id));
+      return f ? f.geometry.coordinates.slice() : null;
+    };
+    window.__origin = {
+      map,
+      pinId: FLY_ID,
+      coordsOf,
+      view(id, zoom) {
+        const center = coordsOf(id);
+        if (!center) return false;
+        map.jumpTo({ center, zoom });
+        return true;
+      },
+      fly(id, zoom, ms) {
+        const center = coordsOf(id);
+        if (!center) return Promise.resolve(false);
+        return new Promise((resolve) => {
+          map.once("moveend", () => resolve(true));
+          map.flyTo({ center, zoom, duration: ms, essential: true });
+        });
+      },
+      idle() {
+        return new Promise((resolve) => {
+          map.once("idle", resolve);
+          map.triggerRepaint();
+        });
+      },
+    };
+    document.body.dataset.cinematicReady = "1";
+  }
+
   // ---------- Boot ----------
   const mapReady = new Promise((resolve) => map.once("load", resolve));
   const dataReady = fetch(DATA_URL).then((r) => {
@@ -843,7 +891,8 @@
       map.on("render", syncClusterLabels);
       buildChips();
       applyFilter();
-      openFromHash();
+      if (CINEMATIC) exposeCinematic();
+      else openFromHash();
     })
     .catch((err) => {
       console.error(err);

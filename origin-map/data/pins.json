@@ -3,7 +3,13 @@
   "features": [
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [103.867, 13.4125] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.867,
+          13.4125
+        ]
+      },
       "properties": {
         "id": "leucistic-cambodian",
         "name": "Leucistic Cambodian",
@@ -14,12 +20,21 @@
         "image": "",
         "article_url": "",
         "reel_id": "",
-        "tags": ["cubensis", "asia"]
+        "tags": [
+          "cubensis",
+          "asia"
+        ]
       }
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [-82.46, 27.95] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.46,
+          27.95
+        ]
+      },
       "properties": {
         "id": "golden-teacher",
         "name": "Golden Teacher",
@@ -30,12 +45,21 @@
         "image": "",
         "article_url": "",
         "reel_id": "",
-        "tags": ["cubensis", "north-america"]
+        "tags": [
+          "cubensis",
+          "north-america"
+        ]
       }
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [-60.02, -3.12] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -60.02,
+          -3.12
+        ]
+      },
       "properties": {
         "id": "amazonian",
         "name": "Amazonian",
@@ -46,7 +70,35 @@
         "image": "",
         "article_url": "",
         "reel_id": "",
-        "tags": ["cubensis", "south-america"]
+        "tags": [
+          "cubensis",
+          "south-america"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.38,
+          -29.61
+        ]
+      },
+      "properties": {
+        "id": "natal-super-strength",
+        "name": "Natal Super Strength",
+        "latin": "Psilocybe ochraceocentrata",
+        "region": "KwaZulu-Natal midlands",
+        "country": "South Africa",
+        "summary": "Grown around the world for years as a cubensis strain, NSS turned out in 2026 to be its own species, found on cattle dung in the grasslands of South Africa and Zimbabwe. It is the closest wild relative of cubensis, and the two split about 1.5 million years ago.",
+        "image": "https://cdn.openart.ai/openart-ai/production/2026-09/create-image/xumJl74OmZhkjs7V6H5y/image_1788446072805_24881b92_1788446073360_6170d909.png",
+        "article_url": "https://royalsocietypublishing.org/doi/10.1098/rspb.2025.2270",
+        "reel_id": "",
+        "tags": [
+          "ochraceocentrata",
+          "africa"
+        ]
       }
     }
   ]

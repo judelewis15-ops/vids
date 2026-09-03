@@ -115,6 +115,10 @@ node scripts/build-dots.js --spacing 0.7
 
 The script downloads Natural Earth 110m land as GeoJSON (falling back to the same data from the `world-atlas` npm package if the download fails), keeps lattice points that fall on land, rounds to two decimals and writes a GeoJSON FeatureCollection with a `lat` property on each point. The Shopify build packs the lattice as row runs so the page body stays small.
 
+## Shooting the series intro
+
+`index.html?fly=<pin id>` is cinematic mode: no controls, no attribution, no panel, and `window.__origin` on the page with `view(id, zoom)` (cut to a pin), `fly(id, zoom, ms)` (ease into it) and `idle()` (resolves after the next render). Use it to screen-record the globe-to-pin fly-in, or run `scripts/shoot-intro.mjs` to save the two key frames (`globe.png`, `pin.png`) for an image-to-video model. Episode frames live in `shots/<episode>/`.
+
 ## Settings you might want to change
 
 All in `app.js`, near the top:
