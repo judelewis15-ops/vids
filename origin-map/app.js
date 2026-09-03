@@ -247,7 +247,7 @@
     map.addSource("pins", {
       type: "geojson",
       data,
-      cluster: true,
+      cluster: !CINEMATIC, // every pin stays a pin in the shot
       clusterRadius: 48,
       clusterMaxZoom: 9,
     });
@@ -850,10 +850,13 @@
           map.flyTo({ center, zoom, duration: ms, essential: true });
         });
       },
+      // Draw the current camera synchronously, then resolve on the next
+      // animation frame so the canvas is on screen. Fast and deterministic
+      // for frame-by-frame capture (the "idle" event can lag by seconds).
       idle() {
         return new Promise((resolve) => {
-          map.once("idle", resolve);
-          map.triggerRepaint();
+          map.redraw();
+          requestAnimationFrame(() => requestAnimationFrame(resolve));
         });
       },
     };
@@ -892,7 +895,9 @@
       fitGlobe();
       addLandLayers(dots);
       addPinLayers({ type: "FeatureCollection", features: feats });
-      map.on("render", syncClusterLabels);
+      // Cluster labels re-sync on every render and each marker move asks for
+      // a repaint, so the map never goes idle. Not wanted while capturing.
+      if (!CINEMATIC) map.on("render", syncClusterLabels);
       buildChips();
       applyFilter();
       if (CINEMATIC) exposeCinematic();
