@@ -117,7 +117,19 @@ The script downloads Natural Earth 110m land as GeoJSON (falling back to the sam
 
 ## Shooting the series intro
 
-`index.html?fly=<pin id>` is cinematic mode: no controls, no attribution, no panel, and `window.__origin` on the page with `view(id, zoom)` (cut to a pin), `fly(id, zoom, ms)` (ease into it) and `idle()` (resolves after the next render). Use it to screen-record the globe-to-pin fly-in, or run `scripts/shoot-intro.mjs` to save the two key frames (`globe.png`, `pin.png`) for an image-to-video model. Episode frames live in `shots/<episode>/`.
+`index.html?fly=<pin id>` is cinematic mode: no controls, no attribution, no panel, pitch allowed, and `window.__origin` on the page with `view(id, zoom)` (cut to a pin), `fly(id, zoom, ms)` (ease into it), `props(id)` and `idle()` (resolves after the next render).
+
+`shots/intro-shot.js` is the series intro as a pure function of time (`window.__shot.setTime(seconds)`): hold on the globe, whip into the episode pin with the camera tilting, fill the region outline, pulse the pin, pop the label, then tilt down over the land. Region outlines live in `data/regions/` (KwaZulu-Natal is cut from Natural Earth 10m admin-1). Render it with:
+
+```
+npm i -D playwright                      # once; CHROME=/path/to/chrome reuses an installed browser
+PIN=natal-super-strength REGION=data/regions/kwazulu-natal.json node scripts/shoot-intro.mjs
+ffmpeg -framerate 60 -i shots/frames/f%04d.jpg \
+  -vf "tmix=frames=3:weights='1 2 1',fps=30,format=yuv420p" \
+  -c:v libx264 -crf 17 -movflags +faststart shots/episode-01/intro.mp4
+```
+
+`KEYS="0,1.25,4"` saves stills at those seconds instead, for checking a new pin's framing before a full render. The render is resumable: frames already on disk are skipped. Finished clips and key frames live in `shots/<episode>/`.
 
 ## Settings you might want to change
 
