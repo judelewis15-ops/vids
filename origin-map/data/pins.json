@@ -3,47 +3,50 @@
   "features": [
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [-30.0, 25.0] },
+      "geometry": { "type": "Point", "coordinates": [103.867, 13.4125] },
       "properties": {
-        "id": "test-atlantic",
-        "name": "Atlantic Test Pin",
-        "region": "Mid-Atlantic",
-        "country": "International Waters",
-        "summary": "Placeholder entry in the middle of the Atlantic Ocean. It has an article link and a reel so both sections of the panel can be checked.",
-        "image": "https://REPLACE_WITH_R2_PUBLIC_DOMAIN/test-atlantic.jpg",
-        "article_url": "https://example.com/stories/test-atlantic",
-        "reel_id": "REPLACE_WITH_REEL_ID",
-        "tags": ["test", "ocean"]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [0.0, -80.0] },
-      "properties": {
-        "id": "test-antarctica",
-        "name": "Antarctica Test Pin",
-        "region": "Queen Maud Land",
-        "country": "Antarctica",
-        "summary": "Placeholder entry on the Antarctic ice sheet. It has an article link but no reel, so the reel section should be hidden.",
-        "image": "https://REPLACE_WITH_R2_PUBLIC_DOMAIN/test-antarctica.jpg",
-        "article_url": "https://example.com/stories/test-antarctica",
-        "reel_id": "",
-        "tags": ["test", "ice"]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [-160.0, 0.0] },
-      "properties": {
-        "id": "test-pacific",
-        "name": "Pacific Test Pin",
-        "region": "Central Pacific",
-        "country": "International Waters",
-        "summary": "Placeholder entry in the middle of the Pacific Ocean. It has neither an article link nor a reel, so only the image, label, name and summary should show.",
-        "image": "https://REPLACE_WITH_R2_PUBLIC_DOMAIN/test-pacific.jpg",
+        "id": "leucistic-cambodian",
+        "name": "Leucistic Cambodian",
+        "latin": "Psilocybe cubensis",
+        "region": "Angkor Wat, Siem Reap",
+        "country": "Cambodia",
+        "summary": "The Cambodian line was first collected by mycologist John W. Allen in cattle pasture around the Angkor Wat temples in the 1990s. The leucistic form is a pale, low-pigment mutation of that same line.",
+        "image": "",
         "article_url": "",
         "reel_id": "",
-        "tags": ["test", "ocean"]
+        "tags": ["cubensis", "asia"]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-82.46, 27.95] },
+      "properties": {
+        "id": "golden-teacher",
+        "name": "Golden Teacher",
+        "latin": "Psilocybe cubensis",
+        "region": "Gulf Coast, Florida",
+        "country": "United States",
+        "summary": "Golden Teacher surfaced in the late 1980s. Most accounts place the first find in Florida, a few say Georgia, and the exact spot was never recorded. The name comes from its golden-yellow caps.",
+        "image": "",
+        "article_url": "",
+        "reel_id": "",
+        "tags": ["cubensis", "north-america"]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-60.02, -3.12] },
+      "properties": {
+        "id": "amazonian",
+        "name": "Amazonian",
+        "latin": "Psilocybe cubensis",
+        "region": "Amazon Basin, near Manaus",
+        "country": "Brazil",
+        "summary": "Collected from the Amazon rainforest in Brazil and later isolated as the PES Amazonian line by Pacifica Spora. Known for tall, thick stems and broad caps.",
+        "image": "",
+        "article_url": "",
+        "reel_id": "",
+        "tags": ["cubensis", "south-america"]
       }
     }
   ]

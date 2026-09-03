@@ -9,7 +9,7 @@
   // Land is a dot matrix generated from Natural Earth 110m polygons by
   // scripts/build-dots.js. No tile server, no API key.
   const DOTS_URL = "data/land-dots.json";
-  const BUILD = "build 9";
+  const BUILD = "build 10";
   const ATTRIBUTION =
     'Land: <a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener">Natural Earth</a>' +
     ` · ${BUILD}`;
@@ -76,6 +76,7 @@
     image: $("panel-image"),
     eyebrow: $("panel-eyebrow"),
     name: $("panel-name"),
+    latin: $("panel-latin"),
     summary: $("panel-summary"),
     article: $("panel-article"),
     reel: $("panel-reel"),
@@ -534,6 +535,9 @@
 
     els.eyebrow.textContent = [p.region, p.country].filter(Boolean).join(" · ");
     els.name.textContent = p.name || "";
+    // Scientific name, in italics under the title, only when the pin has one.
+    els.latin.textContent = p.latin || "";
+    els.latin.hidden = !p.latin;
     els.summary.textContent = p.summary || "";
 
     // Article button, only when a URL is set

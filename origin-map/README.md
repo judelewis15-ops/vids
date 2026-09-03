@@ -34,6 +34,7 @@ Add one Feature to the `features` array in `data/pins.json`:
   "properties": {
     "id": "slug-for-this-pin",
     "name": "Display Name",
+    "latin": "Psilocybe cubensis",
     "region": "Region or city",
     "country": "Country",
     "summary": "Two sentences. That is enough for the panel.",
@@ -49,12 +50,13 @@ Rules:
 
 - **Coordinates are `[longitude, latitude]`**, GeoJSON order. Longitude first. A quick sanity check: longitude is between -180 and 180, latitude between -90 and 90, and for most of Europe, Africa and Asia longitude is the smaller number.
 - `id` must be unique. It becomes the shareable link (`https://your-domain/#slug-for-this-pin`), so use lowercase letters, digits and hyphens only.
+- `latin` is optional. When set it appears in italics directly under the name (use it for a scientific name). Leave it out or set it to `""` to hide the line.
 - `article_url` and `reel_id` may be empty strings (`""`). The panel hides the button and the reel when they are empty.
 - `image` should be the full public URL of the photo. If it is empty or fails to load the panel shows a plain gradient block instead, so nothing breaks.
 - `tags` is an array of strings. Every unique tag across all pins becomes a filter chip, so keep tags short and consistent (`"cacao"`, not `"Cacao "` in one place and `"cocoa"` in another).
 - Keep the file valid JSON: commas between features, no trailing comma after the last one. Paste it into any JSON validator if the map comes up empty.
 
-The three pins shipped in the file (Atlantic, Antarctica, Pacific) are placeholders for testing. Delete them when you add real entries.
+The file ships with three strain pins (Leucistic Cambodian, Golden Teacher, Amazonian) with empty `image`, `article_url` and `reel_id` fields. Fill those in as the photos, articles and reels are ready.
 
 ## How to upload an image to R2
 
