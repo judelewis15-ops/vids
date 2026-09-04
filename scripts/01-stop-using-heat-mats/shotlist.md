@@ -102,6 +102,26 @@ Not visually checked from the sandbox (CDN blocked): watch each clip for style d
 outlines, unwanted extra motion or text before cutting. Manifest for the edit pipeline:
 `scripts/01-stop-using-heat-mats/broll.json`, script beats in `script.txt`.
 
+## Opener v2: pull-out reveal (replaces shot 1)
+
+Starts tight on the tub, pulls back to him shaking his head while holding up a heat mat.
+Built as a start-frame to end-frame move so the camera path is controlled.
+
+| Frame | historyId | Still |
+| --- | --- | --- |
+| Start, tub close-up | `FTI9goS0i7jJtjcI90WS` | https://cdn.openart.ai/openart-ai/production/2026-09/create-image/xumJl74OmZhkjs7V6H5y/image_1788550249449_7abcb8b1_1788550249637_df138700.png |
+| End, wide with heat mat | `DCE3w3fsWcmb16UF1p0w` | https://cdn.openart.ai/openart-ai/production/2026-09/create-image/xumJl74OmZhkjs7V6H5y/image_1788550182128_15637de3_1788550182715_c05d5f4c.png |
+
+A first wide frame (`y4nWb3ghFBqvbRpJ3twn`) drew two tubs because the opener was passed as a scene
+reference; regenerated with the opener as style-only and an explicit single-tub constraint.
+
+| Model | Config | historyId | Clip |
+| --- | --- | --- | --- |
+| Kling 3 Omni | pro 1072x1928, 5 s, start+end frame, no sound, 175 cr | `qNBYashC72K9sQu8C68v` | https://cdn.openart.ai/openart-ai/production/2026-09/create-video/xumJl74OmZhkjs7V6H5y/b3f38210d120261865569520eae28981-4d60ed5a-39c9-4396-919f-0bcbdd308c83_1788550683887_a2bd26e1.mp4 |
+| Seedance 2.0 | 720x1280, 5 s, start+end frame, no audio, 400 cr | `EvmRQWN1W3RuXkSheo9v` | https://cdn.openart.ai/openart-ai/production/2026-09/create-video/xumJl74OmZhkjs7V6H5y/02178855054456200000000000000000000ffffc0a87feb4219f4_1788550622707_28e810f0.mp4 |
+
+Spend for the opener v2: 4 stills x 40 (one rejected) + 175 + 400 = 735 credits.
+
 ## Credits
 
 Started at 378. Eight Nano Banana Pro stills at 40 each (seven in use, one superseded) and one

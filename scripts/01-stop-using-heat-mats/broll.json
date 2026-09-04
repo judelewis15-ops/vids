@@ -2,10 +2,10 @@
  "note": "Kling 3 Omni pro clips for the heat-mats short. 'line' is the 0-based beat in script.txt. Fetch: python3 pipeline/fetch_broll.py scripts/01-stop-using-heat-mats/broll.json",
  "clips": [
   {
-   "src": "broll/heatmats/01_opener_tub.mp4",
-   "url": "https://cdn.openart.ai/openart-ai/production/2026-09/create-video/xumJl74OmZhkjs7V6H5y/4c25ac4fccd9f2db3d33d74402bace2e-21b1a3d9-cd85-4b2b-9a04-c112fb906444_1788548948121_5579de6b.mp4",
-   "historyId": "Mu96ETe9w4ddJz58frQ3",
-   "label": "Opener, lifts mushroom from tub",
+   "src": "broll/heatmats/01_opener_reveal_kling.mp4",
+   "url": "https://cdn.openart.ai/openart-ai/production/2026-09/create-video/xumJl74OmZhkjs7V6H5y/b3f38210d120261865569520eae28981-4d60ed5a-39c9-4396-919f-0bcbdd308c83_1788550683887_a2bd26e1.mp4",
+   "historyId": "qNBYashC72K9sQu8C68v",
+   "label": "Opener v2: tub close-up pulls out to him shaking head with heat mat (Kling)",
    "line": 0,
    "keywords": [
     "grow",
@@ -14,7 +14,11 @@
    ],
    "duration": 5.0,
    "mode": "cutaway",
-   "offset": 0.0
+   "offset": 0.0,
+   "alt": {
+    "seedance": "https://cdn.openart.ai/openart-ai/production/2026-09/create-video/xumJl74OmZhkjs7V6H5y/02178855054456200000000000000000000ffffc0a87feb4219f4_1788550622707_28e810f0.mp4",
+    "kling_v1_lift_mushroom": "https://cdn.openart.ai/openart-ai/production/2026-09/create-video/xumJl74OmZhkjs7V6H5y/4c25ac4fccd9f2db3d33d74402bace2e-21b1a3d9-cd85-4b2b-9a04-c112fb906444_1788548948121_5579de6b.mp4"
+   }
   },
   {
    "src": "broll/heatmats/02_stop_heat_mat.mp4",
