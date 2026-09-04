@@ -1,0 +1,119 @@
+{
+ "note": "Kling 3 Omni pro clips for the heat-mats short. 'line' is the 0-based beat in script.txt. Fetch: python3 pipeline/fetch_broll.py scripts/01-stop-using-heat-mats/broll.json",
+ "clips": [
+  {
+   "src": "broll/heatmats/01_opener_tub.mp4",
+   "url": "https://cdn.openart.ai/openart-ai/production/2026-09/create-video/xumJl74OmZhkjs7V6H5y/4c25ac4fccd9f2db3d33d74402bace2e-21b1a3d9-cd85-4b2b-9a04-c112fb906444_1788548948121_5579de6b.mp4",
+   "historyId": "Mu96ETe9w4ddJz58frQ3",
+   "label": "Opener, lifts mushroom from tub",
+   "line": 0,
+   "keywords": [
+    "grow",
+    "mushrooms",
+    "mate"
+   ],
+   "duration": 5.0,
+   "mode": "cutaway",
+   "offset": 0.0
+  },
+  {
+   "src": "broll/heatmats/02_stop_heat_mat.mp4",
+   "url": "https://cdn.openart.ai/openart-ai/production/2026-09/create-video/xumJl74OmZhkjs7V6H5y/7f7f348e2fbc6bddd9878b3d0b68e98b-4e9ee9a8-a25e-41c5-bf06-51025b2adeba_1788548775320_9d8ec853.mp4",
+   "historyId": "04GWzKiPQX8bzjx0L8Ey",
+   "label": "STOP gesture, X over heat mat",
+   "line": 1,
+   "keywords": [
+    "heat mats",
+    "dicking around",
+    "stop"
+   ],
+   "duration": 5.0,
+   "mode": "cutaway"
+  },
+  {
+   "src": "broll/heatmats/03_glasgow_cold.mp4",
+   "url": "https://cdn.openart.ai/openart-ai/production/2026-09/create-video/xumJl74OmZhkjs7V6H5y/a14ce449aa102a3e25bdb1a1bffa50bc-a24cc558-8562-434e-836e-5be44abbdead_1788548680412_5cd36083.mp4",
+   "historyId": "FUjb1xT774ToozjQMC2E",
+   "label": "Glasgow shivering, rain on window",
+   "line": 2,
+   "keywords": [
+    "glasgow",
+    "cold",
+    "slow grows"
+   ],
+   "duration": 5.0,
+   "mode": "cutaway"
+  },
+  {
+   "src": "broll/heatmats/04_bag_drying.mp4",
+   "url": "https://cdn.openart.ai/openart-ai/production/2026-09/create-video/xumJl74OmZhkjs7V6H5y/a3ea9449e6ff11648a465dcb16e23433-efbb3bed-4b9f-441e-b922-d94dd1ff01d4_1788548565228_4dd074d6.mp4",
+   "historyId": "rHr6oVvXIRQr4c455xtS",
+   "label": "Bag drying on heat mat",
+   "line": 3,
+   "keywords": [
+    "heat source",
+    "bag",
+    "dry out",
+    "grains",
+    "substrate"
+   ],
+   "duration": 5.0,
+   "mode": "cutaway"
+  },
+  {
+   "src": "broll/heatmats/05_ninety_percent_water.mp4",
+   "url": "https://cdn.openart.ai/openart-ai/production/2026-09/create-video/xumJl74OmZhkjs7V6H5y/48dafbbd9d53bfd53dceb91b90978662-e0d09a53-7358-4f5d-acbc-4b16c88304f9_1788548822409_3e776fc2.mp4",
+   "historyId": "g5Co5w189Ddl3iQM2udQ",
+   "label": "Ninety percent water diagram",
+   "line": 4,
+   "keywords": [
+    "90%",
+    "water",
+    "ninety percent"
+   ],
+   "duration": 5.0,
+   "mode": "cutaway"
+  },
+  {
+   "src": "broll/heatmats/06_tube_heater_gap.mp4",
+   "url": "https://cdn.openart.ai/openart-ai/production/2026-09/create-video/xumJl74OmZhkjs7V6H5y/2d64fca807bc52c6e1358d9f771d71fb-3e5402c5-28ed-4612-bf0a-b38cb2cba2af_1788548816884_d96b0c73.mp4",
+   "historyId": "ETcHDDKL8DcoFqapO183",
+   "label": "Tube heater a few feet from tub",
+   "line": 5,
+   "keywords": [
+    "heater bar",
+    "few feet away"
+   ],
+   "duration": 5.0,
+   "mode": "cutaway"
+  },
+  {
+   "src": "broll/heatmats/07_inkbird_plug.mp4",
+   "url": "https://cdn.openart.ai/openart-ai/production/2026-09/create-video/xumJl74OmZhkjs7V6H5y/1236afbde29f15b96e9cae559977917c-a358a55f-d311-4749-8a36-ba2ef77b759c_1788548700629_fe1b40ef.mp4",
+   "historyId": "XOsNK08Ly5EGriTG2T04",
+   "label": "Plug into the Inkbird",
+   "line": 6,
+   "keywords": [
+    "inkbird",
+    "temperature controller",
+    "plug"
+   ],
+   "duration": 5.0,
+   "mode": "cutaway"
+  },
+  {
+   "src": "broll/heatmats/08_heat_the_air.mp4",
+   "url": "https://cdn.openart.ai/openart-ai/production/2026-09/create-video/xumJl74OmZhkjs7V6H5y/d1ec248b24f996084db840efaaf488f0-d0303000-ecc3-49bf-87dc-76d0e5eb28c5_1788548624705_d03ce9eb.mp4",
+   "historyId": "lhnBEHDXClyz1Bx5Vx0x",
+   "label": "Warm air around the grow",
+   "line": 7,
+   "keywords": [
+    "heat the air",
+    "room",
+    "not the grow"
+   ],
+   "duration": 5.0,
+   "mode": "cutaway"
+  }
+ ]
+}

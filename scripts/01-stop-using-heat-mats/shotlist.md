@@ -73,6 +73,35 @@ Style lock line (prefix every prompt):
 - **Shot 7** — The hand pushes the plug fully into the socket on the back of the black controller box and lets go. The red display glow brightens once. The probe wire and the metal tip beside the tub stay still. Slow camera push in on the controller. No new objects, no text, no numbers appearing on the display, no camera shake.
 - **Shot 8** — The large cream swirls of warm air drift slowly around the room, curling around the walls and the bed but flowing around the tub without touching it. The young man gives his thumbs up a small bounce and blinks, smiling. The heater glow pulses gently. Slow camera pull back to show the whole room. No new objects, no text, no camera shake.
 
+## Kling 3 Omni pass (Pro plan, full set)
+
+All eight shots animated with Kling 3 Omni image2video, "pro" resolution (1072x1928), 5 s, 24 fps,
+no generated sound, 175 credits each. Same style-lock prompts as the PixVerse list above.
+
+| # | Shot | historyId | Clip |
+| --- | --- | --- | --- |
+| 1 | Opener, lifts mushroom from tub | `Mu96ETe9w4ddJz58frQ3` | https://cdn.openart.ai/openart-ai/production/2026-09/create-video/xumJl74OmZhkjs7V6H5y/4c25ac4fccd9f2db3d33d74402bace2e-21b1a3d9-cd85-4b2b-9a04-c112fb906444_1788548948121_5579de6b.mp4 |
+| 2 | STOP gesture, X over heat mat | `04GWzKiPQX8bzjx0L8Ey` | https://cdn.openart.ai/openart-ai/production/2026-09/create-video/xumJl74OmZhkjs7V6H5y/7f7f348e2fbc6bddd9878b3d0b68e98b-4e9ee9a8-a25e-41c5-bf06-51025b2adeba_1788548775320_9d8ec853.mp4 |
+| 3 | Glasgow shivering, rain on window | `FUjb1xT774ToozjQMC2E` | https://cdn.openart.ai/openart-ai/production/2026-09/create-video/xumJl74OmZhkjs7V6H5y/a14ce449aa102a3e25bdb1a1bffa50bc-a24cc558-8562-434e-836e-5be44abbdead_1788548680412_5cd36083.mp4 |
+| 4 | Bag drying on heat mat | `rHr6oVvXIRQr4c455xtS` | https://cdn.openart.ai/openart-ai/production/2026-09/create-video/xumJl74OmZhkjs7V6H5y/a3ea9449e6ff11648a465dcb16e23433-efbb3bed-4b9f-441e-b922-d94dd1ff01d4_1788548565228_4dd074d6.mp4 |
+| 5 | Ninety percent water diagram | `g5Co5w189Ddl3iQM2udQ` | https://cdn.openart.ai/openart-ai/production/2026-09/create-video/xumJl74OmZhkjs7V6H5y/48dafbbd9d53bfd53dceb91b90978662-e0d09a53-7358-4f5d-acbc-4b16c88304f9_1788548822409_3e776fc2.mp4 |
+| 6 | Tube heater a few feet from tub | `ETcHDDKL8DcoFqapO183` | https://cdn.openart.ai/openart-ai/production/2026-09/create-video/xumJl74OmZhkjs7V6H5y/2d64fca807bc52c6e1358d9f771d71fb-3e5402c5-28ed-4612-bf0a-b38cb2cba2af_1788548816884_d96b0c73.mp4 |
+| 7 | Plug into the Inkbird | `XOsNK08Ly5EGriTG2T04` | https://cdn.openart.ai/openart-ai/production/2026-09/create-video/xumJl74OmZhkjs7V6H5y/1236afbde29f15b96e9cae559977917c-a358a55f-d311-4749-8a36-ba2ef77b759c_1788548700629_fe1b40ef.mp4 |
+| 8 | Warm air around the grow | `lhnBEHDXClyz1Bx5Vx0x` | https://cdn.openart.ai/openart-ai/production/2026-09/create-video/xumJl74OmZhkjs7V6H5y/d1ec248b24f996084db840efaaf488f0-d0303000-ecc3-49bf-87dc-76d0e5eb28c5_1788548624705_d03ce9eb.mp4 |
+
+Gemini Omni Flash comparison on the two hardest shots (720x1280, 5 s, carries a generated audio
+track: mute it), 250 credits each:
+
+| # | Shot | historyId | Clip |
+| --- | --- | --- | --- |
+| 3 | Glasgow shivering, rain on window | `Ep67tAJBu1p9Upe3WWkZ` | https://cdn.openart.ai/openart-ai/production/2026-09/create-video/xumJl74OmZhkjs7V6H5y/video_1788548815591_3919f0f3_1788548815657_f136eb13.mp4 |
+| 7 | Plug into the Inkbird | `K1jeBDPYLVpkkhGVOB45` | https://cdn.openart.ai/openart-ai/production/2026-09/create-video/xumJl74OmZhkjs7V6H5y/video_1788548638853_c8df09f3_1788548638932_a9dfc841.mp4 |
+
+Spend for this pass: 8 x 175 + 2 x 250 = 1,900 credits (24,000 to 22,100).
+Not visually checked from the sandbox (CDN blocked): watch each clip for style drift, warped
+outlines, unwanted extra motion or text before cutting. Manifest for the edit pipeline:
+`scripts/01-stop-using-heat-mats/broll.json`, script beats in `script.txt`.
+
 ## Credits
 
 Started at 378. Eight Nano Banana Pro stills at 40 each (seven in use, one superseded) and one
