@@ -5,3 +5,8 @@ dist
 
 # Ignore the output video from Git but not videos you import into src/.
 out
+
+# Edit pipeline inputs/outputs (large media)
+raw/
+public/edit/
+public/broll/

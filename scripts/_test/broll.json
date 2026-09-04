@@ -1,0 +1,23 @@
+{
+ "clips": [
+  {
+   "src": "broll/test/a.mp4",
+   "label": "test A",
+   "keywords": [
+    "grow",
+    "mushrooms"
+   ],
+   "duration": 5.0
+  },
+  {
+   "src": "broll/test/b.mp4",
+   "label": "test B",
+   "keywords": [
+    "heat",
+    "mats"
+   ],
+   "duration": 5.0,
+   "mode": "split"
+  }
+ ]
+}

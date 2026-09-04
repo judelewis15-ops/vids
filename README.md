@@ -52,3 +52,21 @@ Found an issue with Remotion? [File an issue here](https://github.com/remotion-d
 ## License
 
 Note that for some entities a company license is needed. [Read the terms here](https://github.com/remotion-dev/remotion/blob/main/LICENSE.md).
+
+## Reel edit pipeline
+
+Raw talking-head footage in, Instagram reel out. See `.claude/skills/edit-reel/SKILL.md` for the full flow.
+
+```console
+pip install imageio-ffmpeg faster-whisper     # ffmpeg binary + optional speech-to-text
+python3 pipeline/fetch_broll.py scripts/02-ochra/broll.json
+python3 pipeline/cut.py raw/C0011.MP4 --script scripts/02-ochra/script.txt --broll scripts/02-ochra/broll.json --whisper small
+cat public/edit/takes.md                       # review the picks, edit public/edit/edit.json to override
+npx remotion render src/index.ts Reel out/ochra.mp4 --codec=h264 --crf=18
+```
+
+`pipeline/cut.py` transcodes a proxy, splits on silence, matches takes to the script and keeps the
+cleanest take per beat (later take wins ties), places b-roll on the matching beat, and writes
+`public/edit/edit.json`. The `Reel` composition in `src/Reel.tsx` renders it at 1080x1920 with
+cutaway or split b-roll, word captions in the Reels safe zone and a punch-in on alternate cuts.
+Test without real footage: `bash pipeline/make_test_fixture.sh`.

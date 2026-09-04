@@ -2,12 +2,35 @@ import "./index.css";
 import { Composition } from "remotion";
 import { HelloWorld, myCompSchema } from "./HelloWorld";
 import { Logo, myCompSchema2 } from "./HelloWorld/Logo";
+import { Reel, emptyEdit, loadEdit, editDurationInFrames } from "./Reel";
 
 // Each <Composition> is an entry in the sidebar!
 
 export const RemotionRoot: React.FC = () => {
   return (
     <>
+      {/* Instagram reel assembled from public/edit/edit.json (see pipeline/cut.py).
+          Render: npx remotion render src/index.ts Reel out/reel.mp4 */}
+      <Composition
+        id="Reel"
+        component={Reel}
+        durationInFrames={90}
+        fps={30}
+        width={1080}
+        height={1920}
+        defaultProps={{ edit: emptyEdit }}
+        calculateMetadata={async ({ props }) => {
+          const edit = await loadEdit();
+          const fps = edit.fps || 30;
+          return {
+            durationInFrames: editDurationInFrames(edit, fps),
+            fps,
+            width: edit.width || 1080,
+            height: edit.height || 1920,
+            props: { ...props, edit },
+          };
+        }}
+      />
       <Composition
         // You can take the "id" to render a video:
         // npx remotion render HelloWorld

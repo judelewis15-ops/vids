@@ -1,0 +1,109 @@
+{
+ "words": [
+  {
+   "word": "Mate",
+   "start": 0.1,
+   "end": 0.445
+  },
+  {
+   "word": "if",
+   "start": 0.483,
+   "end": 0.828
+  },
+  {
+   "word": "you",
+   "start": 0.867,
+   "end": 1.212
+  },
+  {
+   "word": "wanna",
+   "start": 1.25,
+   "end": 1.595
+  },
+  {
+   "word": "grow",
+   "start": 1.633,
+   "end": 1.978
+  },
+  {
+   "word": "mushrooms",
+   "start": 2.017,
+   "end": 2.362
+  },
+  {
+   "word": "Stop",
+   "start": 4.1,
+   "end": 4.43
+  },
+  {
+   "word": "messing",
+   "start": 4.467,
+   "end": 4.797
+  },
+  {
+   "word": "um",
+   "start": 4.833,
+   "end": 5.163
+  },
+  {
+   "word": "stop",
+   "start": 5.2,
+   "end": 5.53
+  },
+  {
+   "word": "messing",
+   "start": 5.567,
+   "end": 5.897
+  },
+  {
+   "word": "around",
+   "start": 5.933,
+   "end": 6.263
+  },
+  {
+   "word": "with",
+   "start": 6.3,
+   "end": 6.63
+  },
+  {
+   "word": "heat",
+   "start": 6.667,
+   "end": 6.997
+  },
+  {
+   "word": "mats",
+   "start": 7.033,
+   "end": 7.363
+  },
+  {
+   "word": "Stop",
+   "start": 9.1,
+   "end": 9.52
+  },
+  {
+   "word": "messing",
+   "start": 9.567,
+   "end": 9.987
+  },
+  {
+   "word": "around",
+   "start": 10.033,
+   "end": 10.453
+  },
+  {
+   "word": "with",
+   "start": 10.5,
+   "end": 10.92
+  },
+  {
+   "word": "heat",
+   "start": 10.967,
+   "end": 11.387
+  },
+  {
+   "word": "mats",
+   "start": 11.433,
+   "end": 11.853
+  }
+ ]
+}
