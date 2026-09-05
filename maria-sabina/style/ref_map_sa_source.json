@@ -1,0 +1,31 @@
+{
+  "note": "Local copies of ref_map_sa.png and the reference MP4 could not be saved: cdn.openart.ai is denied by this session's egress policy (403 on CONNECT). Both assets are hosted on OpenArt and can be passed directly as visualReferences / endFrame. Download them from the URLs below on a machine with normal network access.",
+  "brief_id": "IDbmkGjjxF87lxxCQFgl",
+  "brief_id_is": "OpenArt item id of the clip (not its historyId)",
+  "clip": {
+    "historyId": "FfAwxUXkfa5CQV3uMYsi",
+    "itemId": "IDbmkGjjxF87lxxCQFgl",
+    "model": "byte-plus-seedance-2",
+    "mode": "image2video",
+    "createdAt": 1788553618734,
+    "width": 720, "height": 1280, "duration_s": 6.041667, "fps": 24, "hasAudio": false, "format": "mov",
+    "url": "https://cdn.openart.ai/openart-ai/production/2026-09/create-video/xumJl74OmZhkjs7V6H5y/02178855362933400000000000000000000ffffc0a87852a1b84e_1788553733550_8b74de59.mp4",
+    "thumbnailUrl": "https://cdn.openart.ai/openart/thumbnail/production/2026-09/create-video/xumJl74OmZhkjs7V6H5y/02178855362933400000000000000000000ffffc0a87852a1b84e_1788553736656_c1d854d6.webp",
+    "prompt_file": "ref_map_sa_prompt.txt"
+  },
+  "end_frame": {
+    "historyId": "Uvb2zjC5DftohFtJwGwi",
+    "itemId": "u66T6HIfclWM6em8Z24c",
+    "model": "nano-banana-pro",
+    "mode": "image2image",
+    "width": 1536, "height": 2752, "format": "png",
+    "url": "https://cdn.openart.ai/openart-ai/production/2026-09/create-image/xumJl74OmZhkjs7V6H5y/image_1788553534203_15c9f436_1788553534855_ed07ed21.png",
+    "use": "This is the frame the reference clip was locked to end on. Use as the 'exact style reference' visualReference for the style set and the map end frame until ref_map_sa.png can be extracted and uploaded.",
+    "visualReference": {
+      "type": "image",
+      "id": "u66T6HIfclWM6em8Z24c",
+      "url": "https://cdn.openart.ai/openart-ai/production/2026-09/create-image/xumJl74OmZhkjs7V6H5y/image_1788553534203_15c9f436_1788553534855_ed07ed21.png",
+      "label": "exact style reference"
+    }
+  }
+}
