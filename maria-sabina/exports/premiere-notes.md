@@ -25,6 +25,8 @@ Master 9:16, 2160×3840, 60 fps. Modes per brief section 4: FULL BLEED, STACKED 
 
 ### Map (shots 02-03, brief section 6)
 
+**Parked on Jude's instruction (05 Sep, "forget the map for now").** Nothing further was generated after round 1. The state below is what exists; nothing else costs credits until the map is picked up again.
+
 - **Style references.** Harris YouTube frames could not be captured: YouTube is blocked from the build container, and this OpenArt connector does not expose `openart_upload_sign`, so no local file can be uploaded as a reference. Substitute used: two OpenArt-generated dark map plates (historyIds `hsoLidT5UiBjqRh2oSCX`, `Dcwyv09S28zSnahOLF57`) as `visualReferences` labelled "style reference". `refs/map/` is empty. If the Harris frames matter, upload them from a desktop OpenArt session and re-run 6.1 and 6.2.
 - **Motion reference.** historyId `IDbmkGjjxF87lxxCQFgl` returns "History not found" on this account; it is not in the visible generation history either. The South Africa clip could not be used as the yardstick. Re-check the id.
 - **Start frame.** `Lq2IzDydQO1wFBCxSY8D`, candidate D (`e82Vw6pkMZOZhY567Czv`). Accepted: no visible text, ocean darker than land, Mexico and New York in frame, no HUD.
@@ -44,6 +46,17 @@ Master 9:16, 2160×3840, 60 fps. Modes per brief section 4: FULL BLEED, STACKED 
   `--text-scale 1` gives the brief's literal 11 px / 9 px sizes; the default 2.0 keeps them legible after the STACKED scale-down. `--ny-until`, `--land-at` and `--no-oaxaca` adjust timing and content.
 - **AI-labelled stills (same direction).** Nano Banana Pro added labels to the accepted frames for static use: end frame with `HUAUTLA DE JIMÉNEZ` / `SIERRA MAZATECA` / `OAXACA` (historyId `ve00eL0C4nioQOpAjyEQ`, two outputs) and start frame with `NEW YORK` / `MEXICO` (`sDisSB6YOo5s1a8jucGZ`, two outputs). Labels are present; spelling and the accent could only be checked at thumbnail scale, so confirm at full size before use. AI text is not used on the moving clip: it warps during the zoom, which is why the brief kept it out of the model.
 - **In Premiere.** Marker pulse and film emulation per section 8. If the labelled clip is used, the Premiere label layers for 02-03 are not needed; shot 04's labels still land in Premiere on the satellite settle.
+
+### Sourcing pass (section 9), what turned up
+
+- **INAH, Nacho López, Reportaje No. 667 (c.1975, Huautla).** The best single archive for this film: two portrait frames (`fotografia:354513`, `354493`), a third portrait, a village panorama (`354533`), and `354525`, *María Sabina comiendo con turistas*, which is a real photograph of her with foreign visitors and the strongest candidate for shot 12. Licence: non-commercial with attribution under INAH's terms, so a reproduction licence from the Fototeca Nacional (Pachuca) is needed for this account. One licence request covers shots 01, 05 fallback, 12 and 14.
+- **Life, 13 May 1957, pp. 100-120.** Thirteen Richardson photographs, eight in colour. Internet Archive and Google Books scans exist; a physical copy is cheap and lets the cover and spread be shot as documents on the table (that does not clear reproduction rights; see section 10 decision).
+- **1967-1972 press.** No period clippings surfaced online as scans. Route: Hemeroteca Nacional Digital (Excélsior, El Universal, Novedades) by hand; July 1969 is the operation to search (army and Gobernación entered Huautla, 86 detained, road closed to 1976). Estrada's *Huautla en tiempo de hippies* (1996) and Feinberg's *The Devil's Book of Culture* (2003) reproduce period coverage and are the fastest way to identify the exact papers and dates.
+- **LoC, U.S. News & World Report collection.** `2024640601`, young people at the P Street Beach be-in, Washington, 28 May 1967, no known restrictions. A public-domain fallback for the arrivals feel if nothing Huautla-specific clears.
+- **Echevarría, 1979.** Filmoteca UNAM holds it; MUBI streams it. Stills need permission.
+- **Estrada, 1977 / 1981.** The 1981 English edition is on the Internet Archive (borrowable). Copy her words about the foreigners exactly from the page.
+- **Obituary.** UPI wire, 22 November 1985. No NYT or El País piece surfaced; check ProQuest and the El País hemeroteca by hand.
+- **Not sourceable from here at all:** Google Earth Studio (shot 04), stock drone (shot 05), vendor and forum screenshots (shot 17). All three are interactive captures on your machine.
 
 ### Per-shot notes
 
