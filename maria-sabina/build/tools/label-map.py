@@ -197,14 +197,22 @@ def main():
           "| ring marker:", "found" if last_ring else "NOT FOUND (labels placed centre-frame)")
 
     # 2. render overlay frames
+    last_pos, last_t = None, -1.0
     for i in range(N):
         t = i / fps
         layer = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-        # NEW YORK: in over 300 ms from t=0, out over 300 ms ending at ny_until, follows the marker
+        # NEW YORK: in over 300 ms from t=0, out over 300 ms ending at ny_until, follows the marker;
+        # if the push carries the marker off frame earlier, the label fades out over 300 ms from there
         pos = ny[i] if i < len(ny) else None
+        if pos is not None:
+            last_pos, last_t = pos, t
+        elif last_pos is not None and t - last_t <= 0.3:
+            pos = last_pos
         if pos is not None and t < a.ny_until:
             ain = ease_out(t / 0.3)
             aout = 1 - ease_out((t - (a.ny_until - 0.3)) / 0.3) if t > a.ny_until - 0.3 else 1
+            if ny[i] is None:
+                aout *= 1 - ease_out((t - last_t) / 0.3)
             al = ain * aout
             if al > 0:
                 slide = (1 - ain) * 6 * S
