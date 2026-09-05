@@ -117,10 +117,19 @@ def draw_label(layer, text, x, y, size, alpha, scale, anchor="l"):
     track = size * 0.18
     widths = [font.getlength(ch) for ch in text]
     total = sum(widths) + track * (len(text) - 1)
+    W_, H_ = layer.size
+    margin = size * 1.2
+    # keep the label in frame: flip to the other side of its marker when there is no room
+    if anchor == "l" and x + total > W_ - margin:
+        x = x - total - 2 * 14 * scale; anchor = "flipped"
     if anchor == "r":
         x -= total
+        if x < margin:
+            x = x + total + 2 * 14 * scale
     elif anchor == "c":
         x -= total / 2
+    x = min(max(x, margin), W_ - margin - total)
+    y = min(max(y, margin), H_ - margin - size * 1.6)
     pad = int(size * 1.5)
     box = Image.new("RGBA", (int(total) + pad * 2, int(size * 1.6) + pad * 2), (0, 0, 0, 0))
     d = ImageDraw.Draw(box)
