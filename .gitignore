@@ -6,16 +6,9 @@ dist
 # Ignore the output video from Git but not videos you import into src/.
 out
 
-# HYPHA ORIGINS 01: heavy renders and caches are rebuilt by the scripts in maria-sabina/build
-maria-sabina/exports/map-sequence/*.png
-maria-sabina/exports/*_prores*.mov
-maria-sabina/exports/*_alpha.mov
-maria-sabina/build/map/data/raw/
-maria-sabina/build/map/data/tile-cache/
-maria-sabina/build/map/data/*.log
-maria-sabina/build/cards/*.log
-maria-sabina/assets/_candidates/
-maria-sabina/build/cards/bundle/
-
-# style references: never distributed
-maria-sabina/refs/
+# HYPHA ORIGINS 01 (master brief v6)
+maria-sabina/refs/map/*.png
+maria-sabina/refs/map/*.jpg
+maria-sabina/exports/satellite/*.png
+maria-sabina/exports/map/*.mov
+maria-sabina/work/*.psd

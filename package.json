@@ -9,11 +9,6 @@
     "@remotion/cli": "4.0.450",
     "@remotion/tailwind-v4": "4.0.450",
     "@remotion/zod-types": "4.0.450",
-    "@turf/bbox-clip": "^7.4.0",
-    "@turf/difference": "^7.4.0",
-    "@turf/ellipse": "^7.4.0",
-    "@turf/union": "^7.4.0",
-    "maplibre-gl": "^4.7.1",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "remotion": "4.0.450",
@@ -25,7 +20,6 @@
     "@types/react": "19.2.7",
     "@types/web": "0.0.166",
     "eslint": "9.19.0",
-    "playwright": "^1.56.1",
     "prettier": "3.8.1",
     "typescript": "5.9.3"
   },
@@ -33,10 +27,7 @@
     "dev": "remotion studio",
     "build": "remotion bundle",
     "upgrade": "remotion upgrade",
-    "lint": "eslint src && tsc",
-    "ho01:cards": "bash maria-sabina/build/cards/render-cards.sh",
-    "ho01:map": "bash maria-sabina/build/map/render-all.sh 2 --encode",
-    "ho01:sheet": "python3 maria-sabina/build/tools/contact-sheet.py"
+    "lint": "eslint src && tsc"
   },
   "sideEffects": [
     "*.css"
