@@ -58,6 +58,25 @@ Master 9:16, 2160×3840, 60 fps. Modes per brief section 4: FULL BLEED, STACKED 
 - **Obituary.** UPI wire, 22 November 1985. No NYT or El País piece surfaced; check ProQuest and the El País hemeroteca by hand.
 - **Not sourceable from here at all:** Google Earth Studio (shot 04), stock drone (shot 05), vendor and forum screenshots (shot 17). All three are interactive captures on your machine.
 
+### Treatments built for the edit (Jude's direction, 05 Sep: "animate the editing style")
+
+No motion is invented on any photograph. These are camera moves and highlights over real stills, rendered from code, so they never warp a face or a page.
+
+- **`exports/elements/`** — drop-on layers, ProRes 4444 with alpha, 60 fps, 1 s (draw on in 400 ms, then hold):
+  - `HL_swipe_marker_1600x160.mov` — highlighter stroke, marker yellow `#F5D90A` at 55%, rough edges, streaky. Set the layer to Multiply, scale it over the word.
+  - `HL_swipe_neon_1600x160.mov` — the neon variant Jude asked for (acid yellow-green at 75%), same behaviour.
+  - `HL_box-dim_2160x3840.mov` — highlight box at 35% with everything outside dimmed to 40%. Rebuild with a different box via `build/tools/highlight-element.py`.
+- **`build/tools/treat.py`** — renders a finished shot from a still once the file is fetched:
+  - `--mode photo`: archive grade (desaturate, lifted blacks, soft contrast), push 100→108% toward `--focus`, source label bottom right. For shots 01, 06, 12, 14, 15.
+  - `--mode doc`: page on the `#0A0412` surface, 3° off square, soft shadow, parallax against the shadow, light sweep, eased push toward `--focus`, optional `--swipe x,y,w,h` (marker stroke on the word) and `--box x,y,w,h` (highlight box, outside dims), source label. For shots 07, 08, 09, 10, 11, 13, 17.
+  - `--grid out.png` writes the source with a numbered 10×10 grid so the word box can be read off by eye. Sizes default to the 9:16 master; `--size 3840x2160` for STACKED assets. Grain, gate weave and halation stay in Premiere (section 8).
+  - Tested on stand-ins: a synthetic page for the document mode and the map plate for the photo mode.
+
+### Pulling the originals: what was tried
+
+- Canva's URL importer can copy a public file into the Canva media library untouched, which would have been a clean "pull". It failed for every archive tried: INAH datastream URLs (`fotografia:354513`, `354525`, both `OBJ` and `JPG`) return an unknown format, Internet Archive page images (`page/n0.jpg` on both Life items) return non-200, and the Commons portrait file names are not guessable (the category page is unreachable from here to read them). The originals therefore still need a hand: `build/tools/fetch-assets.sh` prints the list.
+- OpenArt will fetch a public image URL by itself (proven with a Commons photograph of Huautla, 15 credits, historyId `U1QrT1vvtN64cI6W9ZKS`), but that produces a regenerated image, not a copy, so it is not a sourcing route under the brief's "never a recreation" rule. It was not used for any face.
+
 ### Per-shot notes
 
 - **01** Portrait, 2.5D (subject 100→108%, background 100→104%), eyebrow `HYPHA ORIGINS · 01` at 0:01 top left, source label bottom right. Source: NEEDS_MANUAL (INAH o-302990 preferred; licence required).
