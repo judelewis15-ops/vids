@@ -16,3 +16,6 @@ maria-sabina/build/map/data/*.log
 maria-sabina/build/cards/*.log
 maria-sabina/assets/_candidates/
 maria-sabina/build/cards/bundle/
+
+# style references: never distributed
+maria-sabina/refs/

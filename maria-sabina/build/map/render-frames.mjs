@@ -101,8 +101,10 @@ await page.evaluate(() => document.fonts.ready);
 const t0 = Date.now();
 for (let i = 0; i < frames.length; i++) {
   const f = frames[i];
-  const cam = await page.evaluate((f) => window.__ms.renderFrame(f), f);
   const file = path.join(OUT, `${BASENAME}_${String(f + 1).padStart(5, "0")}.png`);
+  // Resumable: a frame that already exists on disk is not re-rendered (pass --force to redo).
+  if (!args.force && fs.existsSync(file) && fs.statSync(file).size > 0) continue;
+  const cam = await page.evaluate((f) => window.__ms.renderFrame(f), f);
   await page.screenshot({ path: file, type: "png", timeout: 0, clip: { x: 0, y: 0, width: WIDTH, height: HEIGHT } });
   if (i % 20 === 0 || i === frames.length - 1) {
     const el = (Date.now() - t0) / 1000, per = el / (i + 1);

@@ -24,8 +24,11 @@ for r in csv.DictReader(open(sys.argv[1], encoding="utf-8")):
     if r["source URL"].startswith("https://cdn.openart.ai/"):
         print(r["filename"] + "\t" + r["source URL"])
 PY
-    if [ -s "$A/$name" ]; then echo "have $name"; continue; fi
-    echo "get  $name"; curl -sSL --retry 3 -o "$A/$name" "$url"
+    dest="$A"
+    case "$name" in HO01_0[23]_MAP_*|HO01_02-03_MAP_*) dest="$ROOT/maria-sabina/exports/map" ;; esac  # OpenArt map pipeline outputs
+    mkdir -p "$dest"
+    if [ -s "$dest/$name" ]; then echo "have $name"; continue; fi
+    echo "get  $name"; curl -sSL --retry 3 -o "$dest/$name" "$url"
   done
 }
 
