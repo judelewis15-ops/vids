@@ -10,7 +10,7 @@ Master 9:16, 2160×3840, 60 fps. Modes per brief section 4: FULL BLEED, STACKED 
 | `assets/SOURCES.csv` | 23 rows, every shot covered. 20 rows are `NEEDS_MANUAL`: the build container has no route to archive.org, Wikimedia Commons, INAH, LoC, Getty, Pexels, Google Earth Studio or the OpenArt CDN. Each row carries the exact URL or archive to check. |
 | `exports/map/HO01_02_MAP_start.png` | Generated and accepted (OpenArt, Nano Banana Pro image2image, 4K). Lives in the OpenArt library until `build/tools/fetch-assets.sh` pulls it. |
 | `exports/map/HO01_03_MAP_end.png` | Generated and accepted at thumbnail scale (see Map, below). Same fetch. |
-| `exports/map/HO01_02-03_MAP_zoom.mp4` | Round 1 submitted on Seedance 2.0 (historyId `Q4tluhdUnLoln0exkPm4`, two outputs, 4K, 6 s). See Map for the QA state. |
+| `exports/map/HO01_02-03_MAP_zoom.mp4` | Round 1 complete on Seedance 2.0 (historyId `Q4tluhdUnLoln0exkPm4`): two outputs, 3840×2160, 6.04 s, 24 fps, no audio. Both open on the start frame with no visible text. The 6.3 motion checks still need a viewer; pick one in the OpenArt library and save it under this name. |
 | `exports/contact-sheet.png` | Built from the v6 shot list. Every shot has a tile; unsourced tiles carry the NEEDS_MANUAL reason and URL. |
 | `exports/map/OPENART_LOG.csv` | Every historyId, model, mode and outcome. |
 
@@ -30,7 +30,7 @@ Master 9:16, 2160×3840, 60 fps. Modes per brief section 4: FULL BLEED, STACKED 
 - **Start frame.** `Lq2IzDydQO1wFBCxSY8D`, candidate D (`e82Vw6pkMZOZhY567Czv`). Accepted: no visible text, ocean darker than land, Mexico and New York in frame, no HUD.
 - **End frame.** `Vjj0MnwMAyeB5xJfZ4sG`, candidate B (`9NfdJaenQxYaHbRAihJ6`). Accepted: one cream ring marker at the arc's end, arc enters from the top right, Oaxaca fills the middle, palette within a stop of the start frame.
 - **QA caveat.** The build container cannot download from cdn.openart.ai, so both frames were checked on relayed 512 px thumbnails, not at 4K. Text at label size would not be visible at that scale. Confirm zero text on both frames at 4K in the OpenArt library before the clip is cut in; if either frame carries text, regenerate per 6.1 / 6.2 and re-run 6.3.
-- **Video.** Round 1 of 3 on Seedance 2.0: historyId `Q4tluhdUnLoln0exkPm4`, two outputs, 16:9, 4K, 6 s, no audio, seed -1. Judge against the 6.3 accept list in the OpenArt library: no text at any point, no HUD, one constant-speed push with a soft settle, no rotation or wobble, marker fades in, final frame matches the end frame. Save the accepted one as `exports/map/HO01_02-03_MAP_zoom.mp4`. If both fail, rounds 2 and 3 vary only the seed; then one round on `kling-3-omni`; then stop.
+- **Video.** Round 1 of 3 on Seedance 2.0: historyId `Q4tluhdUnLoln0exkPm4`, two outputs, 16:9, 4K, 6.04 s, 24 fps, no audio, seed -1. Output 1 `J5EnKJlGedqGPaP7yMIu`, output 2 `JNFwHl3vUNgcbZDmAatC` (URLs in `OPENART_LOG.csv`). What could be checked from the build container: the first frame of each matches the start frame (wide map, New York marker, no text, no HUD). What could not: the 6.3 motion list. Judge both in the OpenArt library against it: no text at any point, no HUD, one constant-speed push with a soft settle, no rotation or wobble, marker fades in rather than drops, final frame matches the end frame. Save the accepted one as `exports/map/HO01_02-03_MAP_zoom.mp4`. If both fail, rounds 2 and 3 vary only the seed and run at 1080p (Jude's direction, 2,400 credits per round of two); then one round on `kling-3-omni`; then stop.
 - **Polling.** `openart_creation_wait` is not exposed by this connector; `openart_creation_get` was used instead.
 - **In Premiere.** `NEW YORK` label snaps in at 0:07 and exits by 0:09; `HUAUTLA DE JIMÉNEZ` then `SIERRA MAZATECA` snap in on the settle of shot 04; marker pulse; film emulation per section 8. Labels are never rendered by the model.
 
@@ -56,6 +56,8 @@ Master 9:16, 2160×3840, 60 fps. Modes per brief section 4: FULL BLEED, STACKED 
 
 ### Deviations from the brief and why
 
+0. **Resolution (user direction, 05 Sep 2026).** Jude asked mid-run for 1080p instead of 4K and for no expensive models where a cheaper one will do. Round 1 of the video had already been submitted at 4K (brief 6.3) and could not be cancelled; every further map round runs at 1080p on Seedance 2.0, and kling-3-omni stays the single fallback round only.
+
 1. Harris style references replaced by OpenArt-generated plates (no upload route, YouTube blocked). See Map.
 2. Motion reference historyId not found on this account.
 3. Frame and video QA done on relayed thumbnails, not at 4K. Confirm in the OpenArt library.
@@ -67,5 +69,5 @@ Master 9:16, 2160×3840, 60 fps. Modes per brief section 4: FULL BLEED, STACKED 
 
 - Every shot 01-18 has a tile: yes.
 - Every sourced asset logged with URL and rights holder: yes (23 rows).
-- Map clip passes every 6.3 check or the failure is documented with historyIds: pending round 1 result; all ids are in `OPENART_LOG.csv`.
+- Map clip passes every 6.3 check or the failure is documented with historyIds: round 1 produced two candidates; first-frame checks pass, motion checks are yours to run in a viewer; every id is in `OPENART_LOG.csv`.
 - This file lists rights decisions, NEEDS_MANUAL items and deviations: yes.
