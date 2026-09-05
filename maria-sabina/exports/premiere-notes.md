@@ -32,7 +32,18 @@ Master 9:16, 2160×3840, 60 fps. Modes per brief section 4: FULL BLEED, STACKED 
 - **QA caveat.** The build container cannot download from cdn.openart.ai, so both frames were checked on relayed 512 px thumbnails, not at 4K. Text at label size would not be visible at that scale. Confirm zero text on both frames at 4K in the OpenArt library before the clip is cut in; if either frame carries text, regenerate per 6.1 / 6.2 and re-run 6.3.
 - **Video.** Round 1 of 3 on Seedance 2.0: historyId `Q4tluhdUnLoln0exkPm4`, two outputs, 16:9, 4K, 6.04 s, 24 fps, no audio, seed -1. Output 1 `J5EnKJlGedqGPaP7yMIu`, output 2 `JNFwHl3vUNgcbZDmAatC` (URLs in `OPENART_LOG.csv`). What could be checked from the build container: the first frame of each matches the start frame (wide map, New York marker, no text, no HUD). What could not: the 6.3 motion list. Judge both in the OpenArt library against it: no text at any point, no HUD, one constant-speed push with a soft settle, no rotation or wobble, marker fades in rather than drops, final frame matches the end frame. Save the accepted one as `exports/map/HO01_02-03_MAP_zoom.mp4`. If both fail, rounds 2 and 3 vary only the seed and run at 1080p (Jude's direction, 2,400 credits per round of two); then one round on `kling-3-omni`; then stop.
 - **Polling.** `openart_creation_wait` is not exposed by this connector; `openart_creation_get` was used instead.
-- **In Premiere.** `NEW YORK` label snaps in at 0:07 and exits by 0:09; `HUAUTLA DE JIMÉNEZ` then `SIERRA MAZATECA` snap in on the settle of shot 04; marker pulse; film emulation per section 8. Labels are never rendered by the model.
+- **Labels on the clip (Jude's direction, 05 Sep: "text is used throughout").** `build/tools/label-map.py` burns the labels into the clip with real type instead of the model: it colour-tracks the violet New York marker in the opening frames and the cream ring in the closing frames, sets `NEW YORK` (follows the marker, gone by 2 s), `HUAUTLA DE JIMÉNEZ` then `SIERRA MAZATECA` (land in the final second, staggered 200 ms) and `OAXACA` (lower in the lit state, 60%) in JetBrains Mono, uppercase, 0.18 em tracking, cream, shadow `0 1px 6px rgba(0,0,0,0.9)`, fade plus 6 px slide over 300 ms, and writes a labelled MP4 plus an optional ProRes 4444 alpha overlay. Tested on a synthetic push built from the real start frame. Run it once the clip is fetched:
+
+  ```
+  ./maria-sabina/build/tools/fetch-assets.sh
+  python3 maria-sabina/build/tools/label-map.py --in maria-sabina/exports/map/HO01_02-03_MAP_zoom.mp4 \
+      --out maria-sabina/exports/map/HO01_02-03_MAP_zoom_labelled.mp4 \
+      --overlay maria-sabina/exports/map/HO01_02-03_MAP_labels.mov
+  ```
+
+  `--text-scale 1` gives the brief's literal 11 px / 9 px sizes; the default 2.0 keeps them legible after the STACKED scale-down. `--ny-until`, `--land-at` and `--no-oaxaca` adjust timing and content.
+- **AI-labelled stills (same direction).** Nano Banana Pro added labels to the accepted frames for static use: end frame with `HUAUTLA DE JIMÉNEZ` / `SIERRA MAZATECA` / `OAXACA` (historyId `ve00eL0C4nioQOpAjyEQ`, two outputs) and start frame with `NEW YORK` / `MEXICO` (`sDisSB6YOo5s1a8jucGZ`, two outputs). Labels are present; spelling and the accent could only be checked at thumbnail scale, so confirm at full size before use. AI text is not used on the moving clip: it warps during the zoom, which is why the brief kept it out of the model.
+- **In Premiere.** Marker pulse and film emulation per section 8. If the labelled clip is used, the Premiere label layers for 02-03 are not needed; shot 04's labels still land in Premiere on the satellite settle.
 
 ### Per-shot notes
 
@@ -56,6 +67,7 @@ Master 9:16, 2160×3840, 60 fps. Modes per brief section 4: FULL BLEED, STACKED 
 
 ### Deviations from the brief and why
 
+00. **Text on the map (user direction, 05 Sep 2026).** Brief 6.4 kept every label out of the model and in Premiere. Jude asked for the regions to be named on the map itself. Done deterministically with `label-map.py` (real type), plus AI-labelled stills for static use. Section 12's "no text in generation prompts" was set aside for those two stills only.
 0. **Resolution (user direction, 05 Sep 2026).** Jude asked mid-run for 1080p instead of 4K and for no expensive models where a cheaper one will do. Round 1 of the video had already been submitted at 4K (brief 6.3) and could not be cancelled; every further map round runs at 1080p on Seedance 2.0, and kling-3-omni stays the single fallback round only.
 
 1. Harris style references replaced by OpenArt-generated plates (no upload route, YouTube blocked). See Map.
