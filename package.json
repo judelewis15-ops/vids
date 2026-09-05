@@ -7,19 +7,25 @@
   "private": true,
   "dependencies": {
     "@remotion/cli": "4.0.450",
+    "@remotion/tailwind-v4": "4.0.450",
     "@remotion/zod-types": "4.0.450",
+    "@turf/bbox-clip": "^7.4.0",
+    "@turf/difference": "^7.4.0",
+    "@turf/ellipse": "^7.4.0",
+    "@turf/union": "^7.4.0",
+    "maplibre-gl": "^4.7.1",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "remotion": "4.0.450",
-    "zod": "4.3.6",
-    "@remotion/tailwind-v4": "4.0.450",
-    "tailwindcss": "4.0.0"
+    "tailwindcss": "4.0.0",
+    "zod": "4.3.6"
   },
   "devDependencies": {
     "@remotion/eslint-config-flat": "4.0.450",
     "@types/react": "19.2.7",
     "@types/web": "0.0.166",
     "eslint": "9.19.0",
+    "playwright": "^1.56.1",
     "prettier": "3.8.1",
     "typescript": "5.9.3"
   },
@@ -27,9 +33,32 @@
     "dev": "remotion studio",
     "build": "remotion bundle",
     "upgrade": "remotion upgrade",
-    "lint": "eslint src && tsc"
+    "lint": "eslint src && tsc",
+    "ho01:cards": "bash maria-sabina/build/cards/render-cards.sh",
+    "ho01:map": "bash maria-sabina/build/map/render-all.sh 2 --encode",
+    "ho01:sheet": "python3 maria-sabina/build/tools/contact-sheet.py"
   },
   "sideEffects": [
     "*.css"
-  ]
+  ],
+  "overrides": {
+    "@remotion/bundler": "4.0.450",
+    "@remotion/cli": "4.0.450",
+    "@remotion/compositor-linux-x64-gnu": "4.0.450",
+    "@remotion/compositor-linux-x64-musl": "4.0.450",
+    "@remotion/eslint-config-flat": "4.0.450",
+    "@remotion/licensing": "4.0.450",
+    "@remotion/media-parser": "4.0.450",
+    "@remotion/media-utils": "4.0.450",
+    "@remotion/player": "4.0.450",
+    "@remotion/renderer": "4.0.450",
+    "@remotion/streaming": "4.0.450",
+    "@remotion/studio": "4.0.450",
+    "@remotion/studio-server": "4.0.450",
+    "@remotion/studio-shared": "4.0.450",
+    "@remotion/tailwind-v4": "4.0.450",
+    "@remotion/web-renderer": "4.0.450",
+    "@remotion/zod-types": "4.0.450",
+    "remotion": "4.0.450"
+  }
 }
