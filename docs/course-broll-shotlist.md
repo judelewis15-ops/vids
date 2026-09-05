@@ -1,12 +1,13 @@
 # ShroomRoom DIY course — B-roll shot list (for approval)
 
-Generated 5 Sep 2026. Nothing has been generated. All prices are OpenArt credits after the 10% MCP discount this account gets.
+Generated 5 Sep 2026. World: the violet-LED aubergine setting from the grow_ reel series, per Jude's call. Nothing has been generated. All prices are OpenArt credits after the 10% MCP discount this account gets.
 
 | # | Setup | Shot | Image model | Video model | Dur | Est. credits | Why this model |
 |---|---|---|---|---|---|---|---|
 | **M1** | MASTER | Character sheet — Jude turnaround: front / ¾ / profile. Curly light-brown hair, blue eyes, light stubble, navy crew-neck jumper. Neutral cream ground. | NB Pro ×4 | — | — | **144** | likeness + turnaround needs Pro; ships as the character ref on every shot |
-| **M2** | MASTER | Setting master — KITCHEN, empty: cream walls, warm lamp light, hanging pan rack, one green plant, counter with hob. No people. | NB Pro ×2 | — | — | **72** | setting ref reused on every kitchen shot; worth getting right once |
-| **M3** | MASTER | Setting master — WHITEBOARD: Jude stood beside a blank whiteboard on the kitchen wall, marker in hand. Board empty. | NB Pro ×2 | — | — | **72** | setting ref reused on every whiteboard shot |
+| **M2** | MASTER | Setting master — KITCHEN in the violet world: deep aubergine walls, violet LED strip under the cabinets, hob and counter, same paper-cutout finish as the grow_ bedroom master. No people. | NB Pro ×2 | — | — | **72** | the grow_ master is a bedroom with no hob; the cooking steps need a kitchen in the same world |
+| **M3** | MASTER | Setting master — WHITEBOARD in the violet world: Jude beside a blank whiteboard on an aubergine wall, violet LED glow, marker in hand. Board empty. | NB Pro ×2 | — | — | **72** | setting ref reused on every whiteboard shot |
+| **M4** | REUSE | Existing grow_ bedroom master (aubergine room, violet LED, wooden desk, shelf of jars, bed) — used as the setting ref for shelf / desk / cupboard / grow-space scenes. Already generated. | — | — | — | **0** | already in the library; reusing it is what makes the course match the grow reels |
 | | **§0 Intro** | | | | | | |
 | 0.1 | SCENE | Jude beside a fully fruiting tub, arms open — 'kilos out of pots and plastic' | NB 2 Lite ×2 | PixVerse V6 | 4s | 78 | ref-image support; same model as the sabina/grow library so the finish matches; cheapest that holds the style |
 | 0.2 | WB | Board: small dried pile vs big fresh pile, 8-week arrow. Jude pointing | NB 2 Lite ×2 | PixVerse V6 | 4s | 78 | ref-image support; same model as the sabina/grow library so the finish matches; cheapest that holds the style |
