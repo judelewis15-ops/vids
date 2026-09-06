@@ -87,8 +87,12 @@ The marker is **capped and held down at his side, or resting in the board's tray
 never touches the board and never holds a marker against it.
 
 **Affected shots** (prompted as "marker touching / near the board"): 0.5 roadmap, 1.2 tree,
-1.7 race, 1.14 FAE. 1.14 regenerated. The other three are approved and shipped — redo only on
-Jude's call; 0.5 matters most since it reappears at every section opening.
+1.7 race, 1.14 FAE.
+- **1.14** regenerated (v2) and re-videoed. v1 still and video void.
+- **0.5** regenerated as a pose-only edit, `zXnm63QgAIdqD92YO0t4` — board and all nine icons
+  locked, only the arms and marker changed. Awaiting pick, then a replacement video.
+- **1.2 and 1.7** keep the drawing pose by Jude's decision — each appears once in its own
+  section. Note 1.2 is also reused in §2, so the objection would recur there.
 
 Unaffected (already correct): 0.2 pointing, 0.3 presenting, 0.10 arms folded, 1.4 pointing,
 1.5 open hand.
@@ -196,7 +200,8 @@ approved stills → **stop**. Next batch does not start until the previous is cl
 | Batch 4 videos — 1.6, 1.7, 1.9, 1.10 | 200 |
 | Batch 5 stills — 1.11, 1.12, 1.14, 1.15 (Lite ×2), 1.13 (Pro ×2, 2K) | 184 |
 | 1.12 v2 reframe — body in shot (Lite ×2) | 28 |
-| **Running total** | **3,098** |
+| 1.12 + 1.14 v2 videos | 100 |
+| **Running total** | **3,198** |
 
 Opening balance 99,608. Project estimate 16,197 incl. 15% contingency.
 M1 came in 36 over its 144 budget; absorbed by contingency.
@@ -230,11 +235,11 @@ All Pro shots run at 2K from here.
 
 | Shot | Tag | Approved still |
 |---|---|---|
-| 1.11 rice steaming off | DEMO | `6jfuc94FP6frwAymCBZO` |
-| 1.12 fill jar to ¾ | DEMO | v1 rejected — torso and looming arm in frame. v2 `J0se5opXz4yPqbvUoeSx` |
-| 1.13 two lid types | DEMO | `1oMpOfMghePwpaIndRsf` |
-| 1.14 FAE / jar breathing board | WB | awaiting pick — drafts `DqgQyvtfkvyGlVYdlY6H` (1), `exhtCf5nPH3ItFvfTili` (2) |
-| 1.15 sealed cupboard gag | SCENE | `JIUa3FGT7dNF9zfcQBWY` |
+| 1.11 rice steaming off | DEMO | `6jfuc94FP6frwAymCBZO` — video `IMZvyA04i1LhEuuzLykv` |
+| 1.12 fill jar to ¾ | DEMO | `QBmHvlkJ7TuMVQm1V5vU` (v2) — video `3wpx3aJgwjJkZFolqUOQ` |
+| 1.13 two lid types | DEMO | `1oMpOfMghePwpaIndRsf` — **ships as a still**, no video: two near-identical objects, 0.9's failure signature, and no natural motion in shot |
+| 1.14 FAE / jar breathing board | WB | `IqJxddQ8WhEIbj07yEO3` (v2, presenting pose) — video `ISalpfBQmaTixSqzR1KF`. v1 still + its video void (drawing pose) |
+| 1.15 sealed cupboard gag | SCENE | `JIUa3FGT7dNF9zfcQBWY` — video `JGi6WLknq9dce12JeS8K` |
 
 **Hands-only framing needs a hard crop.** "Face not in frame" is not enough — 1.12 v1 drew a
 full torso and an arm arcing over the top. v2 specifies arms cut by the frame edge at
