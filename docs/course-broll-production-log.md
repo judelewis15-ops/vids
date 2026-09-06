@@ -95,7 +95,8 @@ approved stills → **stop**. Next batch does not start until the previous is cl
 | 0.6 v2 character correction (Pro ×2, 2K) | 72 |
 | M7 character sheet (Pro ×2, 2K) | 72 |
 | 0.8 still air box (Lite ×2) | 28 |
-| **Running total** | **1,446** |
+| Batch 2 videos — 5 × PixVerse 720p 4s | 250 |
+| **Running total** | **1,696** |
 
 Opening balance 99,608. Project estimate 16,197 incl. 15% contingency.
 M1 came in 36 over its 144 budget; absorbed by contingency.
@@ -138,15 +139,20 @@ All Pro shots run at 2K from here.
 
 All videos: PixVerse V6 image2video, 720p, 4s, silent, 50 credits each.
 
-**Batch 2 = shots 0.6–0.10.** Stills mostly approved.
+**Batch 2 = shots 0.6–0.10. Complete — stills approved, videos submitted.**
 
-| Shot | Tag | Approved still |
-|---|---|---|
-| 0.6 consumer → producer | SCENE | v2 done `MpPLxuReEBACDlTlAcA4` — layout kept, character corrected. Awaiting pick |
-| 0.7 kit flat-lay | DEMO | `ll5xJ3BZDRckTWSbiEOV` |
-| 0.8 still air box | DEMO | rendering `995XMg8SkWZO2wibJlyM` — first shot built on M7 |
-| 0.9 drilled vs plain tub | DEMO | `aqqNOMBNehqhDHS1iQsM` |
-| 0.10 don't-need board | WB | `lraBsHlEUxIMBKQ6poCU` |
+| Shot | Tag | Approved still | Video |
+|---|---|---|---|
+| 0.6 consumer → producer | SCENE | `fcU4HyToBSeV7P7FKl7T` (v2) | `s7QoA3SC0JbugqXpDCYB` |
+| 0.7 kit flat-lay | DEMO | `ll5xJ3BZDRckTWSbiEOV` | `lbUkPL01xEuxYuYv1LkO` |
+| 0.8 still air box | DEMO | `scC8LTQ1NEwJGnlURvDf` — first shot on M7 | `R1i4ifgNenXt8Jw77Qcp` |
+| 0.9 drilled vs plain tub | DEMO | `aqqNOMBNehqhDHS1iQsM` | `OiBAuMb7DebiufX2EEm6` |
+| 0.10 don't-need board | WB | `lraBsHlEUxIMBKQ6poCU` | `6TyXPLo5fNfwBgsPn75A` |
+
+**Section 0 is now fully shot: 0.1–0.10, ten shots, stills and videos.**
+**Next: batch 3 = §1 grain prep, shots 1.1–1.5.** 1.1 needs no new master. 1.2 (tree/mycelium)
+and 1.7 (the race) are reused diagrams. No new props expected until the jar recurs — consider a
+jar master before §1 goes far, since jars appear in ~25 shots across §1–§4.
 
 ## Character drift — root cause and fix
 
