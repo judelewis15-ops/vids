@@ -28,6 +28,33 @@ and searchable in OpenArt's history. Convention from here:
 | `SCENE` | Set piece / metaphor, no procedure |
 | `MAP` | Uses the Maps style reference, not General |
 
+## Prompting lesson — DO NOT NAME WHAT MUST NOT BE SEEN
+
+The still air box tape failed twice because both prompts described **a hole covered by tape**.
+Naming the hole makes the model draw a hole, and it then renders it as partly visible so that
+both things it was told about are present. Negatives did not counteract it.
+
+v3 never mentions a hole at all: the front face is described as an unbroken sheet of plastic
+with two solid grey rectangles stuck onto it. The opening is implied, never drawn.
+
+**General rule: describe only what should be visible.** For anything that must be hidden,
+occluded or absent, describe the covering object as solid and the surface as continuous, and
+put the hidden thing in the negatives only.
+
+## Video failure policy — applied
+
+0.9's video failed twice: v1 hallucinated, v2 animated the polyfill plugs as cotton balls being
+thrown into the tub. **Stopped at two attempts per the standing rule** rather than spending a
+third time.
+
+Diagnosis: the shot has two near-identical objects plus small detachable-looking details
+(polyfill), and PixVerse treats those as things to animate. Freezing them by name did not help;
+naming them at all appears to invite motion.
+
+**Resolution: 0.9 ships as a still**, with any drift added in the editor. No further spend.
+Apply the same judgement to other shots whose only "motion" is a hand settling — a static
+4 seconds under voiceover reads fine and cannot fail.
+
 ## Camera rule — LOCKED OFF BY DEFAULT
 
 **PixVerse over-drives any camera instruction.** "One very slow, smooth camera push in" came
@@ -76,7 +103,8 @@ Applies to stills and to video motion prompts — no jaw or lip movement in the 
 | M5c — tub, colonised state | not yet made | — | needed at §6. Derive from M5 when §6 comes up |
 | M5d — tub, spent state | not yet made | — | needed at §9. Derive from M5 when §9 comes up |
 | ~~M6 v1 — still air box~~ | **DEFECTIVE** | ~~`YT4ROcuLkrCB59f2weLH`~~ | Tape patches did not fully cover the arm holes. Flaw would propagate to every SAB shot |
-| M6 v2 — still air box | pending review | — | history `ylQ5rb1vWKWdAbiNud47` — tape enlarged to overlap the hole edge all round |
+| ~~M6 v2 — still air box~~ | **DEFECTIVE** | — | Tape still did not cover. Enlarging the tape did not work because the prompt still named the hole |
+| M6 v3 — still air box | pending review | — | history `ylQ5rb1vWKWdAbiNud47` superseded; v3 never mentions a hole — unbroken plastic face with two solid tape rectangles |
 | **M7 — character sheet** | **APPROVED — canonical** | `VMzzkzSYH3prW0hFOpAh` | Four clean views on plain aubergine. **This is the character reference on every shot from 0.8 onward**, replacing the scene image `HINzQfJak0hyVgxhxtD0`. |
 | **M3 — whiteboard setting** | **APPROVED** | `xfKOBc3z06AxeyC7BW4h` | blank board left two-thirds, character right. v1 void — wrong character |
 | M4 — grow bedroom | reuse, already exists | (from `grow_` series) | shelf / desk / cupboard / grow-space scenes |
@@ -117,7 +145,8 @@ approved stills → **stop**. Next batch does not start until the previous is cl
 | Batch 2 videos — 5 × PixVerse 720p 4s | 250 |
 | M6 v2 SAB master, tape fix (Pro ×2, 2K) | 72 |
 | 0.9 video retry (locked-off) | 50 |
-| **Running total** | **1,818** |
+| M6 v3 SAB master, rewritten prompt (Pro ×2, 2K) | 72 |
+| **Running total** | **1,890** |
 
 Opening balance 99,608. Project estimate 16,197 incl. 15% contingency.
 M1 came in 36 over its 144 budget; absorbed by contingency.
@@ -167,7 +196,7 @@ All videos: PixVerse V6 image2video, 720p, 4s, silent, 50 credits each.
 | 0.6 consumer → producer | SCENE | `fcU4HyToBSeV7P7FKl7T` (v2) | `s7QoA3SC0JbugqXpDCYB` |
 | 0.7 kit flat-lay | DEMO | `ll5xJ3BZDRckTWSbiEOV` | `lbUkPL01xEuxYuYv1LkO` |
 | 0.8 still air box | DEMO | **void** — built on defective M6 v1; video also over-zoomed | redo after M6 v2 |
-| 0.9 drilled vs plain tub | DEMO | `aqqNOMBNehqhDHS1iQsM` (still fine) | v1 `OiBAuMb7DebiufX2EEm6` **hallucinated**; retry v2 `ZwfpLAVZyTqjD4V3uSzm` |
+| 0.9 drilled vs plain tub | DEMO | `aqqNOMBNehqhDHS1iQsM` | **ships as a still.** Two video attempts failed; stopped per policy |
 | 0.10 don't-need board | WB | `lraBsHlEUxIMBKQ6poCU` | `6TyXPLo5fNfwBgsPn75A` |
 
 **Section 0 shot, with 0.8 to redo and 0.9's video retried.**
