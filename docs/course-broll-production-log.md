@@ -203,7 +203,8 @@ approved stills → **stop**. Next batch does not start until the previous is cl
 | 1.12 + 1.14 v2 videos | 100 |
 | 0.5 v3 replacement video | 50 |
 | Batch 7 stills — 1.16, 1.18, 1.19, 1.20 (Lite ×2), 1.17 pot cutaway (Pro ×2, 2K) | 184 |
-| **Running total** | **3,432** |
+| 1.17 v2 — water line corrected (Pro ×2, 2K) | 72 |
+| **Running total** | **3,504** |
 
 Opening balance 99,608. Project estimate 16,197 incl. 15% contingency.
 M1 came in 36 over its 144 budget; absorbed by contingency.
@@ -238,13 +239,21 @@ All Pro shots run at 2K from here.
 | Shot | Tag | History |
 |---|---|---|
 | 1.16 foil over the lids | DEMO | `RPkfvLHOLOEevfUNbCOW` |
-| 1.17 pot cutaway — trivet, water line, 4 jars | DEMO | `zbgj2ytQ4I3val1MIdqw` |
+| 1.17 pot cutaway — trivet, water line, 4 jars | DEMO | v1 `zbgj2ytQ4I3val1MIdqw` **void** — water drawn at jar-shoulder height, i.e. a water bath. v2 `wY1oR0YCX0zNhAKB0oXW` |
 | 1.18 rolling boil vs gentle simmer | DEMO | `ShDyFJYrREXgSDlJjTwC` |
 | 1.19 jars cooling overnight | SCENE | `UchKAorNOgx6Bv0DOYEt` |
 | 1.20 warm jar kills spores board | WB | `VHyXi35vxDEmV1vE2aqj` |
 
-1.17 is the section's key teaching diagram: jars raised off the base on a trivet, water below
-the lids. Both facts are load-bearing and both are stated in the negatives.
+1.17 is the section's key teaching diagram. **Correct geometry, per Jude:** a shallow layer of
+water on the pot base, the trivet standing in it with its platform DRY above the waterline, and
+the jars on the dry trivet with a clear air gap beneath them. The jars are in steam, never in
+water. v1 was wrong — it put the water at jar-shoulder height, which is a water bath.
+
+**Script ambiguity worth fixing before filming.** §1 step 7 reads "fill with water up to about
+where the jars will sit", which a student can easily read as filling up around the jars. The
+next line ("we don't want them boiling in a bath") corrects it, but the first line is what
+people act on. Suggest tightening to something like "fill with water to just below the trivet —
+the jars should sit above the water, not in it".
 1.18 and 1.19 have no people and no hands. 1.20 uses the corrected presenting pose.
 
 **Next: §2 inoculation, batches 8–9 (2.1–2.14).** Almost entirely hands-in-the-SAB; the SAB and
