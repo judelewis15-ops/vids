@@ -2,6 +2,32 @@
 
 Live record of approved assets, spend, and batch state. Updated as the run proceeds.
 
+## Project
+
+All generations from this point land in the OpenArt project
+**ShroomRoom DIY Course — B-roll** — `QsNx6KDWHkO0Mw2Cj1TB`.
+
+**Limitation:** the OpenArt MCP has no move or re-assign tool — a generation's project is fixed
+at submission time. The 14 jobs made before the project existed (M1 v1–v3, M2, M3 v1–v2, M5,
+M5b, and batch 1 shots 0.2–0.5 v1) are in **Personal Project** and cannot be moved. They still
+work as references, since references are by asset id, not by folder. Only remedy is to
+regenerate them into the course project, which costs credits and risks drift — not recommended.
+
+## Style tags
+
+No tagging API exists either, so the tag is carried in the **prompt slug**, which is visible
+and searchable in OpenArt's history. Convention from here:
+
+`course_<TAG>_<section>-<shot>_<name>_v<n>`  e.g. `course_WB_0-5_roadmap_v2`
+
+| Tag | Meaning |
+|---|---|
+| `MASTER` | Reusable master asset — character, setting, prop |
+| `WB` | Whiteboard shot — he explains at the board |
+| `DEMO` | He performs the step, hands visible |
+| `SCENE` | Set piece / metaphor, no procedure |
+| `MAP` | Uses the Maps style reference, not General |
+
 ## World
 
 - **Style / world master** (uploaded ref): `voBNtSWY4cpDVZzY07uT`
@@ -47,8 +73,9 @@ approved stills → **stop**. Next batch does not start until the previous is cl
 | M3 whiteboard v2 (2 drafts, 2K) | 72 |
 | M5b fruiting tub (2 drafts, 2K) | 72 |
 | Batch 1 images — 0.2, 0.3, 0.4 (Lite ×2 each) | 84 |
-| Batch 1 images — 0.5 roadmap (Pro ×2, 2K) | 72 |
-| **Running total** | **696** |
+| Batch 1 images — 0.5 roadmap v1 (Pro ×2, 2K) — **void**, empty circles | 72 |
+| Batch 1 images — 0.5 roadmap v2 (Pro ×2, 2K) — step icons | 72 |
+| **Running total** | **768** |
 
 Opening balance 99,608. Project estimate 16,197 incl. 15% contingency.
 M1 came in 36 over its 144 budget; absorbed by contingency.
