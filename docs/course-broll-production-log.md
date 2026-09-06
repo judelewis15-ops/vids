@@ -174,7 +174,9 @@ approved stills → **stop**. Next batch does not start until the previous is cl
 | Batch 4 stills — 1.7 race board (Pro ×2, 2K) | 72 |
 | 1.8 end frame (Lite ×2) | 28 |
 | Batch 4 videos — 1.6, 1.7, 1.9, 1.10 | 200 |
-| **Running total** | **2,886** |
+| Batch 5 stills — 1.11, 1.12, 1.14, 1.15 (Lite ×2), 1.13 (Pro ×2, 2K) | 184 |
+| 1.12 v2 reframe — body in shot (Lite ×2) | 28 |
+| **Running total** | **3,098** |
 
 Opening balance 99,608. Project estimate 16,197 incl. 15% contingency.
 M1 came in 36 over its 144 budget; absorbed by contingency.
@@ -204,6 +206,20 @@ Nano Banana Pro at **2K costs the same 36 credits as 1K** (only 4K doubles, to 7
 All Pro shots run at 2K from here.
 
 ## Batch state
+**Batch 5 = §1 shots 1.11–1.15.**
+
+| Shot | Tag | Approved still |
+|---|---|---|
+| 1.11 rice steaming off | DEMO | `6jfuc94FP6frwAymCBZO` |
+| 1.12 fill jar to ¾ | DEMO | v1 rejected — torso and looming arm in frame. v2 `J0se5opXz4yPqbvUoeSx` |
+| 1.13 two lid types | DEMO | `1oMpOfMghePwpaIndRsf` |
+| 1.14 FAE / jar breathing board | WB | awaiting pick — drafts `DqgQyvtfkvyGlVYdlY6H` (1), `exhtCf5nPH3ItFvfTili` (2) |
+| 1.15 sealed cupboard gag | SCENE | `JIUa3FGT7dNF9zfcQBWY` |
+
+**Hands-only framing needs a hard crop.** "Face not in frame" is not enough — 1.12 v1 drew a
+full torso and an arm arcing over the top. v2 specifies arms cut by the frame edge at
+mid-forearm and lists torso, shoulders, elbows, neck and head in the negatives.
+
 **Batch 4 = §1 shots 1.6–1.10, plus the jar master. Stills submitted — first batch under the no-face-to-camera framing.**
 
 | Shot | Tag | Approved still | Video |
