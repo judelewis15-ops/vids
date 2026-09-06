@@ -57,6 +57,8 @@ Applies to stills and to video motion prompts — no jaw or lip movement in the 
 | M5b — tub, fruiting state | pending review | — | history `K3mwkEbZqLGxJF59D5nO`. Derived from M5. Needed by 0.1 and all §7/§8 tub shots |
 | M5c — tub, colonised state | not yet made | — | needed at §6. Derive from M5 when §6 comes up |
 | M5d — tub, spent state | not yet made | — | needed at §9. Derive from M5 when §9 comes up |
+| **M6 — still air box** | **APPROVED** | `YT4ROcuLkrCB59f2weLH` | upside-down clear tub, two taped arm holes with slits. Recurs through §2 and the SAB companion |
+| M7 — character sheet | pending review | — | history `wtvBGthJhFvmD1mqvpoM`. Four clean views derived from `HINzQfJak0hyVgxhxtD0`. **Replaces the scene image as the character reference once picked** |
 | **M3 — whiteboard setting** | **APPROVED** | `xfKOBc3z06AxeyC7BW4h` | blank board left two-thirds, character right. v1 void — wrong character |
 | M4 — grow bedroom | reuse, already exists | (from `grow_` series) | shelf / desk / cupboard / grow-space scenes |
 
@@ -89,7 +91,10 @@ approved stills → **stop**. Next batch does not start until the previous is cl
 | Batch 1 images — 0.5 roadmap v2 (Pro ×2, 2K) — step icons | 72 |
 | Batch 1 images — 0.1 opener (Lite ×2) | 28 |
 | Batch 1 videos — 5 × PixVerse 720p 4s | 250 |
-| **Running total** | **1,046** |
+| Batch 2 images — SAB master, 0.6, 0.7, 0.9, 0.10 | 228 |
+| 0.6 v2 character correction (Pro ×2, 2K) | 72 |
+| M7 character sheet (Pro ×2, 2K) | 72 |
+| **Running total** | **1,418** |
 
 Opening balance 99,608. Project estimate 16,197 incl. 15% contingency.
 M1 came in 36 over its 144 budget; absorbed by contingency.
@@ -132,9 +137,30 @@ All Pro shots run at 2K from here.
 
 All videos: PixVerse V6 image2video, 720p, 4s, silent, 50 credits each.
 
-**Batch 2 = shots 0.6–0.10.** Not started.
-0.6 needs no new master. 0.7–0.9 are kitchen DEMO shots; 0.8 introduces the still air box,
-which is a recurring prop and probably wants its own master before §2.
+**Batch 2 = shots 0.6–0.10.** Stills mostly approved.
+
+| Shot | Tag | Approved still |
+|---|---|---|
+| 0.6 consumer → producer | SCENE | v1 layout kept, character wrong. **v2 rendering** `MpPLxuReEBACDlTlAcA4` |
+| 0.7 kit flat-lay | DEMO | `ll5xJ3BZDRckTWSbiEOV` |
+| 0.8 still air box | DEMO | **held** until M7 character sheet is picked |
+| 0.9 drilled vs plain tub | DEMO | `aqqNOMBNehqhDHS1iQsM` |
+| 0.10 don't-need board | WB | `lraBsHlEUxIMBKQ6poCU` |
+
+## Character drift — root cause and fix
+
+0.6 v1 came back with the wrong face. Cause: the character reference in use
+(`HINzQfJak0hyVgxhxtD0`) is a full bedroom scene, not a character sheet — the model has to
+locate the man inside a busy frame and invent unseen angles. 0.6 needed him twice, in two
+lighting states, in poses absent from the reference, so it invented.
+
+Fix: **M7**, a clean four-view sheet derived from that image. Once approved it becomes the
+character reference on every shot. The `grow_` series prompts reference a proper "CHARACTER
+sheet" upload, so one exists in Jude's uploads — it could not be identified from this session
+(uploads are unviewable here and three candidates are unlabelled), hence deriving a new one.
+
+Batch 1's five shots were single-figure and close to the reference pose, so they are probably
+unaffected; reissue against M7 if any look off.
 
 ## Decisions
 
