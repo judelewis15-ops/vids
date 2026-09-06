@@ -123,6 +123,7 @@ Applies to stills and to video motion prompts — no jaw or lip movement in the 
 | ~~M6 v1 — still air box~~ | **DEFECTIVE** | ~~`YT4ROcuLkrCB59f2weLH`~~ | Tape patches did not fully cover the arm holes. Flaw would propagate to every SAB shot |
 | ~~M6 v2 — still air box~~ | **DEFECTIVE** | — | Tape still did not cover. Enlarging the tape did not work because the prompt still named the hole |
 | **M6 v3 — still air box** | **APPROVED** | `qegFfiC5DsBfsCL1o2k2` | Prompt never mentions a hole — unbroken plastic face with two solid tape rectangles. Third attempt; the rewrite worked |
+| M8 — jar (base, empty, two-piece lid) | pending review | — | history `HcBMj0SuH0jlOZBul6k8`. Recurs in ~25 shots across §1–§4; states (¾ full, foiled, colonising, white) derive from it |
 | **M7 — character sheet** | **APPROVED — canonical** | `VMzzkzSYH3prW0hFOpAh` | Four clean views on plain aubergine. **This is the character reference on every shot from 0.8 onward**, replacing the scene image `HINzQfJak0hyVgxhxtD0`. |
 | **M3 — whiteboard setting** | **APPROVED** | `xfKOBc3z06AxeyC7BW4h` | blank board left two-thirds, character right. v1 void — wrong character |
 | M4 — grow bedroom | reuse, already exists | (from `grow_` series) | shelf / desk / cupboard / grow-space scenes |
@@ -168,7 +169,10 @@ approved stills → **stop**. Next batch does not start until the previous is cl
 | Batch 3 stills — 1.1, 1.3, 1.4, 1.5 (Lite ×2 each) | 112 |
 | Batch 3 stills — 1.2 tree/mycelium (Pro ×2, 2K) | 72 |
 | Batch 3 videos + 0.8 redo video — 6 × PixVerse 720p 4s | 300 |
-| **Running total** | **2,402** |
+| Jar master M8 (Pro ×2, 2K) | 72 |
+| Batch 4 stills — 1.6, 1.8 start, 1.9, 1.10 (Lite ×2 each) | 112 |
+| Batch 4 stills — 1.7 race board (Pro ×2, 2K) | 72 |
+| **Running total** | **2,658** |
 
 Opening balance 99,608. Project estimate 16,197 incl. 15% contingency.
 M1 came in 36 over its 144 budget; absorbed by contingency.
@@ -198,6 +202,19 @@ Nano Banana Pro at **2K costs the same 36 credits as 1K** (only 4K doubles, to 7
 All Pro shots run at 2K from here.
 
 ## Batch state
+**Batch 4 = §1 shots 1.6–1.10, plus the jar master. Stills submitted — first batch under the no-face-to-camera framing.**
+
+| Shot | Tag | Framing | History |
+|---|---|---|---|
+| 1.6 factory rice pouch | SCENE | no people | `JydEJAwaHED12iHtfXaH` |
+| 1.7 the race board | WB | back three-quarter to board, mouth not visible | `7o3e6yty0RY1OIDD52th` |
+| 1.8 rinse — START frame (cloudy) | DEMO | hands only | `E00dtpuAGVFCkXTVXjH0` |
+| 1.9 simmer + timer | DEMO | full side profile, looking down | `AavYjPmoC2p3Qe5KDBJq` |
+| 1.10 cold rinse | DEMO | hands only | `KhUirPeqxjAAF35TA3Pn` |
+
+1.8's END frame (clear water) is derived from the picked start frame — 1 Lite draft, next turn.
+Videos after picks. 1.8 is the batch's one start→end transition (PixVerse with endFrame).
+
 **Batch 3 = §1 shots 1.1–1.5, plus the 0.8 redo on the corrected SAB master. Stills approved, videos submitted.**
 
 | Shot | Tag | Approved still | Video history |
