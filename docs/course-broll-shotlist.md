@@ -4,7 +4,7 @@ Generated 5 Sep 2026. World: the violet-LED aubergine setting from the grow_ ree
 
 | # | Setup | Shot | Image model | Video model | Dur | Est. credits | Why this model |
 |---|---|---|---|---|---|---|---|
-| **M1** | MASTER | Character sheet — Jude turnaround: front / ¾ / profile. Curly light-brown hair, blue eyes, light stubble, navy crew-neck jumper. Neutral cream ground. | NB Pro ×4 | — | — | **144** | likeness + turnaround needs Pro; ships as the character ref on every shot |
+| ~~**M1**~~ | ~~MASTER~~ | ~~Character sheet~~ — SUPERSEDED. Using the existing reel character `grow_shot07_v3`: curly dark brown hair, light stubble, slate grey hoodie, dark grey joggers, white socks. | reuse | — | **0** | already in the library; matches the reels exactly |
 | **M2** | MASTER | Setting master — KITCHEN in the violet world: deep aubergine walls, violet LED strip under the cabinets, hob and counter, same paper-cutout finish as the grow_ bedroom master. No people. | NB Pro ×2 | — | — | **72** | the grow_ master is a bedroom with no hob; the cooking steps need a kitchen in the same world |
 | **M3** | MASTER | Setting master — WHITEBOARD in the violet world: Jude beside a blank whiteboard on an aubergine wall, violet LED glow, marker in hand. Board empty. | NB Pro ×2 | — | — | **72** | setting ref reused on every whiteboard shot |
 | **M4** | REUSE | Existing grow_ bedroom master (aubergine room, violet LED, wooden desk, shelf of jars, bed) — used as the setting ref for shelf / desk / cupboard / grow-space scenes. Already generated. | — | — | — | **0** | already in the library; reusing it is what makes the course match the grow reels |
