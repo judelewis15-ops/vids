@@ -89,8 +89,8 @@ never touches the board and never holds a marker against it.
 **Affected shots** (prompted as "marker touching / near the board"): 0.5 roadmap, 1.2 tree,
 1.7 race, 1.14 FAE.
 - **1.14** regenerated (v2) and re-videoed. v1 still and video void.
-- **0.5** regenerated as a pose-only edit, `zXnm63QgAIdqD92YO0t4` — board and all nine icons
-  locked, only the arms and marker changed. Awaiting pick, then a replacement video.
+- **0.5** fixed. Approved still `FcORuftLIK7KJTjL5Iie` (v3), replacement video
+  `uN7huOM1urEE9fbg5Aq6`. Board and all nine icons preserved by editing pose only.
 - **1.2 and 1.7** keep the drawing pose by Jude's decision — each appears once in its own
   section. Note 1.2 is also reused in §2, so the objection would recur there.
 
@@ -201,7 +201,9 @@ approved stills → **stop**. Next batch does not start until the previous is cl
 | Batch 5 stills — 1.11, 1.12, 1.14, 1.15 (Lite ×2), 1.13 (Pro ×2, 2K) | 184 |
 | 1.12 v2 reframe — body in shot (Lite ×2) | 28 |
 | 1.12 + 1.14 v2 videos | 100 |
-| **Running total** | **3,198** |
+| 0.5 v3 replacement video | 50 |
+| Batch 7 stills — 1.16, 1.18, 1.19, 1.20 (Lite ×2), 1.17 pot cutaway (Pro ×2, 2K) | 184 |
+| **Running total** | **3,432** |
 
 Opening balance 99,608. Project estimate 16,197 incl. 15% contingency.
 M1 came in 36 over its 144 budget; absorbed by contingency.
@@ -231,6 +233,24 @@ Nano Banana Pro at **2K costs the same 36 credits as 1K** (only 4K doubles, to 7
 All Pro shots run at 2K from here.
 
 ## Batch state
+**Batch 7 = §1 shots 1.16–1.20. Stills submitted — completes section 1.**
+
+| Shot | Tag | History |
+|---|---|---|
+| 1.16 foil over the lids | DEMO | `RPkfvLHOLOEevfUNbCOW` |
+| 1.17 pot cutaway — trivet, water line, 4 jars | DEMO | `zbgj2ytQ4I3val1MIdqw` |
+| 1.18 rolling boil vs gentle simmer | DEMO | `ShDyFJYrREXgSDlJjTwC` |
+| 1.19 jars cooling overnight | SCENE | `UchKAorNOgx6Bv0DOYEt` |
+| 1.20 warm jar kills spores board | WB | `VHyXi35vxDEmV1vE2aqj` |
+
+1.17 is the section's key teaching diagram: jars raised off the base on a trivet, water below
+the lids. Both facts are load-bearing and both are stated in the negatives.
+1.18 and 1.19 have no people and no hands. 1.20 uses the corrected presenting pose.
+
+**Next: §2 inoculation, batches 8–9 (2.1–2.14).** Almost entirely hands-in-the-SAB; the SAB and
+jar masters both exist. 2.7 (needle flamed until glowing) should be a start→end transition —
+fire is the one thing that must genuinely move, and the likeliest to be hallucinated.
+
 **Batch 5 = §1 shots 1.11–1.15.**
 
 | Shot | Tag | Approved still |
