@@ -149,7 +149,8 @@ approved stills → **stop**. Next batch does not start until the previous is cl
 | 0.8 v2 redo on M6 v3 (Lite ×2) | 28 |
 | Batch 3 stills — 1.1, 1.3, 1.4, 1.5 (Lite ×2 each) | 112 |
 | Batch 3 stills — 1.2 tree/mycelium (Pro ×2, 2K) | 72 |
-| **Running total** | **2,102** |
+| Batch 3 videos + 0.8 redo video — 6 × PixVerse 720p 4s | 300 |
+| **Running total** | **2,402** |
 
 Opening balance 99,608. Project estimate 16,197 incl. 15% contingency.
 M1 came in 36 over its 144 budget; absorbed by contingency.
@@ -179,6 +180,25 @@ Nano Banana Pro at **2K costs the same 36 credits as 1K** (only 4K doubles, to 7
 All Pro shots run at 2K from here.
 
 ## Batch state
+**Batch 3 = §1 shots 1.1–1.5, plus the 0.8 redo on the corrected SAB master. Stills approved, videos submitted.**
+
+| Shot | Tag | Approved still | Video history |
+|---|---|---|---|
+| 0.8 still air box (v2, on M6 v3) | DEMO | `RD6HkWnUWNgUCgvVdcIq` | `bYIzJpK8Xsl0LbllXSkf` |
+| 1.1 bag of brown rice | DEMO | `aJTo5LfQ6jSO6LUMOjXM` | `QSiZIN37zO5Wy54XcZoI` |
+| 1.2 tree = mycelium, fruit = mushroom | WB | `VfxUOfgWKSbrFvkAVAS3` | `RvCYaBVIgY8hgY4owQuu` |
+| 1.3 forest floor cross-section | SCENE | `n5S58lk8Nn2jA7tk7AW2` | `yfTD0SadSx3qHGUJCjvx` |
+| 1.4 mushroom 90% water | WB | `hUPO35Nka7hRxRx8qRFt` | `87wxmKComo4a5OGAC7x1` |
+| 1.5 water balance seesaw | WB | `cyLql2ar7gJJwZAam0vV` | `cxjN0eONTMfxh6i3Rb81` |
+
+All six videos under the new rules: camera locked off at length, every object frozen by name,
+described as a still with one micro-movement, no jaw or lip movement. Jude chose video for all
+six over stills-for-boards.
+
+**Next: batch 4 = 1.6–1.10** (rice pouch factory, the race board, rinse transition, simmer pot,
+cold rinse). 1.8 is the first start→end transition shot. **Jar master still recommended before
+1.9–1.12**, where jars start recurring.
+
 
 **Batch 1 = shots 0.1–0.5. Stills all approved, videos submitted.**
 
