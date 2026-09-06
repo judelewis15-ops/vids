@@ -104,7 +104,7 @@ Applies to stills and to video motion prompts — no jaw or lip movement in the 
 | M5d — tub, spent state | not yet made | — | needed at §9. Derive from M5 when §9 comes up |
 | ~~M6 v1 — still air box~~ | **DEFECTIVE** | ~~`YT4ROcuLkrCB59f2weLH`~~ | Tape patches did not fully cover the arm holes. Flaw would propagate to every SAB shot |
 | ~~M6 v2 — still air box~~ | **DEFECTIVE** | — | Tape still did not cover. Enlarging the tape did not work because the prompt still named the hole |
-| M6 v3 — still air box | pending review | — | history `ylQ5rb1vWKWdAbiNud47` superseded; v3 never mentions a hole — unbroken plastic face with two solid tape rectangles |
+| **M6 v3 — still air box** | **APPROVED** | `qegFfiC5DsBfsCL1o2k2` | Prompt never mentions a hole — unbroken plastic face with two solid tape rectangles. Third attempt; the rewrite worked |
 | **M7 — character sheet** | **APPROVED — canonical** | `VMzzkzSYH3prW0hFOpAh` | Four clean views on plain aubergine. **This is the character reference on every shot from 0.8 onward**, replacing the scene image `HINzQfJak0hyVgxhxtD0`. |
 | **M3 — whiteboard setting** | **APPROVED** | `xfKOBc3z06AxeyC7BW4h` | blank board left two-thirds, character right. v1 void — wrong character |
 | M4 — grow bedroom | reuse, already exists | (from `grow_` series) | shelf / desk / cupboard / grow-space scenes |
@@ -146,7 +146,10 @@ approved stills → **stop**. Next batch does not start until the previous is cl
 | M6 v2 SAB master, tape fix (Pro ×2, 2K) | 72 |
 | 0.9 video retry (locked-off) | 50 |
 | M6 v3 SAB master, rewritten prompt (Pro ×2, 2K) | 72 |
-| **Running total** | **1,890** |
+| 0.8 v2 redo on M6 v3 (Lite ×2) | 28 |
+| Batch 3 stills — 1.1, 1.3, 1.4, 1.5 (Lite ×2 each) | 112 |
+| Batch 3 stills — 1.2 tree/mycelium (Pro ×2, 2K) | 72 |
+| **Running total** | **2,102** |
 
 Opening balance 99,608. Project estimate 16,197 incl. 15% contingency.
 M1 came in 36 over its 144 budget; absorbed by contingency.
@@ -195,14 +198,23 @@ All videos: PixVerse V6 image2video, 720p, 4s, silent, 50 credits each.
 |---|---|---|---|
 | 0.6 consumer → producer | SCENE | `fcU4HyToBSeV7P7FKl7T` (v2) | `s7QoA3SC0JbugqXpDCYB` |
 | 0.7 kit flat-lay | DEMO | `ll5xJ3BZDRckTWSbiEOV` | `lbUkPL01xEuxYuYv1LkO` |
-| 0.8 still air box | DEMO | **void** — built on defective M6 v1; video also over-zoomed | redo after M6 v2 |
+| 0.8 still air box | DEMO | v2 rendering on M6 v3 | after still approval |
 | 0.9 drilled vs plain tub | DEMO | `aqqNOMBNehqhDHS1iQsM` | **ships as a still.** Two video attempts failed; stopped per policy |
 | 0.10 don't-need board | WB | `lraBsHlEUxIMBKQ6poCU` | `6TyXPLo5fNfwBgsPn75A` |
 
 **Section 0 shot, with 0.8 to redo and 0.9's video retried.**
-**Next: batch 3 = §1 grain prep, shots 1.1–1.5.** 1.1 needs no new master. 1.2 (tree/mycelium)
-and 1.7 (the race) are reused diagrams. No new props expected until the jar recurs — consider a
-jar master before §1 goes far, since jars appear in ~25 shots across §1–§4.
+**Batch 3 = §1 shots 1.1–1.5. Stills submitted. Videos held until all five stills are reviewed.**
+
+| Shot | Tag | Still |
+|---|---|---|
+| 1.1 rice bag | DEMO | rendering |
+| 1.2 tree / mycelium board (reused §2) | WB, Pro 2K | rendering |
+| 1.3 forest floor cross-section | SCENE | rendering |
+| 1.4 mushroom filled ~90% with water (reused §5 §8) | WB | rendering |
+| 1.5 seesaw — droplet vs mould, balanced | WB | rendering |
+
+No jar in 1.1–1.5. **Jar master needed before 1.12** (first jar shot); jars recur in ~25 shots
+across §1–§4.
 
 ## Character drift — root cause and fix
 
