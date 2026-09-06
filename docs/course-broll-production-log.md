@@ -28,6 +28,18 @@ and searchable in OpenArt's history. Convention from here:
 | `SCENE` | Set piece / metaphor, no procedure |
 | `MAP` | Uses the Maps style reference, not General |
 
+## Character rule — NO TALKING
+
+From batch 2 on, the character **never speaks or addresses camera** in B-roll. This footage sits
+under Jude's own talking-head voice; a second Jude mouthing words on screen fights it.
+
+**Every prompt with the character must carry:** mouth closed, lips together, not speaking, not
+addressing the camera; attention on the task or the board rather than the lens.
+**Negative:** `talking, speaking, mouth open, open mouth, mid-speech, addressing camera`.
+
+Expressions still allowed: neutral, focused, a small closed-mouth smile, raised eyebrows.
+Applies to stills and to video motion prompts — no jaw or lip movement in the animation either.
+
 ## World
 
 - **Style / world master** (uploaded ref): `voBNtSWY4cpDVZzY07uT`
