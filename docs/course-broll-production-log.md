@@ -73,6 +73,24 @@ duplicate them. Motion prompts must now **freeze every object explicitly by name
 must not appear (holes, duplicates, transformations), and describe the shot as
 "a still image with one micro-movement" rather than as an animation.
 
+## Character rule — NO LIP MOVEMENT (structural, from batch 4)
+
+"No jaw movement, no lip movement" in the motion prompt does not reliably hold on PixVerse.
+As with the tape: a negative cannot suppress what the composition invites. If the mouth is
+visible and facing camera, the video model may animate it.
+
+**So the rule is applied at the STILL stage, by composition:**
+
+| Shot type | Default framing from batch 4 |
+|---|---|
+| DEMO | Hands and the object. Face out of frame, or in profile looking down at the task |
+| WB | Back three-quarter to camera, facing the board. Mouth not visible |
+| SCENE | Profile, or the figure small enough in frame that the mouth is a few pixels |
+
+Mouth facing camera only where the shot genuinely needs it — and those shots **ship as stills**,
+no video. Motion prompts keep the no-jaw / no-lip wording as belt-and-braces, but the
+composition is what actually prevents it.
+
 ## Character rule — NO TALKING
 
 From batch 2 on, the character **never speaks or addresses camera** in B-roll. This footage sits
