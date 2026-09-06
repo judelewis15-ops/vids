@@ -14,9 +14,12 @@ Live record of approved assets, spend, and batch state. Updated as the run proce
 |---|---|---|---|
 | ~~M1 — character sheet~~ | **SUPERSEDED** | ~~`YwA3E4EhrbbuBiv9921W`~~ | Withdrawn. Jude chose the existing reel character instead. 180 credits sunk. |
 | **CHARACTER** | **APPROVED** | `HINzQfJak0hyVgxhxtD0` | `grow_shot07_v3` from the reel series — standing, facing camera, full body. Curly dark brown hair, light stubble, **slate grey hoodie, dark grey joggers, white socks**. Passed into every shot with a person in it. |
-| M2 — kitchen setting | pending review | — | history `J8MiUzulA7Z3mNwCO6Zk` — no people, unaffected by the character change |
-| M5 — tub prop | pending review | — | history `WNh6ddJs4lklNzCCmqWR` — plain undrilled tub, bare substrate. Colonised / fruiting / spent states derive from it |
-| M3 — whiteboard setting | pending review (v2) | — | v1 `0qV3r4YFuoA3F840MTjk` **void** (wrong character). v2 `xkeaNJu0eJLNdp7Vq8DS` |
+| **M2 — kitchen setting** | **APPROVED** | `5FSHm4tNka40DLIvvksR` | empty violet kitchen, counter + hob, clear centre and lower third |
+| **M5 — tub prop (base)** | **APPROVED** | `ewGam1wDW2bU1k5Mp9sm` | plain undrilled tub, bare substrate, lid leaning at its right |
+| M5b — tub, fruiting state | pending review | — | history `K3mwkEbZqLGxJF59D5nO`. Derived from M5. Needed by 0.1 and all §7/§8 tub shots |
+| M5c — tub, colonised state | not yet made | — | needed at §6. Derive from M5 when §6 comes up |
+| M5d — tub, spent state | not yet made | — | needed at §9. Derive from M5 when §9 comes up |
+| **M3 — whiteboard setting** | **APPROVED** | `xfKOBc3z06AxeyC7BW4h` | blank board left two-thirds, character right. v1 void — wrong character |
 | M4 — grow bedroom | reuse, already exists | (from `grow_` series) | shelf / desk / cupboard / grow-space scenes |
 
 ## Reference stack (every image job)
@@ -42,7 +45,10 @@ approved stills → **stop**. Next batch does not start until the previous is cl
 | M3 whiteboard v1 — void, wrong character | 72 |
 | M5 tub (2 drafts) | 72 |
 | M3 whiteboard v2 (2 drafts, 2K) | 72 |
-| **Running total** | **468** |
+| M5b fruiting tub (2 drafts, 2K) | 72 |
+| Batch 1 images — 0.2, 0.3, 0.4 (Lite ×2 each) | 84 |
+| Batch 1 images — 0.5 roadmap (Pro ×2, 2K) | 72 |
+| **Running total** | **696** |
 
 Opening balance 99,608. Project estimate 16,197 incl. 15% contingency.
 M1 came in 36 over its 144 budget; absorbed by contingency.
@@ -70,6 +76,12 @@ rather than instructional — specified verbatim and kept off the frame edges.
 
 Nano Banana Pro at **2K costs the same 36 credits as 1K** (only 4K doubles, to 72).
 All Pro shots run at 2K from here.
+
+## Batch state
+
+**Batch 1 = shots 0.1–0.5.** Images submitted for 0.2, 0.3, 0.4, 0.5.
+**0.1 is deferred** until M5b (fruiting tub) is approved — it is the shot that needs it.
+Videos for the batch run only after the stills are approved.
 
 ## Decisions
 
