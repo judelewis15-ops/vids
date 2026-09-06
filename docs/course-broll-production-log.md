@@ -73,6 +73,26 @@ duplicate them. Motion prompts must now **freeze every object explicitly by name
 must not appear (holes, duplicates, transformations), and describe the shot as
 "a still image with one micro-movement" rather than as an animation.
 
+## Whiteboard rule — HE IS NOT DRAWING
+
+The board shows a **completed** diagram, so he must not be mid-stroke on it. Posing him with a
+marker touching the board reads as him drawing something that is already finished.
+
+**Correct poses for a WB shot** — back three-quarter to camera, facing the board, and one of:
+- open palm presenting the diagram
+- one finger pointing at a single element
+- arms folded, considering it
+
+The marker is **capped and held down at his side, or resting in the board's tray**. His hand
+never touches the board and never holds a marker against it.
+
+**Affected shots** (prompted as "marker touching / near the board"): 0.5 roadmap, 1.2 tree,
+1.7 race, 1.14 FAE. 1.14 regenerated. The other three are approved and shipped — redo only on
+Jude's call; 0.5 matters most since it reappears at every section opening.
+
+Unaffected (already correct): 0.2 pointing, 0.3 presenting, 0.10 arms folded, 1.4 pointing,
+1.5 open hand.
+
 ## Character rule — NO LIP MOVEMENT (structural, from batch 4)
 
 "No jaw movement, no lip movement" in the motion prompt does not reliably hold on PixVerse.
