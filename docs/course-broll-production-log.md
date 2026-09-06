@@ -28,6 +28,24 @@ and searchable in OpenArt's history. Convention from here:
 | `SCENE` | Set piece / metaphor, no procedure |
 | `MAP` | Uses the Maps style reference, not General |
 
+## Camera rule — LOCKED OFF BY DEFAULT
+
+**PixVerse over-drives any camera instruction.** "One very slow, smooth camera push in" came
+back on 0.8 as a hard zoom, far too close. From here the default is a **completely locked-off
+camera**, stated explicitly and at length:
+
+`THE CAMERA IS COMPLETELY LOCKED OFF AND DOES NOT MOVE AT ALL — no push in, no pull back,
+no zoom, no pan, no tilt, no drift, no parallax.`
+
+Only ask for camera movement where the shot genuinely needs it, and expect to have to fight it.
+
+## Motion rule — TREAT IT AS A STILL
+
+Also from 0.9: naming two similar objects in a scene invites the model to invent, swap or
+duplicate them. Motion prompts must now **freeze every object explicitly by name**, state what
+must not appear (holes, duplicates, transformations), and describe the shot as
+"a still image with one micro-movement" rather than as an animation.
+
 ## Character rule — NO TALKING
 
 From batch 2 on, the character **never speaks or addresses camera** in B-roll. This footage sits
@@ -57,7 +75,8 @@ Applies to stills and to video motion prompts — no jaw or lip movement in the 
 | M5b — tub, fruiting state | pending review | — | history `K3mwkEbZqLGxJF59D5nO`. Derived from M5. Needed by 0.1 and all §7/§8 tub shots |
 | M5c — tub, colonised state | not yet made | — | needed at §6. Derive from M5 when §6 comes up |
 | M5d — tub, spent state | not yet made | — | needed at §9. Derive from M5 when §9 comes up |
-| **M6 — still air box** | **APPROVED** | `YT4ROcuLkrCB59f2weLH` | upside-down clear tub, two taped arm holes with slits. Recurs through §2 and the SAB companion |
+| ~~M6 v1 — still air box~~ | **DEFECTIVE** | ~~`YT4ROcuLkrCB59f2weLH`~~ | Tape patches did not fully cover the arm holes. Flaw would propagate to every SAB shot |
+| M6 v2 — still air box | pending review | — | history `ylQ5rb1vWKWdAbiNud47` — tape enlarged to overlap the hole edge all round |
 | **M7 — character sheet** | **APPROVED — canonical** | `VMzzkzSYH3prW0hFOpAh` | Four clean views on plain aubergine. **This is the character reference on every shot from 0.8 onward**, replacing the scene image `HINzQfJak0hyVgxhxtD0`. |
 | **M3 — whiteboard setting** | **APPROVED** | `xfKOBc3z06AxeyC7BW4h` | blank board left two-thirds, character right. v1 void — wrong character |
 | M4 — grow bedroom | reuse, already exists | (from `grow_` series) | shelf / desk / cupboard / grow-space scenes |
@@ -96,7 +115,9 @@ approved stills → **stop**. Next batch does not start until the previous is cl
 | M7 character sheet (Pro ×2, 2K) | 72 |
 | 0.8 still air box (Lite ×2) | 28 |
 | Batch 2 videos — 5 × PixVerse 720p 4s | 250 |
-| **Running total** | **1,696** |
+| M6 v2 SAB master, tape fix (Pro ×2, 2K) | 72 |
+| 0.9 video retry (locked-off) | 50 |
+| **Running total** | **1,818** |
 
 Opening balance 99,608. Project estimate 16,197 incl. 15% contingency.
 M1 came in 36 over its 144 budget; absorbed by contingency.
@@ -145,11 +166,11 @@ All videos: PixVerse V6 image2video, 720p, 4s, silent, 50 credits each.
 |---|---|---|---|
 | 0.6 consumer → producer | SCENE | `fcU4HyToBSeV7P7FKl7T` (v2) | `s7QoA3SC0JbugqXpDCYB` |
 | 0.7 kit flat-lay | DEMO | `ll5xJ3BZDRckTWSbiEOV` | `lbUkPL01xEuxYuYv1LkO` |
-| 0.8 still air box | DEMO | `scC8LTQ1NEwJGnlURvDf` — first shot on M7 | `R1i4ifgNenXt8Jw77Qcp` |
-| 0.9 drilled vs plain tub | DEMO | `aqqNOMBNehqhDHS1iQsM` | `OiBAuMb7DebiufX2EEm6` |
+| 0.8 still air box | DEMO | **void** — built on defective M6 v1; video also over-zoomed | redo after M6 v2 |
+| 0.9 drilled vs plain tub | DEMO | `aqqNOMBNehqhDHS1iQsM` (still fine) | v1 `OiBAuMb7DebiufX2EEm6` **hallucinated**; retry v2 `ZwfpLAVZyTqjD4V3uSzm` |
 | 0.10 don't-need board | WB | `lraBsHlEUxIMBKQ6poCU` | `6TyXPLo5fNfwBgsPn75A` |
 
-**Section 0 is now fully shot: 0.1–0.10, ten shots, stills and videos.**
+**Section 0 shot, with 0.8 to redo and 0.9's video retried.**
 **Next: batch 3 = §1 grain prep, shots 1.1–1.5.** 1.1 needs no new master. 1.2 (tree/mycelium)
 and 1.7 (the race) are reused diagrams. No new props expected until the jar recurs — consider a
 jar master before §1 goes far, since jars appear in ~25 shots across §1–§4.
