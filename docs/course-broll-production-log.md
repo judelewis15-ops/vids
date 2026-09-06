@@ -75,7 +75,9 @@ approved stills → **stop**. Next batch does not start until the previous is cl
 | Batch 1 images — 0.2, 0.3, 0.4 (Lite ×2 each) | 84 |
 | Batch 1 images — 0.5 roadmap v1 (Pro ×2, 2K) — **void**, empty circles | 72 |
 | Batch 1 images — 0.5 roadmap v2 (Pro ×2, 2K) — step icons | 72 |
-| **Running total** | **768** |
+| Batch 1 images — 0.1 opener (Lite ×2) | 28 |
+| Batch 1 videos — 5 × PixVerse 720p 4s | 250 |
+| **Running total** | **1,046** |
 
 Opening balance 99,608. Project estimate 16,197 incl. 15% contingency.
 M1 came in 36 over its 144 budget; absorbed by contingency.
@@ -106,9 +108,21 @@ All Pro shots run at 2K from here.
 
 ## Batch state
 
-**Batch 1 = shots 0.1–0.5.** Images submitted for 0.2, 0.3, 0.4, 0.5.
-**0.1 is deferred** until M5b (fruiting tub) is approved — it is the shot that needs it.
-Videos for the batch run only after the stills are approved.
+**Batch 1 = shots 0.1–0.5. Stills all approved, videos submitted.**
+
+| Shot | Tag | Approved still | Video history |
+|---|---|---|---|
+| 0.1 opener — beside the fruiting tub | SCENE | `yEQ9eYOKvFb9FuEr76tf` | `nyK6LDcmAKrVk4ADRQLc` |
+| 0.2 dried vs fresh piles | WB | `fnCmh4UoAbCfuvs5wz3j` | `Q28wsgObryyETlvnT4T9` |
+| 0.3 the loop | WB | `NuP1ljnZKHyysTyQV9sn` | `xPhKWK9Y3NxtqByzUweK` |
+| 0.4 legal shrug | DEMO | `t1mH6KsJVPaqwIc8AvyK` | `tBSBiHZ3fpI7FY50BxW5` |
+| 0.5 roadmap (9 step icons) | WB | `BmdI1IpXEAEnY3JVSXdA` | `ncKNtPZDxQPnlpgZo2KA` |
+
+All videos: PixVerse V6 image2video, 720p, 4s, silent, 50 credits each.
+
+**Batch 2 = shots 0.6–0.10.** Not started.
+0.6 needs no new master. 0.7–0.9 are kitchen DEMO shots; 0.8 introduces the still air box,
+which is a recurring prop and probably wants its own master before §2.
 
 ## Decisions
 
