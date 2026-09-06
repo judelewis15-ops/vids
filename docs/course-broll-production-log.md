@@ -51,21 +51,21 @@ Applies to stills and to video motion prompts — no jaw or lip movement in the 
 | Asset | Status | OpenArt id | Notes |
 |---|---|---|---|
 | ~~M1 — character sheet~~ | **SUPERSEDED** | ~~`YwA3E4EhrbbuBiv9921W`~~ | Withdrawn. Jude chose the existing reel character instead. 180 credits sunk. |
-| **CHARACTER** | **APPROVED** | `HINzQfJak0hyVgxhxtD0` | `grow_shot07_v3` from the reel series — standing, facing camera, full body. Curly dark brown hair, light stubble, **slate grey hoodie, dark grey joggers, white socks**. Passed into every shot with a person in it. |
+| CHARACTER (origin) | superseded by M7 | `HINzQfJak0hyVgxhxtD0` | `grow_shot07_v3` from the reel series. Defined the likeness; too busy to serve as a reference. Used for shots 0.1–0.10 and to derive M7. |
 | **M2 — kitchen setting** | **APPROVED** | `5FSHm4tNka40DLIvvksR` | empty violet kitchen, counter + hob, clear centre and lower third |
 | **M5 — tub prop (base)** | **APPROVED** | `ewGam1wDW2bU1k5Mp9sm` | plain undrilled tub, bare substrate, lid leaning at its right |
 | M5b — tub, fruiting state | pending review | — | history `K3mwkEbZqLGxJF59D5nO`. Derived from M5. Needed by 0.1 and all §7/§8 tub shots |
 | M5c — tub, colonised state | not yet made | — | needed at §6. Derive from M5 when §6 comes up |
 | M5d — tub, spent state | not yet made | — | needed at §9. Derive from M5 when §9 comes up |
 | **M6 — still air box** | **APPROVED** | `YT4ROcuLkrCB59f2weLH` | upside-down clear tub, two taped arm holes with slits. Recurs through §2 and the SAB companion |
-| M7 — character sheet | pending review | — | history `wtvBGthJhFvmD1mqvpoM`. Four clean views derived from `HINzQfJak0hyVgxhxtD0`. **Replaces the scene image as the character reference once picked** |
+| **M7 — character sheet** | **APPROVED — canonical** | `VMzzkzSYH3prW0hFOpAh` | Four clean views on plain aubergine. **This is the character reference on every shot from 0.8 onward**, replacing the scene image `HINzQfJak0hyVgxhxtD0`. |
 | **M3 — whiteboard setting** | **APPROVED** | `xfKOBc3z06AxeyC7BW4h` | blank board left two-thirds, character right. v1 void — wrong character |
 | M4 — grow bedroom | reuse, already exists | (from `grow_` series) | shelf / desk / cupboard / grow-space scenes |
 
 ## Reference stack (every image job)
 
 1. Style / world master — always
-2. M1 character sheet — any shot with a person
+2. **M7 character sheet** (`VMzzkzSYH3prW0hFOpAh`) — any shot with a person
 3. Setting master — M2 kitchen, M3 whiteboard, or M4 bedroom
 4. Prop master — where an established prop recurs (tub, jars, bag)
 
@@ -94,7 +94,8 @@ approved stills → **stop**. Next batch does not start until the previous is cl
 | Batch 2 images — SAB master, 0.6, 0.7, 0.9, 0.10 | 228 |
 | 0.6 v2 character correction (Pro ×2, 2K) | 72 |
 | M7 character sheet (Pro ×2, 2K) | 72 |
-| **Running total** | **1,418** |
+| 0.8 still air box (Lite ×2) | 28 |
+| **Running total** | **1,446** |
 
 Opening balance 99,608. Project estimate 16,197 incl. 15% contingency.
 M1 came in 36 over its 144 budget; absorbed by contingency.
@@ -141,9 +142,9 @@ All videos: PixVerse V6 image2video, 720p, 4s, silent, 50 credits each.
 
 | Shot | Tag | Approved still |
 |---|---|---|
-| 0.6 consumer → producer | SCENE | v1 layout kept, character wrong. **v2 rendering** `MpPLxuReEBACDlTlAcA4` |
+| 0.6 consumer → producer | SCENE | v2 done `MpPLxuReEBACDlTlAcA4` — layout kept, character corrected. Awaiting pick |
 | 0.7 kit flat-lay | DEMO | `ll5xJ3BZDRckTWSbiEOV` |
-| 0.8 still air box | DEMO | **held** until M7 character sheet is picked |
+| 0.8 still air box | DEMO | rendering `995XMg8SkWZO2wibJlyM` — first shot built on M7 |
 | 0.9 drilled vs plain tub | DEMO | `aqqNOMBNehqhDHS1iQsM` |
 | 0.10 don't-need board | WB | `lraBsHlEUxIMBKQ6poCU` |
 
