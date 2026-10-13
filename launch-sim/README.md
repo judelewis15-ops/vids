@@ -8,7 +8,18 @@ Runs [MiroFish](https://github.com/666ghj/MiroFish) on the Hypha app onboarding 
 - `run.sh`: sets everything up, checks the keys and network, runs the pipeline and saves the report to `out/`. MiroFish is pinned to commit `7657031`.
 - `run_mirofish.py`: the pipeline driver that `run.sh` calls.
 
-## Before it can run
+## Option A: run on your own computer (simplest)
+
+Your own machine has no network restrictions, so only the keys are needed.
+
+1. Open Claude Code on your computer (the Code tab in the Claude desktop app, or the `claude` CLI) in your `vids` folder, and check out branch `claude/sleepy-hypatia-4ng4nv`.
+2. Make sure [uv](https://docs.astral.sh/uv/getting-started/installation/) is installed. Claude Code can install it for you.
+3. Copy `launch-sim/.env.example` to `launch-sim/.env` and type your keys into it in a text editor. Don't paste them into the chat. `.env` is git-ignored.
+4. Ask Claude: "run `bash launch-sim/run.sh --rounds 30` and summarise `launch-sim/out/report.md`".
+
+The first run downloads a few GB of Python packages (PyTorch comes with the simulation library). On Windows, Claude Code runs the script in Git Bash.
+
+## Option B: run in a Claude Code cloud session
 
 In the cloud environment settings:
 
