@@ -1,0 +1,170 @@
+diff --git a/backend/app/utils/llm_client.py b/backend/app/utils/llm_client.py
+index 9d85259..c2d8153 100644
+--- a/backend/app/utils/llm_client.py
++++ b/backend/app/utils/llm_client.py
+@@ -263,6 +263,11 @@ class LLMClient:
+             # Some compatible providers append a short explanation after an
+             # otherwise complete JSON object. Accept only an object decoded
+             # from the beginning; never repair or invent truncated JSON.
++            # Providers that ignore response_format (e.g. Claude via the
++            # OpenAI-compatible endpoint) may also put a short lead-in first.
++            start = content.find("{")
++            if start > 0:
++                content = content[start:]
+             try:
+                 value, end = json.JSONDecoder().raw_decode(content)
+             except json.JSONDecodeError:
+diff --git a/backend/app/utils/openai_chat_compat.py b/backend/app/utils/openai_chat_compat.py
+index f0ce937..a47caae 100644
+--- a/backend/app/utils/openai_chat_compat.py
++++ b/backend/app/utils/openai_chat_compat.py
+@@ -17,6 +17,18 @@ def is_gpt5_family(model: Optional[str]) -> bool:
+     return model.strip().lower().startswith("gpt-5")
+ 
+ 
++def is_claude_model(model: Optional[str]) -> bool:
++    """Return True for Claude models served via Anthropic's OpenAI-compatible endpoint."""
++    if not model:
++        return False
++    return model.strip().lower().startswith("claude")
++
++
++# Claude needs an explicit output cap; callers that omit max_tokens expect a
++# generous limit (long simulation configs and profiles).
++CLAUDE_DEFAULT_MAX_TOKENS = 16000
++
++
+ def create_chat_completion(
+     client: Any,
+     *,
+@@ -31,6 +43,8 @@ def create_chat_completion(
+ 
+     Compatibility strategy:
+     - For GPT-5 family, avoid sending temperature by default.
++    - For Claude, never send temperature (current models reject values below 1)
++      and default max_tokens when the caller leaves it unset.
+     - For token limit, use `max_completion_tokens` on GPT-5, `max_tokens` otherwise.
+     - Preserve the legacy request shape for every non-GPT-5 model/provider.
+     - Propagate provider errors unchanged instead of guessing from message text.
+@@ -44,10 +58,14 @@ def create_chat_completion(
+         kwargs["response_format"] = response_format
+ 
+     gpt5_family = is_gpt5_family(model)
++    claude = is_claude_model(model)
+ 
+-    if temperature is not None and not gpt5_family:
++    if temperature is not None and not gpt5_family and not claude:
+         kwargs["temperature"] = temperature
+ 
++    if max_tokens is None and claude:
++        max_tokens = CLAUDE_DEFAULT_MAX_TOKENS
++
+     if max_tokens is not None:
+         if gpt5_family:
+             kwargs["max_completion_tokens"] = max_tokens
+diff --git a/backend/scripts/claude_compat.py b/backend/scripts/claude_compat.py
+new file mode 100644
+index 0000000..da8b577
+--- /dev/null
++++ b/backend/scripts/claude_compat.py
+@@ -0,0 +1,40 @@
++"""
++Claude support for the OASIS simulation scripts.
++
++camel's OpenAI backend counts tokens with tiktoken, which downloads its
++encoding files on first use. That download is unnecessary (and may be
++blocked) when the model is Claude, so Claude models get an approximate
++character-based counter instead.
++"""
++
++from typing import List, Optional
++
++from camel.utils.token_counting import BaseTokenCounter
++
++
++class ApproxTokenCounter(BaseTokenCounter):
++    """Estimates tokens as roughly four characters each; no downloads."""
++
++    CHARS_PER_TOKEN = 4
++
++    def count_tokens_from_messages(self, messages) -> int:
++        total = 0
++        for message in messages:
++            content = message.get("content") or ""
++            if not isinstance(content, str):
++                content = str(content)
++            total += len(content) // self.CHARS_PER_TOKEN + 4
++        return total
++
++    def encode(self, text: str) -> List[int]:
++        return list(text.encode("utf-8"))
++
++    def decode(self, token_ids: List[int]) -> str:
++        return bytes(token_ids).decode("utf-8", errors="ignore")
++
++
++def token_counter_for(model_name: Optional[str]) -> Optional[BaseTokenCounter]:
++    """Return a counter for Claude models, or None to keep camel's default."""
++    if model_name and model_name.strip().lower().startswith("claude"):
++        return ApproxTokenCounter()
++    return None
+diff --git a/backend/scripts/run_parallel_simulation.py b/backend/scripts/run_parallel_simulation.py
+index 2a627ff..e40fe24 100644
+--- a/backend/scripts/run_parallel_simulation.py
++++ b/backend/scripts/run_parallel_simulation.py
+@@ -160,6 +160,7 @@ from action_logger import SimulationLogManager, PlatformActionLogger
+ try:
+     from camel.models import ModelFactory
+     from camel.types import ModelPlatformType
++    from claude_compat import token_counter_for
+     import oasis
+     from oasis import (
+         ActionType,
+@@ -1034,6 +1035,7 @@ def create_model(config: Dict[str, Any], use_boost: bool = False):
+     return ModelFactory.create(
+         model_platform=ModelPlatformType.OPENAI,
+         model_type=llm_model,
++        token_counter=token_counter_for(llm_model),
+     )
+ 
+ 
+diff --git a/backend/scripts/run_reddit_simulation.py b/backend/scripts/run_reddit_simulation.py
+index 14907cb..025fde5 100644
+--- a/backend/scripts/run_reddit_simulation.py
++++ b/backend/scripts/run_reddit_simulation.py
+@@ -118,6 +118,7 @@ def setup_oasis_logging(log_dir: str):
+ try:
+     from camel.models import ModelFactory
+     from camel.types import ModelPlatformType
++    from claude_compat import token_counter_for
+     import oasis
+     from oasis import (
+         ActionType,
+@@ -464,6 +465,7 @@ class RedditSimulationRunner:
+         return ModelFactory.create(
+             model_platform=ModelPlatformType.OPENAI,
+             model_type=llm_model,
++            token_counter=token_counter_for(llm_model),
+         )
+     
+     def _get_active_agents_for_round(
+diff --git a/backend/scripts/run_twitter_simulation.py b/backend/scripts/run_twitter_simulation.py
+index caab9e9..4efa08f 100644
+--- a/backend/scripts/run_twitter_simulation.py
++++ b/backend/scripts/run_twitter_simulation.py
+@@ -118,6 +118,7 @@ def setup_oasis_logging(log_dir: str):
+ try:
+     from camel.models import ModelFactory
+     from camel.types import ModelPlatformType
++    from claude_compat import token_counter_for
+     import oasis
+     from oasis import (
+         ActionType,
+@@ -457,6 +458,7 @@ class TwitterSimulationRunner:
+         return ModelFactory.create(
+             model_platform=ModelPlatformType.OPENAI,
+             model_type=llm_model,
++            token_counter=token_counter_for(llm_model),
+         )
+     
+     def _get_active_agents_for_round(

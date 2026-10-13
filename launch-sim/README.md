@@ -4,32 +4,29 @@ Runs [MiroFish](https://github.com/666ghj/MiroFish) on the Hypha app onboarding 
 
 - `seed/hypha-app-launch.md`: the launch as MiroFish sees it. It covers the brand, product, pricing, all five onboarding routes with their copy, the paywalls and the open issues. It was pulled from the Kinflo onboarding session of 7–8 Oct 2026.
 - `question.txt`: what the simulation should predict.
-- `run_mirofish.py`: runs the whole pipeline against a local MiroFish backend and saves the report to `out/`.
+- `mirofish-claude.patch`: lets MiroFish run on Claude through Anthropic's OpenAI-compatible endpoint. It stops sending `temperature`, which current Claude models reject below 1, and gives `max_tokens` a default. It also tolerates a lead-in before JSON replies, and skips tiktoken's encoding download for Claude agents.
+- `run.sh`: sets everything up, checks the keys and network, runs the pipeline and saves the report to `out/`. MiroFish is pinned to commit `7657031`.
+- `run_mirofish.py`: the pipeline driver that `run.sh` calls.
 
 ## Before it can run
 
-The cloud environment needs:
+In the cloud environment settings:
 
-1. **Network access** to `api.getzep.com` and to your model provider's API host. Add these under Allowed domains in the environment settings.
+1. **Network access:** add `api.getzep.com` under Allowed domains. `api.anthropic.com` is already reachable.
 2. **Environment variables:**
-   - `LLM_API_KEY`
-   - `LLM_BASE_URL`, for example `https://api.openai.com/v1`
-   - `LLM_MODEL_NAME`, for example `gpt-4o-mini`
-   - `ZEP_API_KEY`, from https://app.getzep.com (the free tier is enough)
+   ```
+   LLM_API_KEY=<Anthropic API key from platform.claude.com/settings/keys>
+   LLM_BASE_URL=https://api.anthropic.com/v1/
+   LLM_MODEL_NAME=claude-opus-5-5
+   ZEP_API_KEY=<key from app.getzep.com>
+   ```
 
-MiroFish reads these straight from the environment, so no `.env` file is needed.
+Then start a new session so it picks the settings up.
 
 ## Run
 
 ```bash
-git clone --depth 1 https://github.com/666ghj/MiroFish ~/mirofish
-cd ~/mirofish/backend && uv sync --python 3.12
-uv run python run.py &          # backend on :5001
-cd -                            # back to this repo
-python3 launch-sim/run_mirofish.py \
-  --seed launch-sim/seed/hypha-app-launch.md \
-  --question launch-sim/question.txt \
-  --rounds 30
+bash launch-sim/run.sh --rounds 30
 ```
 
-Start with 30 rounds or fewer, because MiroFish makes a lot of model calls.
+This takes a while: the persona simulation alone can run for an hour or more. The report lands in `launch-sim/out/report.md`.
