@@ -2,7 +2,7 @@
 
 Status: draft script, not yet recorded. Facts below still need checking.
 Format: thesis reel (broad verdict, supporting clip, then versus now, what changed, turn, patriotic close).
-Target length: about 105 seconds, roughly 310 words, about 20 to 25 cuts a minute.
+Target length: about 125 seconds, roughly 370 words, about 20 to 25 cuts a minute.
 
 ## Script
 
@@ -16,11 +16,13 @@ In 1941, Churchill and Roosevelt met on a warship off Newfoundland and wrote dow
 
 And the deal was simple. America protects the system, and everybody else plays by the rules. For eighty years the US Navy kept the sea lanes open. Pirates, blockades, it didn't matter whose ship it was. And it worked. World trade grew more than forty times over.
 
-So what changed? America did. It put tariffs on its own allies. It's talked about taking Greenland. And this year, American bombs started a war that all but shut the Strait of Hormuz. A fifth of the world's oil goes through it. Eighty-five ships a day became a trickle.
+So what changed? America did. It put tariffs on its own allies. And this year, American bombs started a war that all but shut the Strait of Hormuz. A fifth of the world's oil goes through it. Eighty-five ships a day became a trickle.
 
 The navy that kept the world's waterways open helped close the most important one on the planet.
 
-And you can be angry about that. Or you can deal with it.
+And what did Britain say? Keir Starmer was Prime Minister when the bombs fell. To be fair, he kept us out of it. But he condemned Iran for hitting back, and he wouldn't say whether the strikes themselves were right or wrong. Then he let America use our bases.
+
+Carney had already said it out loud, a month earlier, in front of the whole world. Why can't we?
 
 But here's the part people miss. The middle powers aren't small. Put Britain, the European Union, Canada, Japan, Australia and South Korea together, and you've got an economy bigger than America's. Bigger than China's. They've just never had to act like it.
 
@@ -54,12 +56,19 @@ Britain helped write the rules once, on a ship in the Atlantic. We can wait to f
 | "World trade grew more than forty times over." | Line chart rising from 1950, end point circled, "×40" |
 | "So what changed? America did." | You to camera |
 | "Tariffs on its own allies." | Tariff board from April 2025 |
-| "Taking Greenland." | Map of Greenland |
 | "American bombs started a war…" | Strike footage from February 2026 |
 | "…all but shut the Strait of Hormuz." | Map zooming to the strait |
 | "A fifth of the world's oil." | Tankers at anchor, "20%" |
 | "Eighty-five ships a day became a trickle." | Ship-tracking map emptying, "85 a day" struck through |
 | "The navy that kept the world's waterways open…" | Reuse the carrier shot, then you to camera on "the most important one on the planet" |
+| "And what did Britain say?" | You to camera |
+| "Keir Starmer was Prime Minister when the bombs fell." | Starmer at the Downing Street lectern, dated "March 2026" |
+| "He kept us out of it." | Starmer in the Commons |
+| "He condemned Iran for hitting back…" | The joint statement with Macron and Merz as text on screen |
+| "…wouldn't say whether the strikes themselves were right or wrong." | Commons clip, or Badenoch's line as text |
+| "Then he let America use our bases." | US aircraft at a UK base |
+| "Carney had already said it out loud…" | Reuse the Davos shot |
+| "Why can't we?" | You to camera |
 | "The middle powers aren't small." | You to camera, then a map lighting up each country as named |
 | "Bigger than America's. Bigger than China's." | Bar chart: combined middle powers versus US versus China |
 | "Canada has applied to join a defence force that Britain leads." | Joint Expeditionary Force exercise footage, Carney with the UK Prime Minister |
@@ -72,7 +81,11 @@ Britain helped write the rules once, on a ship in the Atlantic. We can wait to f
 - **Carney biography.** Governor of the Bank of England 2013 to 2020. From memory.
 - **Atlantic Charter.** August 1941, Churchill and Roosevelt aboard ships in Placentia Bay, Newfoundland. Principles included no territorial aggrandisement, freer trade and freedom of the seas. From memory. It preceded and influenced the UN; saying it "became" the UN, NATO and the trading system is a simplification.
 - **World trade growth.** The World Trade Organization has described world trade volume as roughly 40-plus times its 1950 level. From memory; confirm the current figure.
-- **US actions.** Tariffs on allies in April 2025 and the Greenland remarks are from memory of 2025 reporting.
+- **Starmer.** He is no longer Prime Minister: he announced his resignation on 22 June 2026 and Andy Burnham took office on 20 July. The script says "was Prime Minister when the bombs fell" for that reason. What the search found on his Iran response: he refused a US request to use British bases before the initial strikes and said the UK was not involved; a joint statement with Macron and Merz on 28 February condemned Iran's counter-strikes and called for diplomacy; on 1 to 2 March he agreed to let the US use UK bases for "defensive" strikes on Iranian missiles and launchers; in the Commons he said "this government does not believe in regime change from the skies", and Kemi Badenoch replied that "the prime minister still cannot say whether he backs the strikes or not". So "wouldn't say whether the strikes were right or wrong" rests on Badenoch's charge and the absence of any criticism in the reported statements; read the Commons statement of 2 March before recording, because the "regime change from the skies" line could be read as criticism.
+- **Do not use Greenland against Starmer.** In January 2026 he called Trump's Greenland tariffs "completely wrong" in a televised statement, though he ruled out retaliation. The Greenland line was cut from the script for that reason.
+- **Carney's timing.** The Davos speech was in January 2026, before the strikes on Iran on 28 February. The script says "a month earlier" so it does not imply he was responding to the war.
+- **Current government.** Nothing was found on Burnham's stance towards the US, so the script makes no claim about him.
+- **US actions.** Tariffs on allies in April 2025 are from memory of 2025 reporting.
 - **US Navy and sea lanes.** The claim that the US Navy has policed sea lanes and fought piracy since 1945 is general knowledge, from memory. "Eighty years" and "didn't matter whose ship" are simplifications.
 - **Strait of Hormuz.** The US and Israel launched joint strikes on Iran on 28 February 2026; Iran closed the strait in response, and the US began a naval blockade of Iranian ports on 13 April. So Iran did the closing, after American strikes; the script says the bombs "started a war that all but shut" it and that the navy "helped close" it, which is as far as the facts go. Baseline traffic was about 85 vessels a day. Trackers disagree on current traffic: one recorded 1 transit on 1 November 2026, others about 30 a day with US coordination. The situation is moving (a headline on 10 November 2026 quotes Trump calling the war "effectively over"), so recheck on the day you record and change the tense if it has reopened. "A fifth of the world's oil" is from memory.
 - **Combined economy.** UK plus EU plus Canada, Japan, Australia and South Korea being larger than the US and China is my own sum of approximate GDP figures from memory (roughly $33tn against roughly $29tn and $19tn). Recompute from current International Monetary Fund data before putting a chart on screen.
@@ -84,6 +97,11 @@ Britain helped write the rules once, on a ship in the Atlantic. We can wait to f
 - https://globalnews.ca/news/11620877/carney-davos-wef-speech-transcript/
 - https://www.aljazeera.com/economy/2026/1/21/rupture-in-the-world-order-speeches-by-carney-world-leaders-at-davos
 - https://www.nbcnews.com/world/europe/mark-carney-eu-plot-middle-power-alliance-counter-trump-threats-rcna598284
+- https://commonslibrary.parliament.uk/research-briefings/cbp-10521/
+- https://time.com/7382692/starmer-trump-iran-war-conflict-united-kingdom-response/
+- https://en.wikipedia.org/wiki/United_Kingdom_involvement_in_the_2026_Iran_war
+- https://www.washingtonpost.com/world/2026/07/20/andy-burnham-prime-minister-uk-politics/4cb7d584-840c-11f1-9cec-0fb26676f07e_story.html
+- https://thehill.com/policy/international/5695421-starmer-criticizes-trump-greenland/
 - https://www.britannica.com/event/2026-Iran-war
 - https://en.wikipedia.org/wiki/2026_Strait_of_Hormuz_campaign
 - https://gulfnews.com/world/mena/hormuz-shipping-below-normal-but-not-stalled-ukmto-1.500741839
