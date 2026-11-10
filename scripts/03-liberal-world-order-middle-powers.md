@@ -14,9 +14,11 @@ That's Mark Carney. Prime Minister of Canada. He used to run the Bank of England
 
 In 1941, Churchill and Roosevelt met on a warship off Newfoundland and wrote down what the world should look like after the war. No land grabs. Open trade. Free seas. That became the United Nations, NATO, and the trading system we still use.
 
-And the deal was simple. America protects the system, and everybody else plays by the rules. And it worked. World trade grew more than forty times over.
+And the deal was simple. America protects the system, and everybody else plays by the rules. For eighty years the US Navy kept the sea lanes open. Pirates, blockades, it didn't matter whose ship it was. And it worked. World trade grew more than forty times over.
 
-So what changed? America did. It put tariffs on its own allies. It's talked about taking Greenland, and making Canada the fifty-first state. It's reviewing the eighty thousand troops it keeps in Europe. The country that built the system has decided it's a bad deal.
+So what changed? America did. It put tariffs on its own allies. It's talked about taking Greenland. And this year, American bombs started a war that all but shut the Strait of Hormuz. A fifth of the world's oil goes through it. Eighty-five ships a day became a trickle.
+
+The navy that kept the world's waterways open helped close the most important one on the planet.
 
 And you can be angry about that. Or you can deal with it.
 
@@ -46,13 +48,18 @@ Britain helped write the rules once, on a ship in the Atlantic. We can wait to f
 | "In 1941, Churchill and Roosevelt met on a warship…" | Archive: the two on deck of HMS Prince of Wales |
 | "No land grabs. Open trade. Free seas." | One image each: Atlantic Charter document, cargo ship, convoy |
 | "United Nations, NATO, and the trading system." | One image each: UN founding, NATO signing, container port |
-| "America protects the system…" | US carrier group, then post-war archive |
+| "America protects the system…" | Post-war archive |
+| "The US Navy kept the sea lanes open." | US carrier group, then a destroyer escorting a container ship |
+| "Pirates, blockades…" | Anti-piracy boarding footage off Somalia |
 | "World trade grew more than forty times over." | Line chart rising from 1950, end point circled, "×40" |
 | "So what changed? America did." | You to camera |
 | "Tariffs on its own allies." | Tariff board from April 2025 |
-| "Greenland… the fifty-first state." | Map of Greenland, then Canada |
-| "Eighty thousand troops it keeps in Europe." | US troops in Europe, "80,000" |
-| "A bad deal." | You to camera |
+| "Taking Greenland." | Map of Greenland |
+| "American bombs started a war…" | Strike footage from February 2026 |
+| "…all but shut the Strait of Hormuz." | Map zooming to the strait |
+| "A fifth of the world's oil." | Tankers at anchor, "20%" |
+| "Eighty-five ships a day became a trickle." | Ship-tracking map emptying, "85 a day" struck through |
+| "The navy that kept the world's waterways open…" | Reuse the carrier shot, then you to camera on "the most important one on the planet" |
 | "The middle powers aren't small." | You to camera, then a map lighting up each country as named |
 | "Bigger than America's. Bigger than China's." | Bar chart: combined middle powers versus US versus China |
 | "Canada has applied to join a defence force that Britain leads." | Joint Expeditionary Force exercise footage, Carney with the UK Prime Minister |
@@ -65,7 +72,9 @@ Britain helped write the rules once, on a ship in the Atlantic. We can wait to f
 - **Carney biography.** Governor of the Bank of England 2013 to 2020. From memory.
 - **Atlantic Charter.** August 1941, Churchill and Roosevelt aboard ships in Placentia Bay, Newfoundland. Principles included no territorial aggrandisement, freer trade and freedom of the seas. From memory. It preceded and influenced the UN; saying it "became" the UN, NATO and the trading system is a simplification.
 - **World trade growth.** The World Trade Organization has described world trade volume as roughly 40-plus times its 1950 level. From memory; confirm the current figure.
-- **US actions.** Tariffs on allies in April 2025, and the Greenland and "51st state" remarks, are from memory of 2025 reporting. The troop review (about 80,000 US troops in Europe, review announced by the US defence secretary) is from a Euronews report of July 2026; the outcome of that review was not checked.
+- **US actions.** Tariffs on allies in April 2025 and the Greenland remarks are from memory of 2025 reporting.
+- **US Navy and sea lanes.** The claim that the US Navy has policed sea lanes and fought piracy since 1945 is general knowledge, from memory. "Eighty years" and "didn't matter whose ship" are simplifications.
+- **Strait of Hormuz.** The US and Israel launched joint strikes on Iran on 28 February 2026; Iran closed the strait in response, and the US began a naval blockade of Iranian ports on 13 April. So Iran did the closing, after American strikes; the script says the bombs "started a war that all but shut" it and that the navy "helped close" it, which is as far as the facts go. Baseline traffic was about 85 vessels a day. Trackers disagree on current traffic: one recorded 1 transit on 1 November 2026, others about 30 a day with US coordination. The situation is moving (a headline on 10 November 2026 quotes Trump calling the war "effectively over"), so recheck on the day you record and change the tense if it has reopened. "A fifth of the world's oil" is from memory.
 - **Combined economy.** UK plus EU plus Canada, Japan, Australia and South Korea being larger than the US and China is my own sum of approximate GDP figures from memory (roughly $33tn against roughly $29tn and $19tn). Recompute from current International Monetary Fund data before putting a chart on screen.
 - **Joint Expeditionary Force.** NBC reported Carney announcing Canada's application to join the UK-led force in a speech to the European Parliament. The date and whether it has been accepted were not checked, so "applied" may be out of date.
 
@@ -75,5 +84,8 @@ Britain helped write the rules once, on a ship in the Atlantic. We can wait to f
 - https://globalnews.ca/news/11620877/carney-davos-wef-speech-transcript/
 - https://www.aljazeera.com/economy/2026/1/21/rupture-in-the-world-order-speeches-by-carney-world-leaders-at-davos
 - https://www.nbcnews.com/world/europe/mark-carney-eu-plot-middle-power-alliance-counter-trump-threats-rcna598284
-- https://www.euronews.com/my-europe/2026/07/06/nato-leaders-to-affirm-record-defence-spending-as-us-plans-european-drawdown
-- https://www.chathamhouse.org/publications/the-world-today/2026-03/will-britain-face-its-huge-new-defence-bill
+- https://www.britannica.com/event/2026-Iran-war
+- https://en.wikipedia.org/wiki/2026_Strait_of_Hormuz_campaign
+- https://gulfnews.com/world/mena/hormuz-shipping-below-normal-but-not-stalled-ukmto-1.500741839
+- https://straits.live/briefs/2026-11-10
+- https://www.cnbc.com/2026/04/21/oil-price-iran-war-middle-east.html
