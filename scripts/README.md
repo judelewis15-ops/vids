@@ -10,6 +10,7 @@ All scripts are drafts. None has been recorded. Each file lists its own facts to
 | 04 | `04-guns-for-hire-wagner-to-haiti.md` | Wagner, Blackwater, and Erik Prince's drone war in Haiti | Map-led | about 115s | Draft | Gang-control map must be traced from the UN Panel of Experts map |
 | 05 | `05-coal-and-the-vote.md` | Britain's coalfields and how it votes | Map-led | about 85s | Draft | Build brief in `handoff/coal-map-after-effects.md`; the overlay must be tested on real data first |
 | 06 | `06-un-secretary-general-race.md` | The UN's next leader could be Viktor Orbán; Britain and France should be ready to veto | Talking head, thesis | about 110s | Draft, version 2 | Live story, researched 12 November 2026. Recheck everything on the day; confirm the Human Rights Watch statement and Nusseibeh's current title |
+| 07 | `07-second-referendum-democracy.md` | Is a second Brexit referendum undemocratic? Precedents, and what has changed since 2016 | Talking head, rebuttal | about 110s | Draft | Needs the Farage clip found; the file lists where opponents will push back |
 
 ## Time-sensitive
 
