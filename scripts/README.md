@@ -20,4 +20,10 @@ All scripts are drafts. None has been recorded. Each file lists its own facts to
 
 ## Style reference
 
-Scripts 01 to 03 and 06 follow the structure found in the analysis of @tonyvanderhoef: verdict first, a hard number early, then versus now, "here's the part people miss", an optimistic or patriotic close. Scripts 04 and 05 follow Johnny Harris's map-led Nile reel: slow push-ins on a relief map, one new element per beat, far fewer words.
+Scripts 01 to 03, 06 and 07 follow the format of Tony Vanderhoef (https://www.instagram.com/tonyvanderhoef/): verdict first, a hard number early, then versus now, "here's the part people miss", an optimistic or patriotic close. Only the format is borrowed, not his politics.
+
+- Rebuttal model (01, 02, 07): https://www.instagram.com/p/DeK_e8DsUVd/
+- Thesis model (03, 06): https://www.instagram.com/reel/DSizjtUDG2U/
+- Picture and pace model: https://www.instagram.com/reel/Db53VzmRHy6/
+
+Scripts 04 and 05 follow Johnny Harris's map-led Nile reel (https://www.instagram.com/p/DfaOC6qnHIv/): slow push-ins on a relief map, one new element per beat, far fewer words.

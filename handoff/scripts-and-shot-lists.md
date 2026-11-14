@@ -28,7 +28,15 @@ Treat every factual claim as unverified until checked. The session that wrote th
 
 ## The two formats
 
-**Talking head (scripts 1, 2, 3, 6, 7).** Modelled on an analysis of the creator @tonyvanderhoef.
+**Talking head (scripts 1, 2, 3, 6, 7).** Modelled on the American conservative commentator Tony Vanderhoef, https://www.instagram.com/tonyvanderhoef/ . Only his format is borrowed, not his politics. Watch these before editing or shooting:
+- Rebuttal model for scripts 1, 2 and 7: his reply to Abdul El-Sayed on billionaires, https://www.instagram.com/p/DeK_e8DsUVd/ (532k views). Broad verdict, then the opponent's clip, then "His argument is essentially…", "The problem is, it's wrong", numbers, and "Who do you trust?"
+- Thesis model for scripts 3 and 6: "What the hell happened to the Democratic Party?", https://www.instagram.com/reel/DSizjtUDG2U/ (1.09M views). Question, then versus now, "So what changed?", "But here's the part people miss", moral close.
+- Picture and pace model: "I'm an Eisenhower Republican", https://www.instagram.com/reel/Db53VzmRHy6/ (1.35M views, his most viewed). About 25 cuts a minute, about 78% archive and graphics, one image per name or number, charts with the figure circled.
+- Fastest cutting, present-day footage: the World Cup reel, https://www.instagram.com/reel/DZ0i_xLRXTl/ (834k views, 46 seconds, about 31 cuts a minute).
+- Policy takedown with hard numbers: the "Mamdani Markets" reel, https://www.instagram.com/reel/DbekT9otmJJ/ (987k views).
+- What to avoid: his Ground News sponsor read, https://www.instagram.com/reel/DY5fbZBxgH2/ (29k views). Abstract topic, and it holds on the presenter for 10 to 13 seconds at a time.
+
+View counts are from a scrape on 10 November 2026. The picture and pace figures come from an automated scene analysis, so treat them as approximate.
 - Script shape: a verdict or question in line one; for rebuttals, a clip of the opponent straight after, then "His argument is essentially…" and "The problem is…"; a hard number early; then versus now; "But here's the part people miss"; an optimistic or patriotic close said to camera.
 - Picture: presenter to camera for the first two seconds, then cut away. One image per name or number, held only as long as the phrase. Mostly full-screen archive photos and footage, simple line charts with the key figure circled, screenshots of headlines. Never hold on the presenter for more than about five seconds mid-video. End on the presenter.
 - Pace: roughly 17 to 30 cuts a minute. A short sound effect on image changes.
