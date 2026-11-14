@@ -28,7 +28,11 @@ Treat every factual claim as unverified until checked. The session that wrote th
 
 ## The two formats
 
-**Talking head (scripts 1, 2, 3, 6, 7).** Modelled on the American conservative commentator Tony Vanderhoef, https://www.instagram.com/tonyvanderhoef/ . Only his format is borrowed, not his politics. Watch these before editing or shooting:
+**Talking head (scripts 1, 2, 3, 6, 7).** Modelled on the American conservative commentator Tony Vanderhoef, https://www.instagram.com/tonyvanderhoef/ . Only his format is borrowed, not his politics.
+
+**Watch the reference videos frame by frame before editing, shooting or changing a shot list.** Do not rely on the descriptions in this document or on a transcript. Step through each one and note, with timestamps: every cut and how long each shot lasts, what is on screen in each shot, which spoken word each image lands on, where the presenter is on camera and for how long, any on-screen text and how it is styled, and the first three seconds in detail. If you cannot play video, download the file and extract frames at two or more a second into contact sheets, then read those. The previous session only managed this for the Johnny Harris reel; for the Vanderhoef reels it had an automated scene description, which did not report captions, zooms or music, so those are still unknown and are yours to establish.
+
+The reference videos:
 - Rebuttal model for scripts 1, 2 and 7: his reply to Abdul El-Sayed on billionaires, https://www.instagram.com/p/DeK_e8DsUVd/ (532k views). Broad verdict, then the opponent's clip, then "His argument is essentially…", "The problem is, it's wrong", numbers, and "Who do you trust?"
 - Thesis model for scripts 3 and 6: "What the hell happened to the Democratic Party?", https://www.instagram.com/reel/DSizjtUDG2U/ (1.09M views). Question, then versus now, "So what changed?", "But here's the part people miss", moral close.
 - Picture and pace model: "I'm an Eisenhower Republican", https://www.instagram.com/reel/Db53VzmRHy6/ (1.35M views, his most viewed). About 25 cuts a minute, about 78% archive and graphics, one image per name or number, charts with the figure circled.
@@ -47,6 +51,7 @@ View counts are from a scrape on 10 November 2026. The picture and pace figures 
 - The camera never stops: slow push-ins and drifts held for 5 to 12 seconds. One new element per beat. Lines and fills animate on.
 - Archive material sits in a rounded frame on black. Captions are small white monospace on a grey box, low in frame, a phrase at a time.
 - Far fewer words than the talking-head scripts.
+- Watch this one frame by frame too, the same way, before building any map animation. The description above came from stepping through it at two frames a second without sound, so the audio, music and exact timing of the voice against the picture have not been studied.
 - A full build brief for script 5 exists in the repository at `handoff/coal-map-after-effects.md`.
 
 ## Recording setup
